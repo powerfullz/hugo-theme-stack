@@ -1,3 +1,3 @@
-module github.com/powerfullz/hugo-theme-stack/v1
+module github.com/powerfullz/hugo-theme-stack
 
 go 1.24
