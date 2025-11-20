@@ -52,10 +52,16 @@
 
 /* LineNumbersTable */
 .chroma .lnt {
-    margin-right: 0.4em;
+    margin-right: 0;
+    user-select: none;
     padding: 0 0.4em 0 0.4em;
     color: #7f7f7f;
     display: block;
+}
+
+/* 代码块复制体验优化 */
+span.line {
+    margin-left: 0.5em;
 }
 
 /* LineNumbers */
