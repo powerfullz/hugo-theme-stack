@@ -42,7 +42,7 @@ services:
         shortname: "hugo-theme-stack"
     # GA Tracking ID
     googleAnalytics:
-        id:
+        id: 
 
 pagination:
     pagerSize: 3
@@ -84,7 +84,11 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: artalk
+
+        artalk:
+            site: ExampleSite
+            serverUrl: https://comment.l3zc.com/
 
         disqusjs:
             shortname:
