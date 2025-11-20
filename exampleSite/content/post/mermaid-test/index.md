@@ -3,7 +3,6 @@ author: powerfullz
 title: Mermaid Testing
 date: 2025-11-20
 description: A brief Mermaid diagram test.
-hasMermaid: true
 ---
 
 This is a test post to verify Mermaid diagram rendering in Hugo.

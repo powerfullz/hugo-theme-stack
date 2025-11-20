@@ -1,0 +1,10 @@
+{{ $mermaidConfig := index .Site.Data.external "Mermaid" }}
+{{ $mermaidSrc := "" }}
+{{ range $mermaidConfig }}
+    {{ if eq .type "script" }}
+        {{ $mermaidSrc = .src }}
+    {{ end }}
+{{ end }}
+
+{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true "params" (dict "mermaidUrl" $mermaidSrc)) | fingerprint }}
+<script type="module" src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>

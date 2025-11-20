@@ -1,0 +1,53 @@
+// @ts-ignore
+import * as params from '@params';
+
+const initMermaid = async () => {
+    // @ts-ignore
+    const { default: mermaid } = await import(params.mermaidUrl);
+
+    document.querySelectorAll('.mermaid').forEach((el) => {
+        const element = el as HTMLElement;
+        if (!element.dataset.mermaidSrc) {
+            element.dataset.mermaidSrc = element.textContent || '';
+            element.innerHTML = '';
+        }
+    });
+
+    const renderMermaid = async () => {
+        const theme = document.documentElement.dataset.scheme === 'dark' ? 'dark' : 'default';
+
+        mermaid.initialize({
+            theme,
+            startOnLoad: false,
+            fontFamily: '"Google Sans Code", "JetBrains Mono", "Noto Sans SC", monospace'
+        });
+
+        const elements = document.querySelectorAll('.mermaid');
+
+        for (const el of Array.from(elements)) {
+            const element = el as HTMLElement;
+            const code = element.dataset.mermaidSrc;
+            if (!code) continue;
+
+            const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+
+            try {
+                // 使用 render 异步生成 SVG，避免阻塞 UI，且不会闪烁
+                const { svg } = await mermaid.render(id, code);
+                element.innerHTML = svg;
+            } catch (error) {
+                console.error('Mermaid rendering failed:', error);
+            }
+        }
+    };
+
+    window.addEventListener('onColorSchemeChange', renderMermaid);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderMermaid);
+    } else {
+        renderMermaid();
+    }
+}
+
+initMermaid();
