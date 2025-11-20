@@ -1,0 +1,12 @@
+.article-content {
+    pre.mermaid {
+        background-color: transparent;
+        padding: 0;
+        overflow: visible;
+    }
+}
+
+.mermaid svg {
+    display: block;
+    margin: 0 auto;
+}
