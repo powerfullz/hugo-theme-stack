@@ -1,10 +1,27 @@
 {{ $mermaidConfig := index .Site.Data.external "Mermaid" }}
 {{ $mermaidSrc := "" }}
 {{ range $mermaidConfig }}
-    {{ if eq .type "script" }}
-        {{ $mermaidSrc = .src }}
-    {{ end }}
+{{ if eq .type "script" }}
+{{ $mermaidSrc = .src }}
+{{ end }}
 {{ end }}
 
-{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true "params" (dict "mermaidUrl" $mermaidSrc)) | fingerprint }}
+{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true "params" (dict "mermaidUrl"
+$mermaidSrc)) | fingerprint }}
 <script type="module" src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
+<style>
+    /* Style adjustments for mermaid diagrams */
+    .article-content {
+        pre.mermaid {
+            background-color: transparent;
+            padding: 0;
+            overflow: visible;
+        }
+    }
+
+    /* Centre mermaid diagrams */
+    .mermaid svg {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
