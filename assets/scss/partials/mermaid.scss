@@ -1,3 +1,4 @@
+/* Style adjustments for mermaid diagrams */
 .article-content {
     pre.mermaid {
         background-color: transparent;
@@ -6,6 +7,7 @@
     }
 }
 
+/* Centre mermaid diagrams */
 .mermaid svg {
     display: block;
     margin: 0 auto;

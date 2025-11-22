@@ -32,7 +32,8 @@ const initMermaid = async () => {
             const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
 
             try {
-                // 使用 render 异步生成 SVG，避免阻塞 UI，且不会闪烁
+                // using mermaid's render function to generate SVG asynchronously
+                // avoid blocking UI and prevent flickering
                 const { svg } = await mermaid.render(id, code);
                 element.innerHTML = svg;
             } catch (error) {

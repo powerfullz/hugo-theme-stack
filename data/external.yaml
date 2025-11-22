@@ -16,9 +16,11 @@ PhotoSwipe:
       defer: true
 
     - src: https://cdn.jsdmirror.com/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css
+      integrity: sha256-19D3URFnM7CgVeoR/ljoJR9iFEourhqS2XKx0uWtuv4=
       type: style
 
     - src: https://cdn.jsdmirror.com/npm/photoswipe@4.1.3/dist/photoswipe.min.css
+      integrity: sha256-k7QLAj3QS7n0/RZzXB0hGoT9Ur0KOmP8mQGN7vrmgVo=
       type: style
 
 KaTeX:
@@ -45,5 +47,5 @@ Cactus:
       type: style
 
 Mermaid:
-    - src: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs
+    - src: https://cdn.jsdmirror.com/npm/mermaid@11.12.1/+esm
       type: script
