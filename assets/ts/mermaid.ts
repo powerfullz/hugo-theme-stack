@@ -19,7 +19,6 @@ const initMermaid = async () => {
         mermaid.initialize({
             theme,
             startOnLoad: false,
-            fontFamily: '"Google Sans Code", "JetBrains Mono", "Noto Sans SC", monospace'
         });
 
         const elements = document.querySelectorAll('.mermaid');
