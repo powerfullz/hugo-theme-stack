@@ -64,4 +64,4 @@ footer:
         other: 本站以 {{ .Generator }} 构建
 
     designedBy:
-        other: 使用修改后的 {{ .Theme }} 主题，感谢 {{ .DesignedBy }} 设计。
+        other: 使用修改后的 {{ .Theme }} 主题，感谢 {{ .DesignedBy }} 设计
