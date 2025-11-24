@@ -1,6 +1,9 @@
-const initMermaid = async () => {
-    // @ts-ignore
-    const { default: mermaid } = await import('mermaid');
+const initMermaid = () => {
+    // @ts-ignore - mermaid is loaded as a global from the CDN script
+    if (typeof mermaid === 'undefined') {
+        console.error('Mermaid library not loaded');
+        return;
+    }
 
     document.querySelectorAll('.mermaid').forEach((el) => {
         const element = el as HTMLElement;

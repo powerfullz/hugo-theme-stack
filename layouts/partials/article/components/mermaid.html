@@ -6,29 +6,9 @@
 {{ end }}
 {{ end }}
 
-<script type="importmap">
-{
-  "imports": {
-    "mermaid": "{{ $mermaidSrc }}",
-    "dagre-d3-es": "https://testingcf.jsdelivr.net/npm/dagre-d3-es@7.0.13/+esm",
-    "dagre-d3-es/": "https://testingcf.jsdelivr.net/npm/dagre-d3-es@7.0.13/",
-    "lodash-es": "https://testingcf.jsdelivr.net/npm/lodash-es@4.17.21/+esm",
-    "lodash-es/": "https://testingcf.jsdelivr.net/npm/lodash-es@4.17.21/",
-    "d3": "https://testingcf.jsdelivr.net/npm/d3@7.9.0/+esm",
-    "d3/": "https://testingcf.jsdelivr.net/npm/d3@7.9.0/",
-    "khroma": "https://testingcf.jsdelivr.net/npm/khroma@2.1.0/+esm",
-    "khroma/": "https://testingcf.jsdelivr.net/npm/khroma@2.1.0/",
-    "cytoscape": "https://testingcf.jsdelivr.net/npm/cytoscape@3.30.3/+esm",
-    "cytoscape/": "https://testingcf.jsdelivr.net/npm/cytoscape@3.30.3/",
-    "cytoscape-cose-bilkent": "https://testingcf.jsdelivr.net/npm/cytoscape-cose-bilkent@4.1.0/+esm",
-    "cytoscape-fcose": "https://testingcf.jsdelivr.net/npm/cytoscape-fcose@2.2.0/+esm",
-    "elkjs": "https://testingcf.jsdelivr.net/npm/elkjs@0.9.3/+esm",
-    "elkjs/": "https://testingcf.jsdelivr.net/npm/elkjs@0.9.3/"
-  }
-}
-</script>
-{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
-<script type="module" src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
+<script src="{{ $mermaidSrc }}"></script>
+{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "iife" "minify" true) | fingerprint }}
+<script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
 <style>
     /* Style adjustments for mermaid diagrams */
     .article-content {
