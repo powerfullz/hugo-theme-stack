@@ -1,9 +1,8 @@
 {{- $List := index .Context.Site.Data.external .Namespace -}}
 {{- with $List -}}
     {{- range . -}}
-        {{- if or (eq .type "script") (eq .type "module") -}}
+        {{- if eq .type "script" -}}
             <script 
-                {{- if eq .type "module" }} type="module"{{ end }}
                 src="{{ .src }}"
                 {{- with .integrity -}}
                 integrity="{{ . }}"

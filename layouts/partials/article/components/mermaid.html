@@ -1,20 +1,5 @@
-{{ $mermaidConfig := index .Site.Data.external "Mermaid" }}
-{{ $mermaidSrc := "" }}
-{{ $mermaidType := "" }}
-{{ range $mermaidConfig }}
-{{ if or (eq .type "script") (eq .type "module") }}
-{{ $mermaidSrc = .src }}
-{{ $mermaidType = .type }}
-{{ end }}
-{{ end }}
-
-{{ if eq $mermaidType "module" }}
-<script type="module" src="{{ $mermaidSrc }}"></script>
-{{ else }}
-<script src="{{ $mermaidSrc }}"></script>
-{{ end }}
-{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "iife" "minify" true) | fingerprint }}
-<script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
+{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
+<script type="module" src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
 <style>
     /* Style adjustments for mermaid diagrams */
     .article-content {

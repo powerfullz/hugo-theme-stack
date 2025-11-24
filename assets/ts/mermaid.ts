@@ -1,10 +1,6 @@
-const initMermaid = () => {
-    // @ts-ignore - mermaid is loaded as a global from the CDN script
-    if (typeof mermaid === 'undefined') {
-        console.error('Mermaid library not loaded');
-        return;
-    }
+import mermaid from 'https://testingcf.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs';
 
+const initMermaid = () => {
     document.querySelectorAll('.mermaid').forEach((el) => {
         const element = el as HTMLElement;
         if (!element.dataset.mermaidSrc) {
