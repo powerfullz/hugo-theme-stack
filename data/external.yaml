@@ -45,7 +45,3 @@ Cactus:
     - src: https://latest.cactus.chat/style.css
       integrity:
       type: style
-
-Mermaid:
-    - src: https://testingcf.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js
-      type: script
