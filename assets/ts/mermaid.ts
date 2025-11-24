@@ -1,9 +1,9 @@
-// @ts-ignore
-import * as params from '@params';
-
-const initMermaid = async () => {
-    // @ts-ignore
-    const { default: mermaid } = await import(params.mermaidUrl);
+const initMermaid = () => {
+    // @ts-ignore - mermaid is loaded as a global from the CDN script
+    if (typeof mermaid === 'undefined') {
+        console.error('Mermaid library not loaded');
+        return;
+    }
 
     document.querySelectorAll('.mermaid').forEach((el) => {
         const element = el as HTMLElement;
