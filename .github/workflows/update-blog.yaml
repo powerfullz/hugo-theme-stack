@@ -1,0 +1,17 @@
+name: Update Blog
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Blog Rebuild
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: powerfullz/blog
+          event-type: theme-updated
+          client-payload: '{"version": "${{ github.event.release.tag_name }}"}'
