@@ -32,21 +32,21 @@ const initMermaid = () => {
             
             fontFamily: 'var(--base-font-family)'
         } : {
-            // Light Mode (Clean with Purple Accents)
-            primaryColor: '#ffffff',
-            primaryTextColor: '#333333',
-            primaryBorderColor: '#8C00FF',
-            lineColor: '#450693',
-            secondaryColor: '#f5f5fa',
-            tertiaryColor: '#ffffff',
+            // Light Mode (Cyberpunk 2077)
+            primaryColor: '#ffffff',        // Node background
+            primaryTextColor: '#050A0E',    // Text color (Dark)
+            primaryBorderColor: '#050A0E',  // Node border (Black)
+            lineColor: '#050A0E',           // Connection lines (Black)
+            secondaryColor: '#FCEE09',      // Background (Yellow)
+            tertiaryColor: '#ffffff',       // Alternative background
             
-            mainBkg: '#ffffff',
-            nodeBorder: '#8C00FF',
-            clusterBkg: '#f5f5fa',
-            clusterBorder: '#450693',
-            defaultLinkColor: '#450693',
-            titleColor: '#450693',
-            edgeLabelBackground: '#ffffff',
+            mainBkg: '#ffffff',             // Main background
+            nodeBorder: '#050A0E',          // Node border
+            clusterBkg: '#FCEE09',          // Cluster background
+            clusterBorder: '#050A0E',       // Cluster border
+            defaultLinkColor: '#050A0E',    // Link color
+            titleColor: '#FF003C',          // Title color (Red)
+            edgeLabelBackground: '#FCEE09', // Edge label background (Yellow)
             
             fontFamily: 'var(--base-font-family)'
         };
