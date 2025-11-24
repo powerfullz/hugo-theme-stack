@@ -1,6 +1,3 @@
-// @ts-ignore
-import * as params from '@params';
-
 const initMermaid = async () => {
     // @ts-ignore
     const { default: mermaid } = await import('mermaid');

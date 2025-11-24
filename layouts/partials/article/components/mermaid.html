@@ -27,8 +27,7 @@
   }
 }
 </script>
-{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true "params" (dict "mermaidUrl"
-$mermaidSrc)) | fingerprint }}
+{{ $mermaid := resources.Get "ts/mermaid.ts" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
 <script type="module" src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}"></script>
 <style>
     /* Style adjustments for mermaid diagrams */
