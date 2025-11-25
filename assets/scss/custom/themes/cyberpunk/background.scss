@@ -1,0 +1,10 @@
+/* Light Mode Specifics (Cyberpunk 2077 Style) */
+:root[data-scheme="light"] {
+    /* Cyberpunk Background Pattern */
+    background-color: #FCEE09;
+    background-image: 
+        linear-gradient(rgba(5, 10, 14, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 10, 14, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+}

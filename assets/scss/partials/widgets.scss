@@ -20,17 +20,9 @@
         gap: 10px;
 
         a {
-            background: var(--card-background);
-            box-shadow: var(--shadow-l1);
-            border-radius: var(--tag-border-radius);
             padding: 8px 20px;
             color: var(--card-text-color-main);
             font-size: 1.4rem;
-            transition: box-shadow 0.3s ease;
-
-            &:hover {
-                box-shadow: var(--shadow-l2);
-            }
         }
     }
 }
@@ -38,9 +30,6 @@
 /* Archives widget */
 .widget.archives {
     .widget-archive--list {
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        background-color: var(--card-background);
     }
 
     .archives-year {

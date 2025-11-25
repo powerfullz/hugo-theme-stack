@@ -1,0 +1,32 @@
+/* Light Mode Specifics (Cyberpunk 2077 Style) */
+:root[data-scheme="light"] {
+    /* Pagination Light Mode */
+    .pagination {
+        background: transparent;
+        box-shadow: none;
+        gap: 10px;
+        overflow: visible;
+
+        .page-link {
+            border-radius: 0;
+            background-color: #FFFEF2;
+            border: 2px solid #050A0E;
+            box-shadow: 3px 3px 0px #050A0E;
+            color: #050A0E;
+
+            &:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 5px 5px 0px #00F0FF;
+                background-color: #050A0E;
+                color: #00F0FF;
+            }
+
+            &.current {
+                background-color: #050A0E;
+                color: #FCEE09;
+                font-weight: bold;
+                box-shadow: 3px 3px 0px #FF003C;
+            }
+        }
+    }
+}

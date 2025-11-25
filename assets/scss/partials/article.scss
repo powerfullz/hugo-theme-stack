@@ -7,16 +7,7 @@
     article {
         display: flex;
         flex-direction: column;
-        background-color: var(--card-background);
-        box-shadow: var(--shadow-l1);
-        border-radius: var(--card-border-radius);
         overflow: hidden;
-
-        transition: box-shadow 0.3s ease;
-
-        &:hover {
-            box-shadow: var(--shadow-l2);
-        }
 
         .article-image {
             img {

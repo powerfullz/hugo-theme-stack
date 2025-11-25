@@ -1,0 +1,114 @@
+/* Light Mode Specifics (Cyberpunk 2077 Style) */
+:root[data-scheme="light"] {
+    /* Cyberpunk TOC Widget */
+    .widget.toc {
+        background-color: #FFFEF2;
+        border: 2px solid #050A0E;
+        box-shadow: 4px 4px 0px #050A0E;
+        border-radius: 0;
+        padding: 0;
+
+        /* Hide the default hash icon */
+        .widget-icon {
+            display: none;
+        }
+        
+        .widget-title {
+            background-color: #050A0E;
+            color: #FCEE09;
+            padding: 15px 20px;
+            margin-bottom: 0;
+            border: none;
+            font-family: var(--code-font-family);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            &::after {
+                content: "SYSTEM_NAV //";
+                font-size: 0.7em;
+                opacity: 0.7;
+            }
+        }
+        
+        .widget--toc {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 15px 0;
+            
+            nav > ul {
+                padding: 0 15px;
+            }
+
+            nav > ul > li > a {
+                border-left: none;
+                border-bottom: 1px dashed rgba(5, 10, 14, 0.2);
+                transition: all 0.2s ease;
+                padding: 8px 10px;
+                font-family: var(--code-font-family);
+                font-size: 1.4rem;
+                display: block;
+                
+                &:hover {
+                    background-color: rgba(0, 240, 255, 0.1);
+                    color: #FF003C;
+                    padding-left: 15px;
+                    
+                    &::before {
+                        content: "> ";
+                        color: #FF003C;
+                        font-weight: bold;
+                    }
+                }
+            }
+            
+            .active-class > a {
+                background-color: #050A0E !important;
+                color: #FCEE09 !important;
+                font-weight: bold;
+                box-shadow: 4px 4px 0px #FF003C;
+                border-bottom: none;
+                transform: translateX(-5px);
+                
+                &::before {
+                    content: "[x] ";
+                    color: #00F0FF;
+                }
+            }
+        }
+    }
+
+    /* Archives Widget Internal Styling */
+    .widget.archives .widget-archive--list {
+        /* Remove padding from container to let items fill it */
+        padding: 0;
+        
+        .archives-year {
+            border-bottom: 1px solid #050A0E;
+            transition: background-color 0.2s ease;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            a {
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                &:hover {
+                    background-color: #050A0E;
+                    
+                    .year { color: #FCEE09; }
+                    .count { color: #00F0FF; }
+                }
+            }
+        }
+    }
+}
