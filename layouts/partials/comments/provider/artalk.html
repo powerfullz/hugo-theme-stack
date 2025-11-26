@@ -1,4 +1,12 @@
 <style>
+    .artalk {
+        --at-color-main: var(--accent-color);
+        --at-color-font: var(--body-text-color);
+        --at-color-bg: var(--card-background);
+        --at-color-bg-trans: rgba(255, 255, 255, 0);
+        --at-color-border: var(--body-background);
+    }
+
     .artalk code {
         font-family: var(--code-font-family);
     }
@@ -39,13 +47,18 @@
                 return;
             }
 
+            const getThemeMode = () => {
+                const theme = document.documentElement.dataset.scheme;
+                return theme === 'dark';
+            };
+
             const artalkInstance = Artalk.init({
                 el: '#Comments',
                 pageKey: '{{ .Page.RelPermalink }}',
                 pageTitle: '{{ .Title }}',
                 server: '{{ .Site.Params.comments.artalk.serverUrl }}',
                 site: '{{ .Site.Params.comments.artalk.site }}',
-                darkMode: 'auto',
+                darkMode: getThemeMode(),
                 locale: 'auto',
             });
 
