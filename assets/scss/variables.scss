@@ -109,7 +109,7 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 */
 :root {
     --blockquote-border-size: 4px;
-    --blockquote-background-color: rgba(252, 238, 9, 0.1);
+    --blockquote-background-color: rgba(0, 0, 0, 0.025);
 
     --heading-border-size: 4px;
 
@@ -120,12 +120,12 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     --pre-background-color: #272822;
     --pre-text-color: #f8f8f2;
 
-    --code-background-color: rgba(255, 255, 255, 0.4);
+    --code-background-color: rgba(0, 0, 0, 0.06);
     --code-text-color: #FF003C;
     --code-shadow-color: #00F0FF;
 
     --table-border-color: var(--card-separator-color);
-    --tr-even-background-color: rgba(252, 238, 9, 0.1);
+    --tr-even-background-color: rgba(0, 0, 0, 0.025);
 
     --kbd-border-color: #dadada;
 
