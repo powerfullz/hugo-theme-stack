@@ -27,6 +27,8 @@
         .article-content {
             margin: var(--card-padding) 0;
             color: var(--card-text-color-main);
+            text-align: justify;
+            hyphens: auto;
 
             .footnotes {
                 font-family: var(--base-font-family);
