@@ -109,7 +109,7 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 */
 :root {
     --blockquote-border-size: 4px;
-    --blockquote-background-color: rgb(248 248 248);
+    --blockquote-background-color: rgba(252, 238, 9, 0.1);
 
     --heading-border-size: 4px;
 
@@ -120,22 +120,24 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     --pre-background-color: #272822;
     --pre-text-color: #f8f8f2;
 
-    --code-background-color: rgba(0, 0, 0, 0.12);
-    --code-text-color: #808080;
+    --code-background-color: rgba(255, 255, 255, 0.4);
+    --code-text-color: #FF003C;
+    --code-shadow-color: #00F0FF;
 
-    --table-border-color: #dadada;
-    --tr-even-background-color: #efefee;
+    --table-border-color: var(--card-separator-color);
+    --tr-even-background-color: rgba(252, 238, 9, 0.1);
 
     --kbd-border-color: #dadada;
 
     &[data-scheme="dark"] {
-        --code-background-color: #272822;
-        --code-text-color: rgba(255, 255, 255, 0.9);
+        --code-background-color: #150f24;
+        --code-text-color: #FF3F7F;
+        --code-shadow-color: #FF003C;
 
-        --table-border-color: #717171;
-        --tr-even-background-color: #545454;
+        --table-border-color: var(--card-separator-color);
+        --tr-even-background-color: var(--card-background-selected);
 
-        --blockquote-background-color: rgb(75 75 75);
+        --blockquote-background-color: var(--card-background-selected);
     }
 }
 
@@ -152,14 +154,14 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 }
 
 [data-scheme="light"] {
-    --pre-text-color: #272822;
-    --pre-background-color: #fafafa;
+    --pre-text-color: #050A0E;
+    --pre-background-color: #f4f4f4;
     @import "partials/highlight/light.scss";
 }
 
 [data-scheme="dark"] {
     --pre-text-color: #f8f8f2;
-    --pre-background-color: #272822;
+    --pre-background-color: #0d0d12;
     @import "partials/highlight/dark.scss";
 }
 
