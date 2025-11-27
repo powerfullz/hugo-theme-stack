@@ -12,7 +12,7 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     }
 
     /* Cyberpunk 2077 Light Theme */
-    --body-background: #FCEE09;
+    --body-background: #f5f5fa;
 
     --accent-color: #050A0E;
     --accent-color-darker: #FF003C;
@@ -53,7 +53,7 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 *   Card style
 */
 :root {
-    --card-background: #FFFEF2; /* Creamy Yellow */
+    --card-background: #fff; /* Creamy Yellow */
     --card-background-selected: #FCEE09;
 
     --card-text-color-main: #050A0E;
@@ -155,7 +155,7 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 
 [data-scheme="light"] {
     --pre-text-color: #050A0E;
-    --pre-background-color: #f4f4f4;
+    --pre-background-color: #fafafa;
     @import "partials/highlight/light.scss";
 }
 
