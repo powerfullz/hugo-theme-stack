@@ -1,8 +1,21 @@
 <style>
     .artalk {
         --at-color-bg: var(--card-background);
-        --at-color-border: var(--body-background);
+        --at-color-font: var(--card-text-color-main);
+        --at-color-sub: var(--card-text-color-secondary);
+        --at-color-main: var(--accent-color);
+        --at-color-border: var(--card-separator-color);
         --at-border-radius: var(--card-border-radius);
+        --at-color-link: var(--accent-color-darker);
+    }
+
+    .artalk a {
+        color: var(--at-color-link);
+    }
+
+    [data-scheme="dark"] .artalk {
+        --at-color-main: var(--accent-color);
+        --at-color-link: var(--accent-color);
     }
 
     .artalk code {
