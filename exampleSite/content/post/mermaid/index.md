@@ -10,6 +10,7 @@ tags:
 categories:
     - themes
     - syntax
+image: 1.jpg
 ---
 
 ## Diagram Types

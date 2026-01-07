@@ -1,19 +1,20 @@
+
+$neon-purple: #8C00FF;
+$neon-bg: #1e1433;
+$neon-purple-alpha: rgba(140, 0, 255, 0.4);
+
 /* Dark Mode Specifics (Neon Style) */
 :root[data-scheme="dark"] {
-    /* Glow effect for cards */
-    .article-list article,
-    .article-list--compact article,
-    .article-list--tile article,
-    .widget.archives .widget-archive--list,
-    .tagCloud .tagCloud-tags a {
-        background-color: #1e1433;
+    /* Glow effect for cards using shared mixin */
+    @include card-targets {
+        background-color: $neon-bg;
         border-color: rgba(140, 0, 255, 0.3);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         border-radius: var(--card-border-radius);
 
         &:hover {
-            box-shadow: 0 0 20px rgba(140, 0, 255, 0.4), 0 0 5px rgba(140, 0, 255, 0.4) inset;
-            border-color: #8C00FF;
+            box-shadow: 0 0 20px $neon-purple-alpha, 0 0 5px $neon-purple-alpha inset;
+            border-color: $neon-purple;
             transform: translateY(-3px);
         }
     }
@@ -36,8 +37,8 @@
             left: 10%;
             right: 10%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, #8C00FF, transparent);
-            box-shadow: 0 0 15px #8C00FF;
+            background: linear-gradient(90deg, transparent, $neon-purple, transparent);
+            box-shadow: 0 0 15px $neon-purple;
             opacity: 0.7;
             transition: opacity 0.3s ease, width 0.3s ease, left 0.3s ease;
         }
@@ -57,7 +58,7 @@
     /* Sidebar avatar glow */
     .site-avatar {
         border-radius: 50%;
-        border: 2px solid #8C00FF;
+        border: 2px solid $neon-purple;
         box-shadow: 0 0 15px rgba(140, 0, 255, 0.5);
         transition: box-shadow 0.3s ease;
         
@@ -76,8 +77,38 @@
         &:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(140, 0, 255, 0.6);
-            background-color: #8C00FF;
+            background-color: $neon-purple;
             border-color: #fff;
+        }
+    }
+
+    /* === Related Content Specifics (Neon) === */
+    .related-content--wrapper .section-title {
+        text-shadow: 0 0 10px rgba(140, 0, 255, 0.5);
+        position: relative;
+        display: inline-block;
+        margin-bottom: 25px;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, $neon-purple, transparent);
+            margin-top: 5px;
+            box-shadow: 0 0 10px $neon-purple;
+        }
+    }
+
+    /* Refined Tile Cards for Related Content */
+    .article-list--tile article {
+        /* 1. Cards without image - Neon Text Mode */
+        &:not(.has-image) {
+            /* Grid pattern background */
+            background-image: 
+                linear-gradient(rgba(140, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(140, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
     }
 }

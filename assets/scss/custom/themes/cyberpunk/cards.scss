@@ -1,21 +1,23 @@
+$cp-bg-cream: #fff;
+$cp-black: #050A0E;
+$cp-cyan: #00F0FF;
+$cp-red: #FF003C;
+$cp-yellow: #FCEE09;
+
 /* Light Mode Specifics (Cyberpunk 2077 Style) */
 :root[data-scheme="light"] {
     /* Consistent Card Styling for Articles and Widgets */
-    .article-list article,
-    .article-list--compact article,
-    .article-list--tile article,
-    .widget.archives .widget-archive--list,
-    .tagCloud .tagCloud-tags a {
-        background-color: #fff; /* Creamy Yellow */
-        border: 2px solid #050A0E;
-        box-shadow: 2px 2px 0px #00F0FF; /* Cyan Hard shadow */
+    @include card-targets {
+        background-color: $cp-bg-cream; /* Creamy Yellow */
+        border: 2px solid $cp-black;
+        box-shadow: 2px 2px 0px $cp-cyan; /* Cyan Hard shadow */
         border-radius: 0; /* Sharp edges */
         position: relative;
         
         &:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #FF003C; /* Red shadow on hover */
-            border-color: #050A0E;
+            box-shadow: 4px 4px 0px $cp-red; /* Red shadow on hover */
+            border-color: $cp-black;
         }
     }
 
@@ -28,8 +30,8 @@
             position: absolute;
             top: -2px;
             right: -2px;
-            background: #050A0E;
-            color: #FCEE09;
+            background: $cp-black;
+            color: $cp-yellow;
             font-family: var(--code-font-family);
             font-size: 1.2rem;
             padding: 5px 25px;
@@ -43,9 +45,9 @@
 
     /* Static Cyberpunk for Main Article & TOC (No movement) */
     .main-article {
-        background-color: #fff;
-        border: 2px solid #050A0E;
-        box-shadow: 4px 4px 0px #00F0FF;
+        background-color: $cp-bg-cream;
+        border: 2px solid $cp-black;
+        box-shadow: 4px 4px 0px $cp-cyan;
         border-radius: 0;
         position: relative;
         transition: all 0.3s ease;
@@ -59,7 +61,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background-color: #050A0E;
+            background-color: $cp-black;
             transform: scaleX(0.3);
             transform-origin: left;
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -71,8 +73,8 @@
             position: absolute;
             top: -2px; /* Align with top border */
             right: -2px; /* Align with right border */
-            background: #050A0E;
-            color: #FCEE09;
+            background: $cp-black;
+            color: $cp-yellow;
             font-family: var(--code-font-family);
             font-size: 1.2rem;
             padding: 5px 25px;
@@ -82,16 +84,14 @@
             transform: translateY(-100%); /* Move it above the card */
             z-index: 10;
             filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
-            /* Add a pseudo-border effect by using box-shadow or outline if clip-path wasn't used, 
-               but since clip-path cuts shadow, we rely on the shape being solid black against the background */
         }
         
         &:hover {
-            box-shadow: 6px 6px 0px #FF003C; 
+            box-shadow: 6px 6px 0px $cp-red; 
             
             &::before {
                 transform: scaleX(1);
-                background-color: #FF003C;
+                background-color: $cp-red;
             }
         }
     }
@@ -148,6 +148,51 @@
                 transform: translate(-1px, -1px);
                 box-shadow: 3px 3px 0px #FF003C;
             }
+        }
+    }
+
+    /* === Related Content Specifics === */
+    .related-content--wrapper .section-title {
+        border-left: 5px solid $cp-cyan;
+        padding-left: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+            content: "_REL //";
+            margin-left: 10px;
+            font-family: var(--code-font-family);
+            font-size: 0.8em;
+            color: $cp-red;
+            opacity: 0.8;
+        }
+    }
+
+    /* Refined Tile Cards for Related Content */
+    .article-list--tile article {
+        /* Enhance the base card style */
+        border-width: 2px;
+        
+        // Remove 'ENTRY //' from tile cards if it leaks (though it shouldn't based on selectors)
+        &::after {
+            display: none; 
+        }
+
+        /* Decorative corner on image */
+        &::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 20px 20px 0;
+            border-color: transparent $cp-cyan transparent transparent;
+            z-index: 5;
         }
     }
 }
