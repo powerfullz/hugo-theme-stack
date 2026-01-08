@@ -32,7 +32,9 @@
     {{- range $pag.Pagers -}}
         {{- if and (gt .PageNumber 1) (lt .PageNumber $pag.TotalPages) -}}
             {{- if and (ge .PageNumber (sub $pag.PageNumber $window)) (le .PageNumber (add $pag.PageNumber $window)) -}}
-            <a class="page-link {{ if eq .PageNumber $pag.PageNumber }}current{{ end }}"
+                {{- $diff := sub .PageNumber $pag.PageNumber -}}
+                {{- if lt $diff 0 -}}{{- $diff = mul $diff -1 -}}{{- end -}}
+            <a class="page-link {{ if eq .PageNumber $pag.PageNumber }}current{{ end }} {{ if gt $diff 1 }}hide-on-mobile{{ end }}"
                 {{- if eq .PageNumber $pag.PageNumber -}}aria-current="page" {{- end -}} href="{{ .URL }}"
                 aria-label="Page {{ .PageNumber }}">
                 {{ .PageNumber }}
