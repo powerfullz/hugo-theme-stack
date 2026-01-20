@@ -2,9 +2,9 @@
 :root[data-scheme="light"] {
     /* Search Widget Special Styling */
     .search-form.widget {
-        background-color: #fff;
-        border: 2px solid #050A0E;
-        box-shadow: 2px 2px 0px #00F0FF;
+        background-color: $cp-white;
+        border: 2px solid $cp-black;
+        box-shadow: 2px 2px 0px $cp-cyan;
         border-radius: 0;
         padding: 0; /* Remove padding to make it a single unit */
         position: relative;
@@ -15,8 +15,8 @@
             position: absolute;
             top: -2px;
             right: -2px;
-            background: #050A0E;
-            color: #FCEE09;
+            background: $cp-black;
+            color: $cp-yellow;
             font-family: var(--code-font-family);
             font-size: 1rem;
             padding: 4px 15px;
@@ -28,7 +28,7 @@
         }
         
         &:hover {
-            box-shadow: 4px 4px 0px #FF003C; /* Red shadow for search */
+            box-shadow: 4px 4px 0px $cp-red; /* Red shadow for search */
             transform: translate(-2px, -2px);
         }
 
@@ -51,7 +51,7 @@
             border: none; /* Remove border */
             padding: 15px;
             font-family: var(--code-font-family);
-            color: #050A0E;
+            color: $cp-black;
             width: 100%;
             box-sizing: border-box;
             transition: all 0.3s ease;
@@ -59,16 +59,16 @@
 
             &:focus {
                 outline: none;
-                background-color: rgba(252, 238, 9, 0.1); /* Subtle yellow tint on focus */
+                background-color: rgba($cp-yellow, 0.1); /* Subtle yellow tint on focus */
             }
         }
         
         /* Style the search button */
         button {
-            background-color: #050A0E;
-            color: #FCEE09;
+            background-color: $cp-black;
+            color: $cp-yellow;
             border: none;
-            border-left: 2px solid #050A0E; /* Only left border */
+            border-left: 2px solid $cp-black; /* Only left border */
             padding: 0 20px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -77,18 +77,18 @@
             justify-content: center;
             
             &:hover {
-                background-color: #FCEE09;
-                color: #050A0E;
+                background-color: $cp-yellow;
+                color: $cp-black;
                 
                 svg {
-                    stroke: #050A0E !important;
+                    stroke: $cp-black !important;
                 }
             }
             
             svg {
                 width: 24px;
                 height: 24px;
-                stroke: #FCEE09 !important;
+                stroke: $cp-yellow !important;
             }
         }
     }
@@ -96,9 +96,9 @@
     /* Search Page Styling */
     .template-search {
         .search-form {
-            background-color: #fff;
-            border: 2px solid #050A0E;
-            box-shadow: 4px 4px 0px #00F0FF;
+            background-color: $cp-white;
+            border: 2px solid $cp-black;
+            box-shadow: 4px 4px 0px $cp-cyan;
             padding: 0;
             margin-bottom: 40px;
             position: relative;
@@ -111,8 +111,8 @@
                 position: absolute;
                 top: -2px;
                 right: -2px;
-                background: #050A0E;
-                color: #FCEE09;
+                background: $cp-black;
+                color: $cp-yellow;
                 font-family: var(--code-font-family);
                 font-size: 1.2rem;
                 padding: 5px 25px;
@@ -142,21 +142,21 @@
                 padding: 20px; /* Larger padding for main search */
                 font-family: var(--code-font-family);
                 font-size: 1.5rem; /* Larger font */
-                color: #050A0E;
+                color: $cp-black;
                 transition: all 0.3s ease;
 
                 &:focus {
                     outline: none;
-                    background-color: rgba(252, 238, 9, 0.1);
+                    background-color: rgba($cp-yellow, 0.1);
                     box-shadow: none;
                 }
             }
 
             button {
-                background-color: #050A0E;
-                color: #FCEE09;
+                background-color: $cp-black;
+                color: $cp-yellow;
                 border: none;
-                border-left: 2px solid #050A0E;
+                border-left: 2px solid $cp-black;
                 padding: 0 30px;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -165,33 +165,33 @@
                 justify-content: center;
                 
                 &:hover {
-                    background-color: #FCEE09;
-                    color: #050A0E;
+                    background-color: $cp-yellow;
+                    color: $cp-black;
                     
                     svg {
-                        stroke: #050A0E !important;
+                        stroke: $cp-black !important;
                     }
                 }
                 
                 svg {
                     width: 30px;
                     height: 30px;
-                    stroke: #FCEE09 !important;
+                    stroke: $cp-yellow !important;
                 }
             }
         }
 
         .search-result--title {
             font-family: var(--code-font-family);
-            color: #050A0E;
-            border-bottom: 4px solid #050A0E;
+            color: $cp-black;
+            border-bottom: 4px solid $cp-black;
             padding-bottom: 10px;
             margin-bottom: 30px;
             text-transform: uppercase;
             
             &::before {
                 content: "RESULTS >> ";
-                color: #FF003C;
+                color: $cp-red;
             }
         }
         

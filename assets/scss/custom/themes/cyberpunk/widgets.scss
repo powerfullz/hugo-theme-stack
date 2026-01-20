@@ -2,9 +2,9 @@
 :root[data-scheme="light"] {
     /* Cyberpunk TOC Widget */
     .widget.toc {
-        background-color: #FFF;
-        border: 2px solid #050A0E;
-        box-shadow: 4px 4px 0px #050A0E;
+        background-color: $cp-white;
+        border: 2px solid $cp-black;
+        box-shadow: 4px 4px 0px $cp-black;
         border-radius: 0;
         padding: 0;
 
@@ -14,8 +14,8 @@
         }
         
         .widget-title {
-            background-color: #050A0E;
-            color: #FCEE09;
+            background-color: $cp-black;
+            color: $cp-yellow;
             padding: 15px 20px;
             margin-bottom: 0;
             border: none;
@@ -47,7 +47,7 @@
 
             nav > ul > li > a {
                 border-left: none;
-                border-bottom: 1px dashed rgba(5, 10, 14, 0.2);
+                border-bottom: 1px dashed rgba($cp-black, 0.2);
                 transition: all 0.2s ease;
                 padding: 8px 10px;
                 font-family: var(--code-font-family);
@@ -55,29 +55,29 @@
                 display: block;
                 
                 &:hover {
-                    background-color: rgba(0, 240, 255, 0.1);
-                    color: #FF003C;
+                    background-color: rgba($cp-cyan, 0.1);
+                    color: $cp-red;
                     padding-left: 15px;
                     
                     &::before {
                         content: "> ";
-                        color: #FF003C;
+                        color: $cp-red;
                         font-weight: bold;
                     }
                 }
             }
             
             .active-class > a {
-                background-color: #050A0E !important;
-                color: #FCEE09 !important;
+                background-color: $cp-black !important;
+                color: $cp-yellow !important;
                 font-weight: bold;
-                box-shadow: 4px 4px 0px #FF003C;
+                box-shadow: 4px 4px 0px $cp-red;
                 border-bottom: none;
                 transform: translateX(-5px);
                 
                 &::before {
                     content: "[x] ";
-                    color: #00F0FF;
+                    color: $cp-cyan;
                 }
             }
         }
@@ -89,7 +89,7 @@
         padding: 0;
         
         .archives-year {
-            border-bottom: 1px solid #050A0E;
+            border-bottom: 1px solid $cp-black;
             transition: background-color 0.2s ease;
 
             &:last-child {
@@ -103,10 +103,10 @@
                 justify-content: space-between;
                 
                 &:hover {
-                    background-color: #050A0E;
+                    background-color: $cp-black;
                     
-                    .year { color: #FCEE09; }
-                    .count { color: #00F0FF; }
+                    .year { color: $cp-yellow; }
+                    .count { color: $cp-cyan; }
                 }
             }
         }

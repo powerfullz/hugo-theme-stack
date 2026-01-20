@@ -9,23 +9,23 @@
 
         .page-link {
             border-radius: var(--card-border-radius);
-            background-color: #1e1433;
-            border-color: rgba(140, 0, 255, 0.3);
+            background-color: $neon-bg;
+            border-color: rgba($neon-purple, 0.3);
             color: rgba(255, 255, 255, 0.7);
 
             &:hover {
                 transform: translateY(-3px);
-                box-shadow: 0 0 20px rgba(140, 0, 255, 0.4);
-                border-color: #8C00FF;
-                color: #fff;
+                box-shadow: 0 0 20px rgba($neon-purple, 0.4);
+                border-color: $neon-purple;
+                color: $cp-white;
                 z-index: 1;
             }
 
             &.current {
-                background-color: rgba(140, 0, 255, 0.2);
-                border-color: #8C00FF;
-                color: #fff;
-                box-shadow: 0 0 15px rgba(140, 0, 255, 0.3);
+                background-color: rgba($neon-purple, 0.2);
+                border-color: $neon-purple;
+                color: $cp-white;
+                box-shadow: 0 0 15px rgba($neon-purple, 0.3);
             }
         }
     }

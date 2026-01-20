@@ -3,21 +3,21 @@
     /* Neon TOC Widget */
     .widget.toc {
         .widget-title {
-            background-color: rgba(140, 0, 255, 0.2);
-            color: #fff;
-            border: 1px solid rgba(140, 0, 255, 0.5);
+            background-color: rgba($neon-purple, 0.2);
+            color: $cp-white;
+            border: 1px solid rgba($neon-purple, 0.5);
             border-bottom: none;
-            text-shadow: 0 0 5px rgba(140, 0, 255, 0.8);
+            text-shadow: 0 0 5px rgba($neon-purple, 0.8);
             padding: 15px 20px;
             margin-bottom: 0;
             border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
         }
         
         .widget--toc {
-            background-color: #1e1433;
-            border: 1px solid rgba(140, 0, 255, 0.3);
+            background-color: $neon-bg;
+            border: 1px solid rgba($neon-purple, 0.3);
             border-top: none;
-            box-shadow: 0 0 15px rgba(140, 0, 255, 0.2);
+            box-shadow: 0 0 15px rgba($neon-purple, 0.2);
             border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
             padding: 10px 0;
             
@@ -26,17 +26,17 @@
                 transition: all 0.3s ease;
                 
                 &:hover {
-                    color: #00F0FF;
-                    text-shadow: 0 0 8px #00F0FF;
-                    background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
+                    color: $neon-cyan;
+                    text-shadow: 0 0 8px $neon-cyan;
+                    background: linear-gradient(90deg, rgba($neon-cyan, 0.1), transparent);
                 }
             }
             
             .active-class > a {
-                color: #FFC400 !important;
-                text-shadow: 0 0 10px #FFC400;
-                border-left-color: #FFC400 !important;
-                background: linear-gradient(90deg, rgba(255, 196, 0, 0.15), transparent);
+                color: $neon-gold !important;
+                text-shadow: 0 0 10px $neon-gold;
+                border-left-color: $neon-gold !important;
+                background: linear-gradient(90deg, rgba($neon-gold, 0.15), transparent);
             }
         }
 
@@ -47,7 +47,7 @@
     
     /* Menu items hover effect */
     .menu li a:hover {
-        color: #FFC400;
-        text-shadow: 0 0 10px rgba(255, 196, 0, 0.8);
+        color: $neon-gold;
+        text-shadow: 0 0 10px rgba($neon-gold, 0.8);
     }
 }

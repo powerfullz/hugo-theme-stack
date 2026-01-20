@@ -1,5 +1,24 @@
-$defaultTagBackgrounds: #050A0E, #FF003C, #00F0FF, #FCEE09, #000000;
-$defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
+// Theme Colors - Cyberpunk
+$cp-black: #050A0E;
+$cp-red: #FF003C;
+$cp-cyan: #00F0FF;
+$cp-yellow: #FCEE09;
+$cp-white: #ffffff;
+$cp-bg-light: #f5f5fa;
+
+// Theme Colors - Neon
+$neon-purple: #8C00FF;
+$neon-purple-dark: #450693;
+$neon-bg: #1e1433;
+$neon-bg-selected: #2a1d45;
+$neon-bg-darker: #100b1a;
+$neon-code-bg: #150f24;
+$neon-gold: #FFC400;
+$neon-pink: #FF3F7F;
+$neon-cyan: #00F0FF;
+
+$defaultTagBackgrounds: $cp-black, $cp-red, $cp-cyan, $cp-yellow, #000000;
+$defaultTagColors: $cp-yellow, $cp-white, #000, #000, $cp-white;
 
 /*
 *   Global style
@@ -12,27 +31,27 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     }
 
     /* Cyberpunk 2077 Light Theme */
-    --body-background: #f5f5fa;
+    --body-background: #{$cp-bg-light};
 
-    --accent-color: #050A0E;
-    --accent-color-darker: #FF003C;
-    --accent-color-text: #FCEE09;
-    --body-text-color: #050A0E;
+    --accent-color: #{$cp-black};
+    --accent-color-darker: #{$cp-red};
+    --accent-color-text: #{$cp-yellow};
+    --body-text-color: #{$cp-black};
 
     --tag-border-radius: 0px; /* Cyberpunk style: sharp edges */
 
     --section-separation: 40px;
 
-    --scrollbar-thumb: #050A0E;
-    --scrollbar-track: #FCEE09;
+    --scrollbar-thumb: #{$cp-black};
+    --scrollbar-track: #{$cp-yellow};
 
     &[data-scheme="dark"] {
-        --body-background: #100b1a;
-        --accent-color: #FF3F7F;
-        --accent-color-darker: #FFC400;
-        --accent-color-text: #fff;
+        --body-background: #{$neon-bg-darker};
+        --accent-color: #{$neon-pink};
+        --accent-color-darker: #{$neon-gold};
+        --accent-color-text: #{$cp-white};
         --body-text-color: rgba(255, 255, 255, 0.8);
-        --scrollbar-thumb: #450693;
+        --scrollbar-thumb: #{$neon-purple-dark};
         --scrollbar-track: var(--body-background);
         --tag-border-radius: 4px; /* Restore rounded corners for Neon Dark */
     }
@@ -53,13 +72,13 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 *   Card style
 */
 :root {
-    --card-background: #fff; /* Creamy Yellow */
-    --card-background-selected: #FCEE09;
+    --card-background: #{$cp-white}; /* Creamy Yellow */
+    --card-background-selected: #{$cp-yellow};
 
-    --card-text-color-main: #050A0E;
+    --card-text-color-main: #{$cp-black};
     --card-text-color-secondary: #333333;
     --card-text-color-tertiary: #555555;
-    --card-separator-color: rgba(5, 10, 14, 0.1);
+    --card-separator-color: rgba($cp-black, 0.1);
 
     --card-border-radius: 0px; /* Cyberpunk style: sharp edges */
 
@@ -80,8 +99,8 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     }
 
     &[data-scheme="dark"] {
-        --card-background: #1e1433;
-        --card-background-selected: #2a1d45;
+        --card-background: #{$neon-bg};
+        --card-background-selected: #{$neon-bg-selected};
         --card-text-color-main: rgba(255, 255, 255, 0.9);
         --card-text-color-secondary: rgba(255, 255, 255, 0.7);
         --card-text-color-tertiary: rgba(255, 255, 255, 0.6);
@@ -121,8 +140,8 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     --pre-text-color: #f8f8f2;
 
     --code-background-color: rgba(0, 0, 0, 0.06);
-    --code-text-color: #FF003C;
-    --code-shadow-color: #00F0FF;
+    --code-text-color: #{$cp-red};
+    --code-shadow-color: #{$cp-cyan};
 
     --table-border-color: var(--card-separator-color);
     --tr-even-background-color: rgba(0, 0, 0, 0.025);
@@ -130,9 +149,9 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
     --kbd-border-color: #dadada;
 
     &[data-scheme="dark"] {
-        --code-background-color: #150f24;
-        --code-text-color: #FF3F7F;
-        --code-shadow-color: #FF003C;
+        --code-background-color: #{$neon-code-bg};
+        --code-text-color: #{$neon-pink};
+        --code-shadow-color: #{$cp-red};
 
         --table-border-color: var(--card-separator-color);
         --tr-even-background-color: var(--card-background-selected);
@@ -154,14 +173,14 @@ $defaultTagColors: #FCEE09, #fff, #000, #000, #fff;
 }
 
 [data-scheme="light"] {
-    --pre-text-color: #050A0E;
+    --pre-text-color: #{$cp-black};
     --pre-background-color: #fafafa;
     @import "partials/highlight/light.scss";
 }
 
 [data-scheme="dark"] {
     --pre-text-color: #f8f8f2;
-    --pre-background-color: #0d0d12;
+    --pre-background-color: #{$neon-bg-darker};
     @import "partials/highlight/dark.scss";
 }
 

@@ -1,14 +1,8 @@
-$cp-bg-cream: #fff;
-$cp-black: #050A0E;
-$cp-cyan: #00F0FF;
-$cp-red: #FF003C;
-$cp-yellow: #FCEE09;
-
 /* Light Mode Specifics (Cyberpunk 2077 Style) */
 :root[data-scheme="light"] {
     /* Consistent Card Styling for Articles and Widgets */
     @include card-targets {
-        background-color: $cp-bg-cream; /* Creamy Yellow */
+        background-color: $cp-white; /* Creamy Yellow */
         border: 2px solid $cp-black;
         box-shadow: 2px 2px 0px $cp-cyan; /* Cyan Hard shadow */
         border-radius: 0; /* Sharp edges */
@@ -45,7 +39,7 @@ $cp-yellow: #FCEE09;
 
     /* Static Cyberpunk for Main Article & TOC (No movement) */
     .main-article {
-        background-color: $cp-bg-cream;
+        background-color: $cp-white;
         border: 2px solid $cp-black;
         box-shadow: 4px 4px 0px $cp-cyan;
         border-radius: 0;
@@ -99,32 +93,32 @@ $cp-yellow: #FCEE09;
     /* Consistent hover for tags/categories in light mode */
     .article-category a,
     .article-tags a {
-        border: 2px solid #050A0E;
-        box-shadow: 3px 3px 0px #050A0E;
-        background-color: #FFF;
-        color: #050A0E;
+        border: 2px solid $cp-black;
+        box-shadow: 3px 3px 0px $cp-black;
+        background-color: $cp-white;
+        color: $cp-black;
         border-radius: 0;
 
         &:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px #FF003C;
-            background-color: #050A0E;
-            color: #FCEE09;
-            border-color: #050A0E;
+            box-shadow: 5px 5px 0px $cp-red;
+            background-color: $cp-black;
+            color: $cp-yellow;
+            border-color: $cp-black;
         }
     }
 
     .site-avatar {
         border-radius: 0 !important; /* Force Square for Cyberpunk */
-        border: 2px solid #050A0E;
-        box-shadow: 4px 4px 0px #FF003C; /* Red hard shadow */
+        border: 2px solid $cp-black;
+        box-shadow: 4px 4px 0px $cp-red; /* Red hard shadow */
         transition: box-shadow 0.3s ease, transform 0.3s ease;
-        background-color: #FFF;
+        background-color: $cp-white;
         position: relative;
         
         &:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #00F0FF; /* Cyan shadow */
+            box-shadow: 6px 6px 0px $cp-cyan; /* Cyan shadow */
         }
         
         /* Force the image to be square to match the container */
@@ -137,16 +131,16 @@ $cp-yellow: #FCEE09;
         /* Cyberpunk Emoji Style */
         .emoji {
             border-radius: 0 !important;
-            border: 2px solid #050A0E;
-            background-color: #fff; /* Yellow background */
-            box-shadow: 2px 2px 0px #050A0E;
+            border: 2px solid $cp-black;
+            background-color: $cp-white; /* Yellow background */
+            box-shadow: 2px 2px 0px $cp-black;
             right: -5px !important;
             bottom: -5px !important;
             transition: all 0.3s ease;
 
             &:hover {
                 transform: translate(-1px, -1px);
-                box-shadow: 3px 3px 0px #FF003C;
+                box-shadow: 3px 3px 0px $cp-red;
             }
         }
     }

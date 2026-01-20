@@ -9,23 +9,23 @@
 
         .page-link {
             border-radius: 0;
-            background-color: #FFF;
-            border: 2px solid #050A0E;
-            box-shadow: 3px 3px 0px #050A0E;
-            color: #050A0E;
+            background-color: $cp-white;
+            border: 2px solid $cp-black;
+            box-shadow: 3px 3px 0px $cp-black;
+            color: $cp-black;
 
             &:hover {
                 transform: translate(-2px, -2px);
-                box-shadow: 5px 5px 0px #00F0FF;
-                background-color: #050A0E;
-                color: #00F0FF;
+                box-shadow: 5px 5px 0px $cp-cyan;
+                background-color: $cp-black;
+                color: $cp-cyan;
             }
 
             &.current {
-                background-color: #050A0E;
-                color: #FCEE09;
+                background-color: $cp-black;
+                color: $cp-yellow;
                 font-weight: bold;
-                box-shadow: 3px 3px 0px #FF003C;
+                box-shadow: 3px 3px 0px $cp-red;
             }
         }
     }

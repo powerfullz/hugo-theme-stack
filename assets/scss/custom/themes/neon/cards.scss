@@ -1,19 +1,15 @@
 
-$neon-purple: #8C00FF;
-$neon-bg: #1e1433;
-$neon-purple-alpha: rgba(140, 0, 255, 0.4);
-
 /* Dark Mode Specifics (Neon Style) */
 :root[data-scheme="dark"] {
     /* Glow effect for cards using shared mixin */
     @include card-targets {
         background-color: $neon-bg;
-        border-color: rgba(140, 0, 255, 0.3);
+        border-color: rgba($neon-purple, 0.3);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         border-radius: var(--card-border-radius);
 
         &:hover {
-            box-shadow: 0 0 20px $neon-purple-alpha, 0 0 5px $neon-purple-alpha inset;
+            box-shadow: 0 0 20px rgba($neon-purple, 0.4), 0 0 5px rgba($neon-purple, 0.4) inset;
             border-color: $neon-purple;
             transform: translateY(-3px);
         }
@@ -21,9 +17,9 @@ $neon-purple-alpha: rgba(140, 0, 255, 0.4);
 
     /* Static Glow for Main Article & TOC (No movement) */
     .main-article {
-        background: linear-gradient(180deg, rgba(30, 20, 51, 0.95) 0%, rgba(30, 20, 51, 0.85) 100%);
+        background: linear-gradient(180deg, rgba($neon-bg, 0.95) 0%, rgba($neon-bg, 0.85) 100%);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(140, 0, 255, 0.3);
+        border: 1px solid rgba($neon-purple, 0.3);
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         border-radius: var(--card-border-radius);
         position: relative;
@@ -44,8 +40,8 @@ $neon-purple-alpha: rgba(140, 0, 255, 0.4);
         }
 
         &:hover {
-            border-color: rgba(140, 0, 255, 0.6);
-            box-shadow: 0 0 40px rgba(140, 0, 255, 0.15);
+            border-color: rgba($neon-purple, 0.6);
+            box-shadow: 0 0 40px rgba($neon-purple, 0.15);
 
             &::before {
                 opacity: 1;
@@ -59,32 +55,32 @@ $neon-purple-alpha: rgba(140, 0, 255, 0.4);
     .site-avatar {
         border-radius: 50%;
         border: 2px solid $neon-purple;
-        box-shadow: 0 0 15px rgba(140, 0, 255, 0.5);
+        box-shadow: 0 0 15px rgba($neon-purple, 0.5);
         transition: box-shadow 0.3s ease;
         
         &:hover {
-             box-shadow: 0 0 30px rgba(140, 0, 255, 0.8);
+             box-shadow: 0 0 30px rgba($neon-purple, 0.8);
         }
     }
 
     /* Article Tags & Categories */
     .article-category a,
     .article-tags a {
-        background-color: rgba(140, 0, 255, 0.15);
-        color: #fff;
-        border-color: rgba(140, 0, 255, 0.3);
+        background-color: rgba($neon-purple, 0.15);
+        color: $cp-white;
+        border-color: rgba($neon-purple, 0.3);
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(140, 0, 255, 0.6);
+            box-shadow: 0 0 15px rgba($neon-purple, 0.6);
             background-color: $neon-purple;
-            border-color: #fff;
+            border-color: $cp-white;
         }
     }
 
     /* === Related Content Specifics (Neon) === */
     .related-content--wrapper .section-title {
-        text-shadow: 0 0 10px rgba(140, 0, 255, 0.5);
+        text-shadow: 0 0 10px rgba($neon-purple, 0.5);
         position: relative;
         display: inline-block;
         margin-bottom: 25px;
@@ -106,8 +102,8 @@ $neon-purple-alpha: rgba(140, 0, 255, 0.4);
         &:not(.has-image) {
             /* Grid pattern background */
             background-image: 
-                linear-gradient(rgba(140, 0, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(140, 0, 255, 0.1) 1px, transparent 1px);
+                linear-gradient(rgba($neon-purple, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba($neon-purple, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
         }
     }

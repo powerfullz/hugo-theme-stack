@@ -1,10 +1,10 @@
 /* Dark Mode Specifics (Neon Style) */
 :root[data-scheme="dark"] {
     /* Neon Background Pattern */
-    background-color: #100b1a;
+    background-color: $neon-bg-darker;
     background-image: 
-        linear-gradient(rgba(140, 0, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(140, 0, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba($neon-purple, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba($neon-purple, 0.03) 1px, transparent 1px);
     background-size: 30px 30px;
     background-attachment: fixed;
 }
