@@ -13,7 +13,7 @@ $neon-cyan: #00F0FF;
 */
 :root {
     --main-top-padding: 35px;
-
+    
     @include respond(xl) {
         --main-top-padding: 50px;
     }
