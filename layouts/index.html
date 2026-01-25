@@ -1,11 +1,9 @@
 {{ define "main" }}
-    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-    {{ $filtered := where $pages "Params.hidden" "!=" true }}
-    {{ $pag := .Paginate ($filtered) }}
+    {{- $paginator := partial "helper/paginator.html" . -}}
 
     <section class="article-list">
-        {{ range $index, $element := $pag.Pages }}
-            {{ partial "article-list/default" (dict "Page" $element) }}
+        {{ range $index, $element := $paginator.Pages }}
+            {{ partial "article-list/default" . }}
         {{ end }}
     </section>
 
