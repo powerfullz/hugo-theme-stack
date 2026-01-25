@@ -206,9 +206,13 @@
 
     select {
         border: 0;
+<<<<<<< HEAD
         background: none;
+=======
+        background: none !important;
+>>>>>>> b1c5986 (style: fix `<select>` padding in iOS Safari)
         color: var(--body-text-color);
-        padding: 0;
+        padding: 0 !important;
         cursor: pointer;
         font-family: inherit;
         font-size: inherit;
