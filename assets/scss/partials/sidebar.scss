@@ -206,9 +206,9 @@
 
     select {
         border: 0;
-        background: none !important;
+        background: none;
         color: var(--body-text-color);
-        padding: 0 !important;
+        padding: 0;
         cursor: pointer;
         font-family: inherit;
         font-size: inherit;
