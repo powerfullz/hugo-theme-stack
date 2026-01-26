@@ -7,7 +7,7 @@
 
     <header>
         {{ with .Site.Params.sidebar.avatar }}
-            {{ if .enabled }}
+            {{- $avatar := partial "helper/image" (dict "Image" . "Resources" resources) -}}
             <figure class="site-avatar">
                 <a href="{{ .Site.BaseURL | relLangURL }}">
                 {{ if not .local }}
@@ -28,7 +28,6 @@
                     <span class="emoji">{{ . }}</span>
                 {{ end }}
             </figure>
-            {{ end }}
         {{ end }}
         
         <div class="site-meta">
