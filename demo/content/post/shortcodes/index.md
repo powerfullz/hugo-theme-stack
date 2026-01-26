@@ -1,42 +1,116 @@
 ---
 title: Shortcodes
-description: Useful shortcodes that can be used in Markdown
-date: 2023-08-25 00:00:00+0000
-image: cover.jpg
+date: 2026-01-26
+description: Sample article showcasing various shortcodes supported by Stack theme.
+categories:
+    - Documentation
+tags:
+    - shortcodes
+    - privacy
 ---
 
-For more details, check out the [documentation](https://stack.jimmycai.com/writing/shortcodes).
+Stack theme also provides some custom shortcodes to enhance your content.
 
-## Bilibili video
-
-{{< bilibili "BV1d4411N7zD" >}}
-
-## Tencent video
-
-{{< tencent "g0014r3khdw" >}}
-
-## YouTube video
-
-{{< youtube "0qwALOOvUik" >}}
-
-## Generic video file
-
-{{< video "https://www.w3schools.com/tags/movie.mp4" >}}
-
-## Gist
-
-{{< gist CaiJimmy e2751a943de10b2a5b3a8a6c2120cb86 >}}
-
-## GitLab
-
-{{< gitlab 2589724 >}}
+<!--more-->
 
 ## Quote
 
+The `quote` shortcode allows you to display a quote with an author, source, and URL.
+
 {{< quote author="A famous person" source="The book they wrote" url="https://en.wikipedia.org/wiki/Book">}}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 {{< /quote >}}
 
------
+### Usage
 
-> Photo by [Codioful](https://unsplash.com/@codioful) on [Unsplash](https://unsplash.com/photos/WDSN62Qdxuk)
+```markdown
+{{</* quote author="Author Name" source="Source Title" url="https://example.com" */>}}
+Quote content here.
+{{</* /quote */>}}
+```
+
+## Video
+
+The `video` shortcode allows you to embed self-hosted or remote video files.
+
+{{< video src="https://www.w3schools.com/html/mov_bbb.mp4" >}}
+
+### Usage
+
+```markdown
+{{</* video src="https://example.com/video.mp4" */>}}
+```
+
+## Bilibili
+
+Embed videos from Bilibili. Supports both `av` and `bv` IDs.
+
+{{< bilibili "BV1634y1t7xR" >}}
+
+### Usage
+
+```markdown
+{{</* bilibili "BV1634y1t7xR" */>}}
+```
+
+## YouTube
+
+Hugo's built-in YouTube shortcode.
+
+{{< youtube ZJthWmvUzzc >}}
+
+### Usage
+
+```markdown
+{{</* youtube ZJthWmvUzzc */>}}
+```
+
+## Tencent Video
+
+Embed videos from Tencent Video.
+
+{{< tencent "u00306ng962" >}}
+
+### Usage
+
+```markdown
+{{</* tencent "u00306ng962" */>}}
+```
+
+## GitLab Snippet
+
+Embed snippets from GitLab.
+
+{{< gitlab 2349278 >}}
+
+### Usage
+
+```markdown
+{{</* gitlab 2349278 */>}}
+```
+
+## Diagrams
+
+Stack supports [Mermaid](https://mermaid.js.org/) diagrams out of the box.
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+### Usage
+
+Wrap your Mermaid code in a code block with the language set to `mermaid`.
+
+<pre><code>```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```</code></pre>
+
+
