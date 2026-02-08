@@ -24,6 +24,7 @@ languages:
         languageName: 中文
         title: 演示站点
         weight: 2
+        hasCJKLanguage: true
         params:
             sidebar:
                 subtitle: 演示说明
@@ -184,6 +185,7 @@ params:
                   limit: 10
         page:
             - type: toc
+            - type: search
 
     opengraph:
         twitter:
