@@ -10,38 +10,6 @@
     }
 }
 
-/* Apply transitions to all cards */
-@include card-targets {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
-    /* Ensure consistent layout across modes */
-    border: 1px solid transparent;
-}
-
-/* Separate transition for pagination to avoid style conflicts */
-.pagination .page-link {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
-}
-
-.article-list article:hover {
-    transform: translateY(-3px);
-}
-
-/* Fix for related content clipping on hover (Applies to both Light/Cyberpunk and Dark/Neon) */
-.related-content {
-    padding: 20px 10px;
-}
-
-.menu li a {
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Smooth transitions for tags and categories in all modes */
-.article-category a,
-.article-tags a {
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-
 /* Archives & Categories List Overrides */
 .article-list--compact {
     background: transparent !important;

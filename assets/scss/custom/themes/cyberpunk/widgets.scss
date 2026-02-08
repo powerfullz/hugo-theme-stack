@@ -48,23 +48,11 @@
             nav > ul > li > a {
                 border-left: none;
                 border-bottom: 1px dashed rgba($cp-black, 0.2);
-                transition: all 0.2s ease;
                 padding: 8px 10px;
                 font-family: var(--code-font-family);
                 font-size: 1.4rem;
                 display: block;
                 
-                &:hover {
-                    background-color: rgba($cp-cyan, 0.1);
-                    color: $cp-red;
-                    padding-left: 15px;
-                    
-                    &::before {
-                        content: "> ";
-                        color: $cp-red;
-                        font-weight: bold;
-                    }
-                }
             }
             
             .active-class > a {
@@ -90,7 +78,6 @@
         
         .archives-year {
             border-bottom: 1px solid $cp-black;
-            transition: background-color 0.2s ease;
 
             &:last-child {
                 border-bottom: none;
@@ -101,13 +88,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                
-                &:hover {
-                    background-color: $cp-black;
-                    
-                    .year { color: $cp-yellow; }
-                    .count { color: $cp-cyan; }
-                }
             }
         }
     }

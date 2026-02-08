@@ -23,13 +23,6 @@
             
             nav > ul > li > a {
                 border-left: 3px solid transparent;
-                transition: all 0.3s ease;
-                
-                &:hover {
-                    color: $neon-cyan;
-                    text-shadow: 0 0 8px $neon-cyan;
-                    background: linear-gradient(90deg, rgba($neon-cyan, 0.1), transparent);
-                }
             }
             
             .active-class > a {
@@ -43,11 +36,5 @@
         .widget-icon {
             display: none;
         }
-    }
-    
-    /* Menu items hover effect */
-    .menu li a:hover {
-        color: $neon-gold;
-        text-shadow: 0 0 10px rgba($neon-gold, 0.8);
     }
 }

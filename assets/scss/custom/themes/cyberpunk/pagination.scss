@@ -14,13 +14,6 @@
             box-shadow: 3px 3px 0px $cp-black;
             color: $cp-black;
 
-            &:hover {
-                transform: translate(-2px, -2px);
-                box-shadow: 5px 5px 0px $cp-cyan;
-                background-color: $cp-black;
-                color: $cp-cyan;
-            }
-
             &.current {
                 background-color: $cp-black;
                 color: $cp-yellow;

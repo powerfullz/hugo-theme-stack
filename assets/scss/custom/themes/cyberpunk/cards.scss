@@ -7,12 +7,6 @@
         box-shadow: 2px 2px 0px $cp-cyan; /* Cyan Hard shadow */
         border-radius: 0; /* Sharp edges */
         position: relative;
-        
-        &:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px $cp-red; /* Red shadow on hover */
-            border-color: $cp-black;
-        }
     }
 
     /* Add decorative label to Article Cards */
@@ -44,7 +38,6 @@
         box-shadow: 4px 4px 0px $cp-cyan;
         border-radius: 0;
         position: relative;
-        transition: all 0.3s ease;
         overflow: visible !important; /* Allow tags to show outside */
         
         /* Top decorative line */
@@ -58,7 +51,6 @@
             background-color: $cp-black;
             transform: scaleX(0.3);
             transform-origin: left;
-            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         /* Tech Label */
@@ -79,18 +71,8 @@
             z-index: 10;
             filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
         }
-        
-        &:hover {
-            box-shadow: 6px 6px 0px $cp-red; 
-            
-            &::before {
-                transform: scaleX(1);
-                background-color: $cp-red;
-            }
-        }
     }
 
-    /* Consistent hover for tags/categories in light mode */
     .article-category a,
     .article-tags a {
         border: 2px solid $cp-black;
@@ -98,28 +80,14 @@
         background-color: $cp-white;
         color: $cp-black;
         border-radius: 0;
-
-        &:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px $cp-red;
-            background-color: $cp-black;
-            color: $cp-yellow;
-            border-color: $cp-black;
-        }
     }
 
     .site-avatar {
         border-radius: 0 !important; /* Force Square for Cyberpunk */
         border: 2px solid $cp-black;
         box-shadow: 4px 4px 0px $cp-red; /* Red hard shadow */
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
         background-color: $cp-white;
         position: relative;
-        
-        &:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px $cp-cyan; /* Cyan shadow */
-        }
         
         /* Force the image to be square to match the container */
         .site-logo {
@@ -136,12 +104,6 @@
             box-shadow: 2px 2px 0px $cp-black;
             right: -5px !important;
             bottom: -5px !important;
-            transition: all 0.3s ease;
-
-            &:hover {
-                transform: translate(-1px, -1px);
-                box-shadow: 3px 3px 0px $cp-red;
-            }
         }
     }
 

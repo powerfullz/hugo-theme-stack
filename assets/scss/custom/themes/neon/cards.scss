@@ -7,12 +7,6 @@
         border-color: rgba($neon-purple, 0.3);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         border-radius: var(--card-border-radius);
-
-        &:hover {
-            box-shadow: 0 0 20px rgba($neon-purple, 0.4), 0 0 5px rgba($neon-purple, 0.4) inset;
-            border-color: $neon-purple;
-            transform: translateY(-3px);
-        }
     }
 
     /* Static Glow for Main Article & TOC (No movement) */
@@ -36,18 +30,6 @@
             background: linear-gradient(90deg, transparent, $neon-purple, transparent);
             box-shadow: 0 0 15px $neon-purple;
             opacity: 0.7;
-            transition: opacity 0.3s ease, width 0.3s ease, left 0.3s ease;
-        }
-
-        &:hover {
-            border-color: rgba($neon-purple, 0.6);
-            box-shadow: 0 0 40px rgba($neon-purple, 0.15);
-
-            &::before {
-                opacity: 1;
-                left: 0;
-                right: 0;
-            }
         }
     }
 
@@ -56,11 +38,6 @@
         border-radius: 50%;
         border: 2px solid $neon-purple;
         box-shadow: 0 0 15px rgba($neon-purple, 0.5);
-        transition: box-shadow 0.3s ease;
-        
-        &:hover {
-             box-shadow: 0 0 30px rgba($neon-purple, 0.8);
-        }
     }
 
     /* Article Tags & Categories */
@@ -69,13 +46,6 @@
         background-color: rgba($neon-purple, 0.15);
         color: $cp-white;
         border-color: rgba($neon-purple, 0.3);
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba($neon-purple, 0.6);
-            background-color: $neon-purple;
-            border-color: $cp-white;
-        }
     }
 
     /* === Related Content Specifics (Neon) === */
