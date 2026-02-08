@@ -64,7 +64,7 @@ $defaultTagColors: $cp-yellow, $cp-white, #000, #000, $cp-white;
     --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";
     --zh-font-family: "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";
 
-    --base-font-family: "Montserrat", "Noto Sans SC", var(--sys-font-family), var(--zh-font-family), sans-serif;
+    --base-font-family: "Poppins", var(--sys-font-family), var(--zh-font-family), sans-serif;
     --code-font-family: "Google Sans Code", "JetBrains Mono", Menlo, Monaco, Consolas, "Courier New", var(--zh-font-family), monospace;
 }
 
