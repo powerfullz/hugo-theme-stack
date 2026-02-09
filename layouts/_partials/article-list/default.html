@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-{{ $page := . }}
-{{ if reflect.IsMap . }}
-    {{ $page = .Page }}
-{{ end }}
-
-{{ $image := partialCached "helper/image" (dict "Context" $page "Type" "articleList") $page.RelPermalink "articleList" }}
-<article class="{{ if $image.exists }}has-image{{ end }}">
-    {{ partial "article/components/header" (dict "Page" $page) }}
-=======
 {{ $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) }}
 <article class="{{ if $image }}has-image{{ end }}">
     {{ partial "article/components/header" . }}
->>>>>>> 067bcdb (refactor: image handling logic + support for external images (#1235))
 </article>

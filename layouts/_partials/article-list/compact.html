@@ -11,34 +11,11 @@
             </footer>
         </div>
 
-<<<<<<< HEAD
-        {{- $image := partialCached "helper/image" (dict "Context" . "Type" "articleList") .RelPermalink "articleList"
-        -}}
-        {{ if $image.exists }}
-        <div class="article-image">
-            {{ if $image.resource }}
-            {{- $Permalink := $image.resource.RelPermalink -}}
-            {{- $Width := $image.resource.Width -}}
-            {{- $Height := $image.resource.Height -}}
-
-            {{- if (default true .Page.Site.Params.imageProcessing.cover.enabled) -}}
-            {{- $thumbnail := $image.resource.Fill "120x120" -}}
-            {{- $Permalink = $thumbnail.RelPermalink -}}
-            {{- $Width = $thumbnail.Width -}}
-            {{- $Height = $thumbnail.Height -}}
-            {{- end -}}
-
-            <img src="{{ $Permalink }}" width="{{ $Width }}" height="{{ $Height }}" alt="{{ .Title }}" loading="lazy">
-            {{ else }}
-            <img src="{{ $image.permalink }}" loading="lazy" alt="Featured image of post {{ .Title }}" />
-            {{ end }}
-=======
         {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
         {{ if $image }}
         <div class="article-image">
             <img src="{{ $image.Permalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ .Title }}"
                 loading="lazy">
->>>>>>> 067bcdb (refactor: image handling logic + support for external images (#1235))
         </div>
         {{ end }}
     </a>
