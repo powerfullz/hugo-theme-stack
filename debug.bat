@@ -1,1 +1,1 @@
-cd exampleSite && hugo server --gc --themesDir=../.. --disableFastRender
+cd demo && hugo server --gc --themesDir=../.. --disableFastRender
