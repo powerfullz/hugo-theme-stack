@@ -19,11 +19,11 @@
     {{ else }}
         {{ with try (resources.GetRemote $url) }}
             {{ with .Err }}
-                {{ errorf "%s" . }}
+                {{ warnf "Failed to get remote resource %q: %s" $url . }}
             {{ else with .Value }}
                 {{ $resource = . }}
             {{ else }}
-                {{ errorf "Unable to get remote resource %q" $url }}
+                {{ warnf "Unable to get remote resource %q" $url }}
             {{ end }}
         {{ end }}   
     {{ end }}
