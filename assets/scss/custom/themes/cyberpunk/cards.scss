@@ -4,7 +4,6 @@
     @include card-targets {
         background-color: $cp-white; /* Creamy Yellow */
         border: 2px solid $cp-black;
-        box-shadow: 2px 2px 0px $cp-cyan; /* Cyan Hard shadow */
         border-radius: 0; /* Sharp edges */
         position: relative;
     }

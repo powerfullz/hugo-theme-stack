@@ -1,8 +1,6 @@
 {{- $page := . -}}
-{{- $lcp := false -}}
 {{- if reflect.IsMap . -}}
     {{- $page = .Page -}}
-    {{- $lcp = .LCP -}}
 {{- end -}}
 
 <header class="article-header">
@@ -29,10 +27,10 @@
                         {{ with $Srcset }}srcset="{{ . }}"{{ end }}
                         width="{{ $Width }}" 
                         height="{{ $Height }}" 
-                        loading="{{ if $lcp }}eager{{ else }}lazy{{ end }}"
+                        loading="lazy"
                         alt="Featured image of post {{ $page.Title }}" />
                 {{ else }}
-                    <img src="{{ $image.permalink }}" loading="{{ if $lcp }}eager{{ else }}lazy{{ end }}" alt="Featured image of post {{ $page.Title }}" />
+                    <img src="{{ $image.permalink }}" loading="lazy" alt="Featured image of post {{ $page.Title }}" />
                 {{ end }}
             </a>
         </div>

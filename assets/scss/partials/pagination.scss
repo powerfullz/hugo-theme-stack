@@ -17,19 +17,10 @@
         color: var(--card-text-color-secondary);
         text-decoration: none;
 
-        @media (max-width: map-get($breakpoints, md)) {
-            min-width: 35px;
-        }
-
         &:first-child,
         &:last-child {
             flex: 0 0 48px;
             padding: 16px;
-            
-            @media (max-width: map-get($breakpoints, md)) {
-                flex: 0 0 36px;
-                padding: 0 !important;
-            }
         }
 
         &:hover:not(.current):not(.disabled) {
@@ -37,12 +28,6 @@
             opacity: 0.8;
         }
 
-        &.hide-on-mobile {
-            @media (max-width: map-get($breakpoints, md)) {
-                display: none;
-            }
-        }
-        
         &.current {
             background-color: var(--card-background-selected);
             color: var(--card-text-color-main);
