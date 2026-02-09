@@ -29,3 +29,13 @@ a {
         color: var(--body-text-color);
     }
 }
+
+/* Dark mode image mask to avoid glare */
+[data-scheme="dark"] {
+    .article-content img,
+    .article-header .article-image img,
+    .article-list article .article-image img {
+        filter: brightness(0.9);
+    }
+}
+
