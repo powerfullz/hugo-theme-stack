@@ -15,18 +15,9 @@
 {{ if .Image }}
     {{ $url := urls.Parse .Image }}
     {{ $resource := "" }}
-    {{ if not (in (slice "https" "http") $url.Scheme) }}
+    {{ $isRemote := in (slice "https" "http") $url.Scheme }}
+    {{ if not $isRemote }}
         {{ $resource = .Resources.Get (printf "%s" (.Image | safeURL)) }}
-    {{ else }}
-        {{ with try (resources.GetRemote $url) }}
-            {{ with .Err }}
-                {{ warnf "Failed to get remote resource %q: %s" $url . }}
-            {{ else with .Value }}
-                {{ $resource = . }}
-            {{ else }}
-                {{ warnf "Unable to get remote resource %q" $url }}
-            {{ end }}
-        {{ end }}
     {{ end }}
 
     {{ if $resource }}
@@ -41,13 +32,33 @@
             }}
         {{- else -}}
             {{- if (and (default true .Page.Site.Params.imageProcessing.content.enabled) (ne $resource.MediaType.SubType "gif")) -}}
-                {{- $resource = $resource.Process "webp" -}}
+                {{- $maxWidth := default 2048 .Page.Site.Params.imageProcessing.content.maxWidth -}}
+                {{- $processed := $resource -}}
+                {{- if gt $maxWidth 0 -}}
+                    {{- if gt $processed.Width $maxWidth -}}
+                        {{- with try ($processed.Resize (printf "%dx" $maxWidth)) -}}
+                            {{- with .Err -}}
+                                {{ warnf "Failed to resize image %q: %s" $resource.RelPermalink . }}
+                            {{- else with .Value -}}
+                                {{- $processed = . -}}
+                            {{- end -}}
+                        {{- end -}}
+                    {{- end -}}
+                {{- end -}}
+                {{- with try ($processed.Process "webp") -}}
+                    {{- with .Err -}}
+                        {{ warnf "Failed to process image as WebP %q: %s" $processed.RelPermalink . }}
+                        {{- $processed = $resource -}}
+                    {{- else with .Value -}}
+                        {{- $processed = . -}}
+                    {{- end -}}
+                {{- end -}}
                 {{- $result = dict
                     "Local" true
-                    "Resource" $resource
-                    "Permalink" $resource.RelPermalink
-                    "Height" $resource.Height
-                    "Width" $resource.Width
+                    "Resource" $processed
+                    "Permalink" $processed.RelPermalink
+                    "Height" $processed.Height
+                    "Width" $processed.Width
                 }}
             {{- else -}}
                 {{ $result = dict
