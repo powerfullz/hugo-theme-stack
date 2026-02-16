@@ -6,6 +6,7 @@
 /// Returns:
 ///     Local: true if the image is local, false if it is remote
 ///     Resource: Hugo image resource object, not nil if the image is local
+///     ColorResource: Hugo image resource object used for color extraction
 ///     Permalink: Image URL
 ///     Height: Image height
 ///     Width: Image width
@@ -26,6 +27,7 @@
             {{ $result = dict
                 "Local" true
                 "Resource" $resource
+                "ColorResource" $resource
                 "Permalink" $resource.RelPermalink
                 "Height" nil
                 "Width" nil
@@ -56,6 +58,7 @@
                 {{- $result = dict
                     "Local" true
                     "Resource" $processed
+                    "ColorResource" $resource
                     "Permalink" $processed.RelPermalink
                     "Height" $processed.Height
                     "Width" $processed.Width
@@ -64,6 +67,7 @@
                 {{ $result = dict
                     "Local" true
                     "Resource" $resource
+                    "ColorResource" $resource
                     "Permalink" $resource.RelPermalink
                     "Height" nil
                     "Width" nil
@@ -74,6 +78,7 @@
         {{ $result = dict
             "Local" false
             "Resource" nil
+            "ColorResource" nil
             "Permalink" .Image
             "Height" nil
             "Width" nil

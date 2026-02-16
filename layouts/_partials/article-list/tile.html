@@ -10,7 +10,8 @@
 
         <div class="article-details"
             {{- if and $image $image.Resource -}}
-                {{- $colors := $image.Resource.Colors -}}
+                {{- $colorResource := $image.ColorResource | default $image.Resource -}}
+                {{- $colors := $colorResource.Colors -}}
                 {{- if $colors -}}
                     {{- $vibrant := index $colors 0 -}}
                     {{- $darkMuted := index $colors 1 | default $vibrant -}}
