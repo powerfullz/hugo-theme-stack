@@ -2,24 +2,21 @@
 {{- with $List -}}
     {{- range . -}}
         {{- if eq .type "script" -}}
-            <script 
+            <script
                 src="{{ .src }}"
                 {{- with .integrity -}}
-                integrity="{{ . }}"
+                    integrity="{{ . }}"
                 {{- end -}}
                 crossorigin="anonymous"
-                {{ if .defer }}defer{{ end }}
-                >
-            </script>
+                {{ if .defer }}defer{{ end }}></script>
         {{- else if eq .type "style" -}}
-            <link 
-                rel="stylesheet" 
+            <link
+                rel="stylesheet"
                 href="{{ .src }}"
                 {{- with .integrity -}}
-                integrity="{{ . }}"
+                    integrity="{{ . }}"
                 {{- end -}}
-                crossorigin="anonymous"
-            >
+                crossorigin="anonymous" />
         {{- else -}}
             {{- errorf "Error: unknown external resource type: %s" .type -}}
         {{- end -}}

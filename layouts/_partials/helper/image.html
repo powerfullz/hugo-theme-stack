@@ -1,3 +1,4 @@
+{{/* prettier-ignore-start */}}
 /// Params:
 ///     Resources: Where to search for images
 ///     Image: Image URL
@@ -8,7 +9,7 @@
 ///     Permalink: Image URL
 ///     Height: Image height
 ///     Width: Image width
-
+{{/* prettier-ignore-end */}}
 {{ $result := "" }}
 
 {{ if .Image }}
@@ -25,11 +26,11 @@
             {{ else }}
                 {{ warnf "Unable to get remote resource %q" $url }}
             {{ end }}
-        {{ end }}   
+        {{ end }}
     {{ end }}
 
     {{ if $resource }}
-        {{- $isSVG := eq $resource.MediaType.SubType "svg"  -}}
+        {{- $isSVG := eq $resource.MediaType.SubType "svg" -}}
         {{- if $isSVG -}}
             {{ $result = dict
                 "Local" true
@@ -38,16 +39,35 @@
                 "Height" nil
                 "Width" nil
             }}
-        {{- else -}}            
-            {{- $result = dict
-                "Local" true
-                "Resource" $resource
-                "Permalink" $resource.RelPermalink
-                "Height" $resource.Height
-                "Width" $resource.Width
-            }}
+        {{- else -}}
+            {{- if (and (default true .Page.Site.Params.imageProcessing.content.enabled) (ne $resource.MediaType.SubType "gif")) -}}
+                {{- $resource = $resource.Process "webp" -}}
+                {{- $result = dict
+                    "Local" true
+                    "Resource" $resource
+                    "Permalink" $resource.RelPermalink
+                    "Height" $resource.Height
+                    "Width" $resource.Width
+                }}
+            {{- else -}}
+                {{ $result = dict
+                    "Local" true
+                    "Resource" $resource
+                    "Permalink" $resource.RelPermalink
+                    "Height" nil
+                    "Width" nil
+                }}
+            {{- end -}}
         {{- end -}}
-    {{ end }}
-{{ end }}
+    {{- else -}}
+        {{ $result = dict
+            "Local" false
+            "Resource" nil
+            "Permalink" .Image
+            "Height" nil
+            "Width" nil
+        }}
+    {{- end -}}
+{{- end -}}
 
-{{ return $result }}
+{{- return $result -}}
