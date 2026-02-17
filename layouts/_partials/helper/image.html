@@ -16,9 +16,18 @@
 {{ if .Image }}
     {{ $url := urls.Parse .Image }}
     {{ $resource := "" }}
-    {{ $isRemote := in (slice "https" "http") $url.Scheme }}
-    {{ if not $isRemote }}
+    {{ if not (in (slice "https" "http") $url.Scheme) }}
         {{ $resource = .Resources.Get (printf "%s" (.Image | safeURL)) }}
+    {{ else }}
+        {{ with try (resources.GetRemote $url) }}
+            {{ with .Err }}
+                {{ warnf "Failed to get remote resource %q: %s" $url . }}
+            {{ else with .Value }}
+                {{ $resource = . }}
+            {{ else }}
+                {{ warnf "Unable to get remote resource %q" $url }}
+            {{ end }}
+        {{ end }}
     {{ end }}
 
     {{ if $resource }}
@@ -33,12 +42,21 @@
                 "Width" nil
             }}
         {{- else -}}
-            {{- if (and (default true .Page.Site.Params.imageProcessing.content.enabled) (ne $resource.MediaType.SubType "gif")) -}}
-                {{- $maxWidth := default 2048 .Page.Site.Params.imageProcessing.content.maxWidth -}}
+            {{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
+                {{- $maxSize := default (default 2048 .Page.Site.Params.imageProcessing.content.maxWidth) .Page.Site.Params.imageProcessing.content.maxSize -}}
                 {{- $processed := $resource -}}
-                {{- if gt $maxWidth 0 -}}
-                    {{- if gt $processed.Width $maxWidth -}}
-                        {{- with try ($processed.Resize (printf "%dx" $maxWidth)) -}}
+
+                {{- if gt $maxSize 0 -}}
+                    {{- if and (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
+                        {{- with try ($processed.Resize (printf "%dx" $maxSize)) -}}
+                            {{- with .Err -}}
+                                {{ warnf "Failed to resize image %q: %s" $resource.RelPermalink . }}
+                            {{- else with .Value -}}
+                                {{- $processed = . -}}
+                            {{- end -}}
+                        {{- end -}}
+                    {{- else if and (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
+                        {{- with try ($processed.Resize (printf "x%d" $maxSize)) -}}
                             {{- with .Err -}}
                                 {{ warnf "Failed to resize image %q: %s" $resource.RelPermalink . }}
                             {{- else with .Value -}}
@@ -47,6 +65,7 @@
                         {{- end -}}
                     {{- end -}}
                 {{- end -}}
+
                 {{- with try ($processed.Process "webp") -}}
                     {{- with .Err -}}
                         {{ warnf "Failed to process image as WebP %q: %s" $processed.RelPermalink . }}
@@ -55,6 +74,7 @@
                         {{- $processed = . -}}
                     {{- end -}}
                 {{- end -}}
+
                 {{- $result = dict
                     "Local" true
                     "Resource" $processed
