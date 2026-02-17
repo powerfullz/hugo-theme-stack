@@ -55,16 +55,19 @@
                     {{- $targetType = "webp" -}}
                 {{- end -}}
 
+                {{/* Build one Resize spec so resize/format conversion/EXIF stripping happen in a single re-encode. */}}
                 {{- $resizeSpec := "" -}}
                 {{- if and (gt $maxSize 0) (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
                     {{- $resizeSpec = printf "%dx" $maxSize -}}
                 {{- else if and (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
                     {{- $resizeSpec = printf "x%d" $maxSize -}}
+                {{/* No resize needed, but keep one-pass re-encode for EXIF stripping or format conversion. */}}
                 {{- else if or $stripEXIF (ne $targetType $sourceType) -}}
                     {{- $resizeSpec = printf "%dx%d" $processed.Width $processed.Height -}}
                 {{- end -}}
 
                 {{- if $resizeSpec -}}
+                    {{/* Attach output format/quality directly to Resize options. */}}
                     {{- $resizeOptions := $resizeSpec -}}
                     {{- if eq $targetType "webp" -}}
                         {{- $resizeOptions = printf "%s webp q%d" $resizeSpec $quality -}}
