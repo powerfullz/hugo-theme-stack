@@ -45,33 +45,44 @@
             {{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
                 {{- $maxSize := default (default 2048 .Page.Site.Params.imageProcessing.content.maxWidth) .Page.Site.Params.imageProcessing.content.maxSize -}}
                 {{- $processed := $resource -}}
-
-                {{- if gt $maxSize 0 -}}
-                    {{- if and (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
-                        {{- with try ($processed.Resize (printf "%dx" $maxSize)) -}}
-                            {{- with .Err -}}
-                                {{ warnf "Failed to resize image %q: %s" $resource.RelPermalink . }}
-                            {{- else with .Value -}}
-                                {{- $processed = . -}}
-                            {{- end -}}
-                        {{- end -}}
-                    {{- else if and (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
-                        {{- with try ($processed.Resize (printf "x%d" $maxSize)) -}}
-                            {{- with .Err -}}
-                                {{ warnf "Failed to resize image %q: %s" $resource.RelPermalink . }}
-                            {{- else with .Value -}}
-                                {{- $processed = . -}}
-                            {{- end -}}
-                        {{- end -}}
-                    {{- end -}}
+                {{- $stripEXIF := default true .Page.Site.Params.imageProcessing.content.stripEXIF -}}
+                {{- $quality := default 90 .Page.Site.Params.imageProcessing.content.quality -}}
+                {{- $convertPNG := default false .Page.Site.Params.imageProcessing.content.convertPNG -}}
+                {{- $sourceType := lower $processed.MediaType.SubType -}}
+                {{- $shouldConvertToWebp := or (in (slice "jpeg" "jpg") $sourceType) (and (eq $sourceType "png") $convertPNG) -}}
+                {{- $targetType := $sourceType -}}
+                {{- if $shouldConvertToWebp -}}
+                    {{- $targetType = "webp" -}}
                 {{- end -}}
 
-                {{- with try ($processed.Process "webp") -}}
-                    {{- with .Err -}}
-                        {{ warnf "Failed to process image as WebP %q: %s" $processed.RelPermalink . }}
-                        {{- $processed = $resource -}}
-                    {{- else with .Value -}}
-                        {{- $processed = . -}}
+                {{- $resizeSpec := "" -}}
+                {{- if and (gt $maxSize 0) (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
+                    {{- $resizeSpec = printf "%dx" $maxSize -}}
+                {{- else if and (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
+                    {{- $resizeSpec = printf "x%d" $maxSize -}}
+                {{- else if or $stripEXIF (ne $targetType $sourceType) -}}
+                    {{- $resizeSpec = printf "%dx%d" $processed.Width $processed.Height -}}
+                {{- end -}}
+
+                {{- if $resizeSpec -}}
+                    {{- $resizeOptions := $resizeSpec -}}
+                    {{- if eq $targetType "webp" -}}
+                        {{- $resizeOptions = printf "%s webp q%d" $resizeSpec $quality -}}
+                    {{- else if in (slice "jpeg" "jpg") $targetType -}}
+                        {{- $resizeOptions = printf "%s jpeg q%d" $resizeSpec $quality -}}
+                    {{- else if eq $targetType "png" -}}
+                        {{- $resizeOptions = printf "%s png" $resizeSpec -}}
+                    {{- else if eq $targetType "tiff" -}}
+                        {{- $resizeOptions = printf "%s tiff" $resizeSpec -}}
+                    {{- end -}}
+
+                    {{- with try ($processed.Resize $resizeOptions) -}}
+                        {{- with .Err -}}
+                            {{ warnf "Failed to process image %q: %s" $processed.RelPermalink . }}
+                            {{- $processed = $resource -}}
+                        {{- else with .Value -}}
+                            {{- $processed = . -}}
+                        {{- end -}}
                     {{- end -}}
                 {{- end -}}
 
