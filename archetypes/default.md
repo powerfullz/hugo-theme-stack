@@ -10,6 +10,8 @@ math:
 hasMermaid: 
 license: 
 comments: true
+imageResize: true
+imageStripEXIF: true
 draft: true
 build:
     list: always    # Change to "never" to hide the page from the list

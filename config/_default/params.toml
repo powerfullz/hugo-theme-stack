@@ -46,12 +46,12 @@ SortBy              = "default"
 
 [imageProcessing.content]
     enabled = true
+    # Resize images larger than maxSize/maxWidth. Can be overridden per article by `imageResize`.
+    resize = true
     # Re-encode local images to strip EXIF metadata and reduce privacy leakage.
     stripEXIF = true
     # Use high default quality to reduce visible color shift on gradients/dark scenes.
     quality = 90
-    # PNG is kept in original format by default to avoid lossy conversion artifacts.
-    convertPNG = false
 
 [comments]
     enabled = true

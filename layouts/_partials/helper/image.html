@@ -45,11 +45,19 @@
             {{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
                 {{- $maxSize := default (default 2048 .Page.Site.Params.imageProcessing.content.maxWidth) .Page.Site.Params.imageProcessing.content.maxSize -}}
                 {{- $processed := $resource -}}
-                {{- $stripEXIF := default true .Page.Site.Params.imageProcessing.content.stripEXIF -}}
                 {{- $quality := default 90 .Page.Site.Params.imageProcessing.content.quality -}}
-                {{- $convertPNG := default false .Page.Site.Params.imageProcessing.content.convertPNG -}}
+                {{- $enableResize := default true .Page.Site.Params.imageProcessing.content.resize -}}
+                {{- with .Page.Params.imageResize -}}
+                    {{- $enableResize = . -}}
+                {{- end -}}
+                {{- $stripEXIF := default true .Page.Site.Params.imageProcessing.content.stripEXIF -}}
+                {{- with .Page.Params.imageStripEXIF -}}
+                    {{- $stripEXIF = . -}}
+                {{- end -}}
                 {{- $sourceType := lower $processed.MediaType.SubType -}}
-                {{- $shouldConvertToWebp := or (in (slice "jpeg" "jpg") $sourceType) (and (eq $sourceType "png") $convertPNG) -}}
+                {{- $canStripEXIF := in (slice "jpeg" "jpg" "png" "tiff" "webp") $sourceType -}}
+                {{- $shouldStripEXIF := and $stripEXIF $canStripEXIF -}}
+                {{- $shouldConvertToWebp := in (slice "jpeg" "jpg" "png" "tiff") $sourceType -}}
                 {{- $targetType := $sourceType -}}
                 {{- if $shouldConvertToWebp -}}
                     {{- $targetType = "webp" -}}
@@ -57,12 +65,12 @@
 
                 {{/* Build one Resize spec so resize/format conversion/EXIF stripping happen in a single re-encode. */}}
                 {{- $resizeSpec := "" -}}
-                {{- if and (gt $maxSize 0) (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
+                {{- if and $enableResize (gt $maxSize 0) (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
                     {{- $resizeSpec = printf "%dx" $maxSize -}}
-                {{- else if and (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
+                {{- else if and $enableResize (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
                     {{- $resizeSpec = printf "x%d" $maxSize -}}
                 {{/* No resize needed, but keep one-pass re-encode for EXIF stripping or format conversion. */}}
-                {{- else if or $stripEXIF (ne $targetType $sourceType) -}}
+                {{- else if or $shouldStripEXIF (ne $targetType $sourceType) -}}
                     {{- $resizeSpec = printf "%dx%d" $processed.Width $processed.Height -}}
                 {{- end -}}
 
@@ -73,10 +81,6 @@
                         {{- $resizeOptions = printf "%s webp q%d" $resizeSpec $quality -}}
                     {{- else if in (slice "jpeg" "jpg") $targetType -}}
                         {{- $resizeOptions = printf "%s jpeg q%d" $resizeSpec $quality -}}
-                    {{- else if eq $targetType "png" -}}
-                        {{- $resizeOptions = printf "%s png" $resizeSpec -}}
-                    {{- else if eq $targetType "tiff" -}}
-                        {{- $resizeOptions = printf "%s tiff" $resizeSpec -}}
                     {{- end -}}
 
                     {{- with try ($processed.Resize $resizeOptions) -}}
