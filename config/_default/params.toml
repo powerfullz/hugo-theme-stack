@@ -83,6 +83,16 @@ SortBy             = "default"
     # Use high default quality to reduce visible color shift on gradients/dark scenes.
     quality = 90
 
+# GDPR Cookie Consent Configuration
+# When enabled, analytics and functional cookies require user consent
+[cookies]
+    enabled      = false
+    showSettings = true
+
+    [cookies.categories]
+        analytics  = true
+        functional = true
+
 [comments]
     enabled  = true
     provider = "disqus"
