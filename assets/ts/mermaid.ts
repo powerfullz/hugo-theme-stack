@@ -22,7 +22,7 @@ interface MermaidConfig {
 
 type Scheme = 'light' | 'dark';
 
-const PANZOOM_CDN = 'https://cdn.jsdelivr.net/npm/panzoom@9.4.3/+esm';
+const PANZOOM_CDN = 'https://testingcf.jsdelivr.net/npm/panzoom@9.4.3/+esm';
 
 const DARK_THEME_VARIABLES_DEFAULT = {
     primaryColor: '#2a1d45',
