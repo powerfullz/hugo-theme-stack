@@ -35,22 +35,6 @@
 {{- with $cfg.fontFamily }}{{ $jsConfig = merge $jsConfig (dict "fontFamily" .) }}{{ end -}}
 {{- with $cfg.curve }}{{ $jsConfig = merge $jsConfig (dict "curve" .) }}{{ end -}}
 {{- with $cfg.logLevel }}{{ $jsConfig = merge $jsConfig (dict "logLevel" .) }}{{ end -}}
-<style>
-    /* Style adjustments for mermaid diagrams */
-    .article-content {
-        pre.mermaid {
-            background-color: transparent;
-            padding: 0;
-            overflow: visible;
-        }
-    }
-
-    /* Centre mermaid diagrams */
-    .mermaid svg {
-        display: block;
-        margin: 0 auto;
-    }
-</style>
 <script type="module">
 import { initMermaidPage } from '{{ $script.RelPermalink }}';
 initMermaidPage({{ $jsConfig | jsonify | safeJS }});
