@@ -5,22 +5,48 @@
     border-radius: var(--card-border-radius);
     overflow: hidden;
 
+    .hide-on-mobile {
+        display: none;
+
+        @include respond(md) {
+            display: flex;
+        }
+    }
+
+    .pagination-link {
+        display: none;
+
+        @include respond(md) {
+            display: flex;
+        }
+    }
+
     .page-link {
-        padding: 16px 0;
+        padding: 12px 0;
         margin: 0;
         border-radius: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         flex: 1 1 auto;
-        min-width: 48px;
+        min-width: 36px;
         color: var(--card-text-color-secondary);
         text-decoration: none;
 
+        @include respond(md) {
+            min-width: 48px;
+            padding: 16px 0;
+        }
+
         &:first-child,
         &:last-child {
-            flex: 0 0 48px;
-            padding: 16px;
+            flex: 0 0 40px;
+            padding: 12px 8px;
+
+            @include respond(md) {
+                flex: 0 0 48px;
+                padding: 16px;
+            }
         }
 
         &:hover:not(.current):not(.disabled) {
