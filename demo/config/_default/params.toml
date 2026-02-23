@@ -27,7 +27,11 @@ favicon        = "img/avatar.png"
 [comments]
     # See complete configuration in config/_default/params.toml
     enabled  = true
-    provider = "disqus"
+    provider = "artalk"
+
+[comments.artalk]
+    serverUrl = "https://comment.l3zc.com"
+    site      = "ExampleSite"
 
 # GDPR Cookie Consent Configuration
 # When enabled, analytics and functional cookies require user consent
