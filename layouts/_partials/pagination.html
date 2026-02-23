@@ -10,7 +10,7 @@
     </a>
 
     {{- /* Page numbers logic */ -}}
-    {{- $window := 4 -}}
+    {{- $window := 1 -}}
     {{- $showFirst := true -}}
     {{- $showLast := true -}}
 
@@ -34,7 +34,7 @@
             {{- if and (ge .PageNumber (sub $pag.PageNumber $window)) (le .PageNumber (add $pag.PageNumber $window)) -}}
                 {{- $diff := sub .PageNumber $pag.PageNumber -}}
                 {{- if lt $diff 0 -}}{{- $diff = mul $diff -1 -}}{{- end -}}
-            <a class="page-link {{ if eq .PageNumber $pag.PageNumber }}current{{ end }} {{ if gt $diff 0 }}hide-on-mobile{{ end }}"
+            <a class="page-link {{ if eq .PageNumber $pag.PageNumber }}current{{ end }} {{ if gt $diff 1 }}hide-on-mobile{{ end }}"
                 {{- if eq .PageNumber $pag.PageNumber -}}aria-current="page" {{- end -}} href="{{ .URL }}"
                 aria-label="Page {{ .PageNumber }}">
                 {{ .PageNumber }}
