@@ -55,7 +55,7 @@ darkMode   = "Dark Mode"
 
 [cookies]
     title             = "Cookie Consent"
-    text              = "We use cookies to enhance your browsing experience and analyze site traffic."
+    text              = "We use cookies to enhance your browsing experience."
     acceptAll         = "Accept All"
     deny              = "Deny"
     managePreferences = "Manage preferences"
