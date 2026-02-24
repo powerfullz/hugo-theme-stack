@@ -51,6 +51,28 @@ The `hide-on-mobile` class is applied to middle pages whose distance from the cu
 ### i18n (`i18n/`)
 String keys follow Hugo's i18n format. When adding new UI strings to templates, add corresponding keys to all locale files (at minimum `en.toml`), then propagate to others as needed.
 
+### Tile Card Overlay (`layouts/_partials/article-list/tile.html`)
+Tile cards (used on the archives page, subsection lists, and related-content) layer two color sources:
+
+1. **CSS fallback** — `.article-list--tile article.has-image .article-details` sets `background-color: rgba(0,0,0,0.25)` when the card has an image.
+2. **Inline gradient** — `tile.html` writes a `style="background: linear-gradient(...)"` on `.article-details` when Hugo's image processing can extract palette colors from a local image resource (`$image.Resource`). The inline `background` shorthand supersedes the CSS `background-color` entirely when present.
+
+**CSS layout rules for `.article-list--tile article`:**
+- `position: relative` + `overflow: hidden` + `border-radius` on the `article` element handles all corner clipping — child elements must **not** repeat `border-radius`.
+- `.article-image` is `position: absolute` (behind). `.article-details` is `position: relative` and appears later in the DOM, so it naturally paints on top. **Do not add `z-index`** to `.article-details`: creating an independent stacking context inside a parent with `overflow:hidden` + `border-radius` + a `box-shadow` transition causes Firefox to re-composite the rounded-overflow clip layer per stacking context during the transition repaint cycle, making the overlay background briefly disappear on hover.
+
+### Custom Themes (`assets/scss/custom/`)
+- `_common.scss` — shared animations/interactions; defines the `card-targets` mixin that targets all card-like elements at once.
+- `themes/neon/` — dark-mode neon/purple style; activated by `[data-scheme="dark"]`.
+- `themes/cyberpunk/` — light-mode cyberpunk 2077 style; activated by `[data-scheme="light"]`.
+- Both theme files import a `_index.scss` entry point and are brought in via `custom.scss` (last import in `style.scss`, so they can override anything above).
+
+### Image Processing & Color Extraction (`layouts/_partials/helper/image.html`)
+Returns a dict with `Resource` (possibly resized/converted), `ColorResource` (always the original, used for palette extraction), `Permalink`, `Width`, `Height`, and `Local`. Remote images return `Resource: nil` and `Local: false`. Color extraction in `tile.html` is only attempted when `$image.Resource` is non-nil (i.e., local images only).
+
+### SCSS Import Order (`assets/scss/style.scss`)
+Imports follow this order: breakpoints → variables → grid → external (normalize) → partials (menu, article, widgets, footer, pagination, sidebar, base, layout/\*) → general → custom. Later imports win on specificity ties, so `custom/` overrides always take effect.
+
 ## Commit & Pull Request Guidelines
 Recent history follows Conventional Commit prefixes such as `feat:`, `fix:`, and `chore:`. Continue this format and keep each commit focused.
 
