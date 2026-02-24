@@ -23,6 +23,34 @@ There is no dedicated automated test suite yet. Validate changes by:
 - Building with `hugo --gc --minify` to catch template and asset pipeline issues.
 - Running Prettier checks before opening a PR.
 
+## Key Partials & Components
+
+### Pagination (`layouts/_partials/pagination.html`)
+Uses Hugo's built-in Paginator API. Key variables: `$.Paginator` (the paginator object), `.TotalPages`, `.PageNumber`, `.Pagers` (slice of all page paginators), `.Prev`/`.Next`, `.First`/`.Last`, `.URL`.
+
+The pagination renders: **[←] [1] [...] [start…end] [...] [N] [→]** where the middle window `[start, end]` always covers exactly 3 pages so there are always 5 page numbers visible (when total > 5). Window clamping rules:
+- Default: `start = curr-1`, `end = curr+1`
+- Near start (`start <= 1`): pin to `[2, 4]`
+- Near end (`end >= total`): pin to `[total-3, total-1]`
+- Total ≤ 5: show all middle pages `[2, total-1]`, no ellipsis
+
+The `hide-on-mobile` class is applied to middle pages whose distance from the current page is > 1; corresponding CSS is in `assets/scss/partials/pagination.scss` (hidden below the `md` breakpoint via the `respond(md)` mixin).
+
+### SCSS Structure (`assets/scss/`)
+- `style.scss` — main entry point, imports all partials
+- `partials/` — component-level styles (e.g., `pagination.scss`, `article.scss`)
+- `variables.scss` — CSS custom properties and Sass variables
+- `breakpoints.scss` — defines responsive breakpoints; use the `respond(md)` mixin for tablet/desktop rules
+- `custom/` — optional override files (e.g., neon/cyberpunk themes)
+
+### Demo Site (`demo/`)
+- `config/_default/hugo.toml` sets `pagerSize = 2` (only 2 posts per page) to make pagination easy to test with few posts.
+- Override this temporarily to a larger value when testing scenarios with many pages.
+- The demo uses `--themesDir=../..` so it picks up live edits from the repo root without symlinking.
+
+### i18n (`i18n/`)
+String keys follow Hugo's i18n format. When adding new UI strings to templates, add corresponding keys to all locale files (at minimum `en.toml`), then propagate to others as needed.
+
 ## Commit & Pull Request Guidelines
 Recent history follows Conventional Commit prefixes such as `feat:`, `fix:`, and `chore:`. Continue this format and keep each commit focused.
 
