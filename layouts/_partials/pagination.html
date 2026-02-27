@@ -111,10 +111,12 @@
 
     <dialog id="pagination-jump-dialog">
         <form method="dialog" class="pagination-jump-form">
-            <label for="pagination-jump-input">
-                {{ i18n "pagination.jumpToPage" | default "Jump to page:" }} (1
-                - {{ $pag.TotalPages }})
-            </label>
+            <header>
+                <label class="title" for="pagination-jump-input">
+                    {{ i18n "pagination.jumpToPage" | default "Jump to page:" }}
+                </label>
+                <span class="subtitle">(1 - {{ $pag.TotalPages }})</span>
+            </header>
             <div class="pagination-jump-input-group">
                 <input
                     type="number"
