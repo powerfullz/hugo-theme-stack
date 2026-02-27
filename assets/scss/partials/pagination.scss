@@ -72,5 +72,77 @@
             width: 20px;
             height: 20px;
         }
+
+        &.pagination-jump-trigger {
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--card-background-selected);
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+#pagination-jump-dialog {
+    border: none;
+    border-radius: var(--card-border-radius);
+    background-color: var(--card-background);
+    padding: var(--card-padding);
+    box-shadow: var(--shadow-l2);
+    color: var(--body-text-color);
+    margin: auto; // Center dialog
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+    }
+
+    .pagination-jump-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        label {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--card-text-color-main);
+        }
+
+        .pagination-jump-input-group {
+            display: flex;
+            gap: 10px;
+
+            input[type="number"] {
+                flex: 1;
+                padding: 8px 12px;
+                border: 1px solid var(--card-separator-color);
+                border-radius: var(--card-border-radius);
+                background-color: var(--body-background);
+                color: var(--card-text-color-main);
+                font-size: 1.4rem;
+                outline: none;
+                width: 100px; // Keep it compact
+
+                &:focus {
+                    border-color: var(--accent-color);
+                }
+            }
+
+            .btn-primary {
+                padding: 8px 16px;
+                background-color: var(--accent-color);
+                color: var(--accent-color-text);
+                border: none;
+                border-radius: var(--card-border-radius);
+                font-size: 1.4rem;
+                cursor: pointer;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background-color: var(--accent-color-darker);
+                }
+            }
+        }
     }
 }
