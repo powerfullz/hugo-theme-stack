@@ -2,7 +2,7 @@
 title: Mermaid Example
 date: 2025-12-03
 description: Sample article showcasing basic Mermaid diagrams.
-tags: 
+tags:
     - markdown
     - css
     - html

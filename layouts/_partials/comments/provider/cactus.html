@@ -1,21 +1,22 @@
 {{- with .Site.Params.comments.cactus -}}
-{{- partial "helper/external" (dict "Context" $ "Namespace" "Cactus") -}}
+    {{- partial "helper/external" (dict "Context" $ "Namespace" "Cactus") -}}
 
-<style>
-    .cactus-editor-textarea {
-        color: var(--body-text-color);
-    }
 
-    .cactus-comment-header {
-        color: var(--card-text-color-main);
-    }
+    <style>
+        .cactus-editor-textarea {
+            color: var(--body-text-color);
+        }
 
-    .cactus-message-text > p {
-        color: var(--body-text-color);
-    }
-</style>
+        .cactus-comment-header {
+            color: var(--card-text-color-main);
+        }
 
-<div id="comment-section"></div>
+        .cactus-message-text > p {
+            color: var(--body-text-color);
+        }
+    </style>
+
+    <div id="comment-section"></div>
 
 <script>
     initComments({

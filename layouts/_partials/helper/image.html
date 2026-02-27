@@ -69,7 +69,7 @@
                     {{- $resizeSpec = printf "%dx" $maxSize -}}
                 {{- else if and $enableResize (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
                     {{- $resizeSpec = printf "x%d" $maxSize -}}
-                {{/* No resize needed, but keep one-pass re-encode for EXIF stripping or format conversion. */}}
+                    {{/* No resize needed, but keep one-pass re-encode for EXIF stripping or format conversion. */}}
                 {{- else if or $shouldStripEXIF (ne $targetType $sourceType) -}}
                     {{- $resizeSpec = printf "%dx%d" $processed.Width $processed.Height -}}
                 {{- end -}}

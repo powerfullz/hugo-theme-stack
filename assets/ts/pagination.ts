@@ -26,6 +26,12 @@ export const setupPaginationJump = () => {
 		});
 	});
 
+	// Handle ESC key closing the dialog
+	dialog.addEventListener('cancel', (e) => {
+		e.preventDefault();
+		closeDialog();
+	});
+
 	// Close dialog when clicking backdrop
 	dialog.addEventListener('click', (e) => {
 		const rect = dialog.getBoundingClientRect();

@@ -4,7 +4,7 @@ description: このサイトとその著者についてのすべて。
 date: 2026-01-26
 lastmod: 2026-01-26
 menu:
-    main: 
+    main:
         weight: -90
         params:
             icon: user
@@ -39,8 +39,8 @@ menu:
 ---
 
 > "Logic will get you from A to B. Imagination will take you everywhere."  
-> — *Albert Einstein*
+> — _Albert Einstein_
 
 ---
-*このページは AI によって生成されました。*
 
+_このページは AI によって生成されました。_

@@ -106,7 +106,7 @@
         }
     }
 
-    &>ul {
+    & > ul {
         padding: 0 1em;
     }
 
@@ -114,24 +114,24 @@
         margin: 15px 0 15px 20px;
         padding: 5px;
 
-        &>ol,
-        &>ul {
+        & > ol,
+        & > ul {
             margin-top: 10px;
             padding-left: 10px;
             margin-bottom: -5px;
 
-            &>li:last-child {
+            & > li:last-child {
                 margin-bottom: 0;
             }
         }
     }
 
-    li.active-class>a {
+    li.active-class > a {
         border-left: var(--heading-border-size) solid var(--accent-color);
         font-weight: bold;
     }
 
-    ul li.active-class>a {
+    ul li.active-class > a {
         display: block;
     }
 
@@ -147,13 +147,13 @@
 
     // Support up to 6 levels of indentation for lists in ToCs
     @for $i from 0 to 5 {
-        &>ul #{repeat("> li > ul", $i)}>li.active-class>a {
+        & > ul #{repeat("> li > ul", $i)} > li.active-class > a {
             $n: 25 + $i * 35;
             margin-left: calc(-#{$n}px - 1em);
             padding-left: calc(#{$n}px + 1em - var(--heading-border-size));
         }
 
-        &>ol #{repeat("> li > ol", $i)}>li.active-class>a {
+        & > ol #{repeat("> li > ol", $i)} > li.active-class > a {
             $n: 9 + $i * 35;
             margin-left: calc(-#{$n}px - 1em);
             padding-left: calc(#{$n}px + 1em - var(--heading-border-size));
@@ -234,7 +234,7 @@
     overflow-x: auto;
     padding-bottom: 15px;
 
-    &>.flex {
+    & > .flex {
         float: left;
     }
 
@@ -253,7 +253,11 @@
         &.has-image {
             .article-details {
                 padding: 20px;
-                background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.75) 100%);
+                background: linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.25) 0%,
+                    rgba(0, 0, 0, 0.75) 100%
+                );
             }
         }
     }
@@ -265,7 +269,7 @@
     padding: 0 var(--card-padding);
     line-height: var(--article-line-height);
 
-    &>p {
+    & > p {
         margin: 1.5em 0;
     }
 
@@ -276,8 +280,11 @@
     h5,
     h6 {
         margin-inline-start: calc((var(--card-padding)) * -1);
-        padding-inline-start: calc(var(--card-padding) - var(--heading-border-size));
-        border-inline-start: var(--heading-border-size) solid var(--accent-color);
+        padding-inline-start: calc(
+            var(--card-padding) - var(--heading-border-size)
+        );
+        border-inline-start: var(--heading-border-size) solid
+            var(--accent-color);
         position: relative;
 
         a.header-anchor {
@@ -314,7 +321,8 @@
     blockquote {
         position: relative;
         margin: 1.5em 0;
-        border-inline-start: var(--blockquote-border-size) solid var(--card-separator-color);
+        border-inline-start: var(--blockquote-border-size) solid
+            var(--card-separator-color);
         padding: 15px calc(var(--card-padding) - var(--blockquote-border-size));
         background-color: var(--blockquote-background-color);
 
@@ -495,8 +503,8 @@
         padding-bottom: 56.25%;
         overflow: hidden;
 
-        &>iframe,
-        &>video {
+        & > iframe,
+        & > video {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -533,7 +541,7 @@
     }
 
     /// Make long KaTeX equations scrollable in the x-axis
-    .katex-display>.katex {
+    .katex-display > .katex {
         overflow-x: auto;
         overflow-y: hidden;
     }

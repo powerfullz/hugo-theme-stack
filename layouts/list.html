@@ -16,14 +16,15 @@
                     <h2 class="section-description">{{ . }}</h2>
                 {{ end }}
             </div>
-    
+
             {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
             {{ if $image }}
                 <div class="section-image">
-                    <img src="{{ $image.Permalink }}" 
+                    <img
+                        src="{{ $image.Permalink }}"
                         width="{{ $image.Width }}"
-                        height="{{ $image.Height }}" 
-                        loading="lazy">
+                        height="{{ $image.Height }}"
+                        loading="lazy" />
                 </div>
             {{ end }}
         </div>
@@ -31,14 +32,16 @@
 
     {{- $pages := partial "helper/pages.html" . -}}
     {{- $subsections := .Sections -}}
-    
+
     {{- if and (eq (len $pages) (len $subsections)) (eq $pages $subsections) -}}
         {{- $subsections = slice -}}
     {{- end -}}
 
     {{- with $subsections -}}
         <aside>
-            <h2 class="section-title">{{ T "list.subsection" (len $subsections) }}</h2>
+            <h2 class="section-title">
+                {{ T "list.subsection" (len $subsections) }}
+            </h2>
             <div class="subsection-list">
                 <div class="article-list--tile">
                     {{ range . }}
@@ -48,7 +51,7 @@
             </div>
         </aside>
     {{- end -}}
-    
+
     {{/* List only pages that are not a subsection */}}
     {{ $paginator := partial "helper/paginator.html" . }}
     {{ with $paginator }}

@@ -47,7 +47,7 @@ For example: `$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $` renders as $ \
 For larger equations, use double dollar signs `$$` to create a math block.
 
 $$
- \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
+ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
 $$
 
 ### More Complex Formula

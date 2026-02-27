@@ -1,19 +1,19 @@
 // Theme Colors - Neon
-$neon-purple: #8C00FF;
+$neon-purple: #8c00ff;
 $neon-purple-dark: #450693;
 $neon-bg: #1e1433;
 $neon-bg-selected: #2a1d45;
 $neon-bg-darker: #100b1a;
 $neon-code-bg: #150f24;
-$neon-gold: #FFC400;
-$neon-pink: #FF3F7F;
-$neon-cyan: #00F0FF;
+$neon-gold: #ffc400;
+$neon-pink: #ff3f7f;
+$neon-cyan: #00f0ff;
 /*
 *   Global style
 */
 :root {
     --main-top-padding: 35px;
-    
+
     @include respond(xl) {
         --main-top-padding: 50px;
     }
@@ -47,9 +47,13 @@ $neon-cyan: #00F0FF;
 *   Global font family
 */
 :root {
-    --sys-font-family: -apple-system, BlinkMacSystemFont, "Source Han Sans CJK SC", "Microsoft YaHei", "Segoe UI", "Droid Sans", "Helvetica Neue";
+    --sys-font-family:
+        -apple-system, BlinkMacSystemFont, "Source Han Sans CJK SC",
+        "Microsoft YaHei", "Segoe UI", "Droid Sans", "Helvetica Neue";
     --base-font-family: "Poppins", var(--sys-font-family), sans-serif;
-    --code-font-family: "Google Sans Code", "JetBrains Mono", Menlo, Monaco, Consolas, var(--sys-font-family), monospace;
+    --code-font-family:
+        "Google Sans Code", "JetBrains Mono", Menlo, Monaco, Consolas,
+        var(--sys-font-family), monospace;
 }
 
 /*
@@ -82,7 +86,7 @@ $neon-cyan: #00F0FF;
         --small-card-padding: 25px;
     }
 
-&[data-scheme="dark"] {
+    &[data-scheme="dark"] {
         --card-background: #{$neon-bg};
         --card-background-selected: #{$neon-bg-selected};
         --card-text-color-main: rgba(255, 255, 255, 0.9);
@@ -160,11 +164,18 @@ $neon-cyan: #00F0FF;
 *   Thanks to https://www.figma.com/community/plugin/744987207861965946/Shadow-picker
 */
 :root {
-    --shadow-l1: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(0, 0, 0, 0.04);
-    --shadow-l2: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
-    --shadow-l3: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
-    --shadow-l4: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
+    --shadow-l1:
+        0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06),
         0px 0px 1px rgba(0, 0, 0, 0.04);
+    --shadow-l2:
+        0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+        0px 0px 1px rgba(0, 0, 0, 0.04);
+    --shadow-l3:
+        0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+        0px 0px 1px rgba(0, 0, 0, 0.04);
+    --shadow-l4:
+        0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+        0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
 }
 
 [data-scheme="light"] {
