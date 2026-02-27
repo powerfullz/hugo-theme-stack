@@ -48,19 +48,21 @@ The diagram will be automatically rendered when the page loads.
 You can configure Mermaid in your site config:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      version: "11"           # Mermaid version from CDN
-      look: classic           # classic or handDrawn (sketch style)
-      lightTheme: default     # Theme for light mode
-      darkTheme: neutral      # Theme for dark mode
-      securityLevel: strict   # strict (default), loose, antiscript, sandbox
-      htmlLabels: true        # Enable HTML in labels
+    article:
+        mermaid:
+            version: "11" # Mermaid version from CDN
+            look: classic # classic or handDrawn (sketch style)
+            lightTheme: default # Theme for light mode
+            darkTheme: neutral # Theme for dark mode
+            securityLevel: strict # strict (default), loose, antiscript, sandbox
+            htmlLabels: true # Enable HTML in labels
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   version = "11"           # Mermaid version from CDN
@@ -76,19 +78,21 @@ params:
 These optional settings use Mermaid's defaults when not specified:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      maxTextSize: 50000      # Maximum text size (default: 50000)
-      maxEdges: 500           # Maximum edges allowed (default: 500)
-      fontSize: 16            # Global font size in pixels (default: 16)
-      fontFamily: "arial"     # Global font family
-      curve: "basis"          # Line curve: basis, cardinal, linear (default: basis)
-      logLevel: 5             # Debug level 0-5, 0=debug, 5=fatal (default: 5)
+    article:
+        mermaid:
+            maxTextSize: 50000 # Maximum text size (default: 50000)
+            maxEdges: 500 # Maximum edges allowed (default: 500)
+            fontSize: 16 # Global font size in pixels (default: 16)
+            fontFamily: "arial" # Global font family
+            curve: "basis" # Line curve: basis, cardinal, linear (default: basis)
+            logLevel: 5 # Debug level 0-5, 0=debug, 5=fatal (default: 5)
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   maxTextSize = 50000      # Maximum text size (default: 50000)
@@ -113,38 +117,40 @@ flowchart LR
 
 ### Available Themes
 
-| Theme | Description |
-|-------|-------------|
-| `default` | Standard colorful theme |
-| `neutral` | Grayscale, great for printing and dark mode |
-| `dark` | Designed for dark backgrounds |
-| `forest` | Green color palette |
-| `base` | Minimal theme, customizable with themeVariables |
-| `null` | Disable theming entirely |
+| Theme     | Description                                     |
+| --------- | ----------------------------------------------- |
+| `default` | Standard colorful theme                         |
+| `neutral` | Grayscale, great for printing and dark mode     |
+| `dark`    | Designed for dark backgrounds                   |
+| `forest`  | Green color palette                             |
+| `base`    | Minimal theme, customizable with themeVariables |
+| `null`    | Disable theming entirely                        |
 
 ### Custom Theme Variables
 
 For full control, use the `base` theme with custom variables:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      lightTheme: base
-      darkTheme: base
-      lightThemeVariables:
-        primaryColor: "#4a90d9"
-        primaryTextColor: "#ffffff"
-        lineColor: "#333333"
-      darkThemeVariables:
-        primaryColor: "#6ab0f3"
-        primaryTextColor: "#ffffff"
-        lineColor: "#cccccc"
-        background: "#1a1a2e"
+    article:
+        mermaid:
+            lightTheme: base
+            darkTheme: base
+            lightThemeVariables:
+                primaryColor: "#4a90d9"
+                primaryTextColor: "#ffffff"
+                lineColor: "#333333"
+            darkThemeVariables:
+                primaryColor: "#6ab0f3"
+                primaryTextColor: "#ffffff"
+                lineColor: "#cccccc"
+                background: "#1a1a2e"
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   lightTheme = "base"
@@ -171,6 +177,7 @@ Common variables: `primaryColor`, `secondaryColor`, `tertiaryColor`, `primaryTex
 ### Flowchart
 
 Flowcharts are the most common diagram type. Use `graph` or `flowchart` with direction indicators:
+
 - `TD` or `TB`: Top to bottom
 - `BT`: Bottom to top
 - `LR`: Left to right
@@ -356,15 +363,17 @@ timeline
 To use HTML in labels, you must set `securityLevel: loose` in your site config:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      securityLevel: loose
-      htmlLabels: true
+    article:
+        mermaid:
+            securityLevel: loose
+            htmlLabels: true
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   securityLevel = "loose"
@@ -427,6 +436,7 @@ flowchart LR
 ```
 
 Style properties include:
+
 - `fill` - Background color
 - `stroke` - Border color
 - `stroke-width` - Border thickness
@@ -533,19 +543,21 @@ Mermaid.js's built-in themes have some limitations:
 **For full control**, use the `base` theme with custom variables:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      darkTheme: base
-      darkThemeVariables:
-        primaryColor: "#1f2937"
-        primaryTextColor: "#ffffff"
-        lineColor: "#9ca3af"
-        textColor: "#e5e7eb"
+    article:
+        mermaid:
+            darkTheme: base
+            darkThemeVariables:
+                primaryColor: "#1f2937"
+                primaryTextColor: "#ffffff"
+                lineColor: "#9ca3af"
+                textColor: "#e5e7eb"
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   darkTheme = "base"
@@ -572,15 +584,17 @@ We plan to improve dark mode theming in future updates as Mermaid.js evolves.
 HTML in labels requires `securityLevel: loose`. Update your configuration:
 
 **hugo.yaml:**
+
 ```yaml
 params:
-  article:
-    mermaid:
-      securityLevel: loose
-      htmlLabels: true
+    article:
+        mermaid:
+            securityLevel: loose
+            htmlLabels: true
 ```
 
 **hugo.toml:**
+
 ```toml
 [params.article.mermaid]
   securityLevel = "loose"
@@ -592,6 +606,7 @@ params:
 ### Syntax errors?
 
 Mermaid is strict about syntax. Common issues:
+
 - Missing spaces around arrows
 - Unclosed brackets or quotes
 - Invalid node IDs (avoid special characters)

@@ -22,7 +22,7 @@
         margin-bottom: 0;
     }
 
-    &> :not(:last-child) {
+    & > :not(:last-child) {
         margin-bottom: var(--sidebar-element-separation);
 
         @include respond(md) {

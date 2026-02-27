@@ -64,7 +64,6 @@ Hugo 內置的 YouTube 短代碼。
 {{</* youtube ZJthWmvUzzc */>}}
 ```
 
-
 ## 騰訊視頻 (Tencent Video)
 
 嵌入來自騰訊視頻的視頻。
@@ -77,7 +76,6 @@ Hugo 內置的 YouTube 短代碼。
 {{</* tencent "u00306ng962" */>}}
 ```
 
-
 ## GitLab Snippet
 
 嵌入來自 GitLab 的代碼片段。
@@ -89,7 +87,6 @@ Hugo 內置的 YouTube 短代碼。
 ```markdown
 {{</* gitlab 2349278 */>}}
 ```
-
 
 ## 圖表 (Diagrams)
 

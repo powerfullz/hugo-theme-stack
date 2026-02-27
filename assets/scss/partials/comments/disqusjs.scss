@@ -7,61 +7,63 @@
 
 #dsqjs * {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 #dsqjs a {
     text-decoration: none;
-    color: #076dd0
+    color: #076dd0;
 }
 
 #dsqjs .dsqjs-hide {
-    display: none!important
+    display: none !important;
 }
 
 #dsqjs .dsqjs-disabled {
     cursor: not-allowed;
-    opacity: .5
+    opacity: 0.5;
 }
 
 #dsqjs #dsqjs-msg {
     text-align: center;
     margin-top: 4px;
     margin-bottom: 4px;
-    font-size: 14px
+    font-size: 14px;
 }
 
 #dsqjs #dsqjs-msg .dsqjs-msg-btn {
-    cursor: pointer
+    cursor: pointer;
 }
 
 #dsqjs .dsqjs-bullet {
     line-height: 1.4;
-    margin: 0 2px
+    margin: 0 2px;
 }
 
 #dsqjs .dsqjs-bullet:after {
     color: #c2c6cc;
     content: "·";
-    font-weight: 700
+    font-weight: 700;
 }
 
-#dsqjs .dsqjs-clearfix:after,#dsqjs .dsqjs-clearfix:before {
+#dsqjs .dsqjs-clearfix:after,
+#dsqjs .dsqjs-clearfix:before {
     display: table;
     content: "";
     line-height: 0;
-    clear: both
+    clear: both;
 }
 
 #dsqjs .dsqjs-nav {
     position: relative;
     margin: 0 0 20px;
-    border-bottom: 2px solid #e7e9ee
+    border-bottom: 2px solid #e7e9ee;
 }
 
-#dsqjs ol,#dsqjs ul {
+#dsqjs ol,
+#dsqjs ul {
     list-style: none;
-    list-style-type: none
+    list-style-type: none;
 }
 
 #dsqjs .dsqjs-no-comment {
@@ -71,7 +73,7 @@
     word-wrap: break-word;
     overflow: hidden;
     color: #2a2e2e;
-    margin-bottom: 6px
+    margin-bottom: 6px;
 }
 
 #dsqjs .dsqjs-nav-tab {
@@ -85,31 +87,31 @@
     font-weight: 700;
     line-height: 1;
     position: relative;
-    transition: all .2s ease-in-out
+    transition: all 0.2s ease-in-out;
 }
 
 #dsqjs .dsqjs-nav-tab:last-child {
-    margin: 0
+    margin: 0;
 }
 
 #dsqjs .dsqjs-tab-active {
-    color: #2a2e2e
+    color: #2a2e2e;
 }
 
-#dsqjs .dsqjs-tab-active>span:after {
+#dsqjs .dsqjs-tab-active > span:after {
     content: " ";
     display: block;
     height: 2px;
-    background-color: #076dd0!important;
+    background-color: #076dd0 !important;
     position: absolute;
     bottom: -5px;
     left: 0;
-    right: 0
+    right: 0;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-item {
     position: relative;
-    margin-bottom: 16px
+    margin-bottom: 16px;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-avatar {
@@ -119,25 +121,25 @@
     background: #dbdfe4;
     padding: 0;
     display: block;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-avatar img {
     width: 44px;
     height: 44px;
     display: block;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-header {
     line-height: 1;
     font-size: 14px;
-    margin-bottom: 3px
+    margin-bottom: 3px;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-header .dsqjs-post-author {
     color: #656c7a;
-    font-weight: 700
+    font-weight: 700;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-header .dsqjs-admin-badge {
@@ -152,13 +154,13 @@
     display: inline-block;
     position: relative;
     top: -1px;
-    left: 1px
+    left: 1px;
 }
 
 #dsqjs .dsqjs-post-list .dsqjs-post-header .dsqjs-meta {
     display: inline-block;
     font-size: 12px;
-    color: #656c7a
+    color: #656c7a;
 }
 
 #dsqjs .dsqjs-post-body {
@@ -166,46 +168,46 @@
     line-height: 1.5;
     word-wrap: break-word;
     overflow: hidden;
-    color: #2a2e2e
+    color: #2a2e2e;
 }
 
 #dsqjs .dsqjs-post-body code {
-    padding: .2em .4em;
+    padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
     background: #f5f5f5;
     color: inherit;
-    border-radius: 3px
+    border-radius: 3px;
 }
 
 #dsqjs .dsqjs-post-body pre {
-    padding: .5em;
+    padding: 0.5em;
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
     border-radius: 3px;
     background: #f5f5f5;
-    margin: .5em 0
+    margin: 0.5em 0;
 }
 
 #dsqjs .dsqjs-post-body blockquote {
-    padding: 0 .8em;
-    margin: .5em 0;
+    padding: 0 0.8em;
+    margin: 0.5em 0;
     color: #6a737d;
-    border-left: .25em solid #dfe2e5
+    border-left: 0.25em solid #dfe2e5;
 }
 
 #dsqjs .dsqjs-post-body p:last-child {
-    margin: 0
+    margin: 0;
 }
 
-#dsqjs .dsqjs-post-list.dsqjs-children>li {
-    margin-left: 30px
+#dsqjs .dsqjs-post-list.dsqjs-children > li {
+    margin-left: 30px;
 }
 
 #dsqjs .dsqjs-post-list.dsqjs-children .dsqjs-post-avatar img {
     width: 38px;
-    height: 38px
+    height: 38px;
 }
 
 #dsqjs .dsqjs-load-more {
@@ -217,11 +219,11 @@
     margin: 0 0 24px;
     background: #687a86;
     color: #fff;
-    cursor: pointer
+    cursor: pointer;
 }
 
 #dsqjs .dsqjs-load-more:hover {
-    opacity: .8
+    opacity: 0.8;
 }
 
 #dsqjs footer {
@@ -233,7 +235,7 @@
     margin-top: 12px;
     font-weight: 700;
     font-size: 16px;
-    color: #555
+    color: #555;
 }
 
 #dsqjs .dsqjs-disqus-logo {
@@ -250,16 +252,16 @@
     float: right;
     align-items: center;
     margin-top: 10px;
-    margin-bottom: 12px
+    margin-bottom: 12px;
 }
 
 #dsqjs .dsqjs-order-radio {
-    display: none
+    display: none;
 }
 
-#dsqjs .dsqjs-order-radio:checked+.dsqjs-order-label {
+#dsqjs .dsqjs-order-radio:checked + .dsqjs-order-label {
     color: #fff;
-    background-color: #888
+    background-color: #888;
 }
 
 #dsqjs .dsqjs-order-label {
@@ -271,51 +273,51 @@
     border-radius: 2px;
     padding: 0 5px;
     background-color: #dcdcdc;
-    cursor: pointer
+    cursor: pointer;
 }
 
 #dsqjs p.dsqjs-has-more {
     margin-bottom: 24px;
     margin-left: 48px;
     font-size: 13px;
-    line-height: 15px
+    line-height: 15px;
 }
 
 #dsqjs p.dsqjs-has-more a.dsqjs-has-more-btn {
     color: #656c7a;
     text-decoration: underline;
-    cursor: pointer
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {
-    #dsqjs .dsqjs-post-list.dsqjs-children>li {
-        margin-left:48px
+    #dsqjs .dsqjs-post-list.dsqjs-children > li {
+        margin-left: 48px;
     }
 
     #dsqjs .dsqjs-post-list .dsqjs-post-avatar {
-        margin-right: 12px
+        margin-right: 12px;
     }
 
     #dsqjs .dsqjs-post-list .dsqjs-post-item {
-        margin-bottom: 20px
+        margin-bottom: 20px;
     }
 }
 
 @media (min-width: 1024px) {
-    #dsqjs .dsqjs-post-list.dsqjs-children>li {
-        margin-left:60px
+    #dsqjs .dsqjs-post-list.dsqjs-children > li {
+        margin-left: 60px;
     }
 }
 
-:root[data-scheme="light"]  {
+:root[data-scheme="light"] {
     #dsqjs .dsqjs-disqus-logo {
         background-position: 0 -7px;
     }
 }
 
-:root[data-scheme="dark"]  {
+:root[data-scheme="dark"] {
     #dsqjs {
-        --t-s: rgba(255,255,255,0.9);
+        --t-s: rgba(255, 255, 255, 0.9);
         --alt: #3e4b5e;
         --link-hover: #47a2e0;
         --hover-bg: #3e4b5e;
@@ -335,60 +337,67 @@
         --hlv: #d19a66;
         --bg: #181c27;
         --main: #252d38;
-        --t: rgba(255,255,255,0.86);
-        --t-l: rgba(255,255,255,0.66);
+        --t: rgba(255, 255, 255, 0.86);
+        --t-l: rgba(255, 255, 255, 0.66);
         --logo: #fff;
         --link: #38a3fd;
-        --title: rgba(255,255,255,0.92);
+        --title: rgba(255, 255, 255, 0.92);
         --fab: #364151;
         --shadow: none;
     }
 
     #disqus_thread {
-        color: var(--body-text-color)
+        color: var(--body-text-color);
     }
 
     #dsqjs #dsqjs-msg {
-        color: var(--t)
+        color: var(--t);
     }
 
     #dsqjs a {
-        color:var(--link)
+        color: var(--link);
     }
 
-    #dsqjs a:focus,#dsqjs a:hover {
-        color: var(--link-hover)
+    #dsqjs a:focus,
+    #dsqjs a:hover {
+        color: var(--link-hover);
     }
 
     #dsqjs .dsqjs-disqus-logo {
         background-position: 0 -24px;
     }
 
-    #dsqjs .dsqjs-nav,#dsqjs footer {
-        border-color: var(--hlc)
+    #dsqjs .dsqjs-nav,
+    #dsqjs footer {
+        border-color: var(--hlc);
     }
 
-    #dsqjs .dsqjs-load-more,#dsqjs .dsqjs-load-more:hover,#dsqjs .dsqjs-nav-tab,#dsqjs .dsqjs-no-comment,#dsqjs .dsqjs-post-content {
-        color: var(--t)
+    #dsqjs .dsqjs-load-more,
+    #dsqjs .dsqjs-load-more:hover,
+    #dsqjs .dsqjs-nav-tab,
+    #dsqjs .dsqjs-no-comment,
+    #dsqjs .dsqjs-post-content {
+        color: var(--t);
     }
 
     #dsqjs .dsqjs-order-label {
-        background-color: var(--hlc)
+        background-color: var(--hlc);
     }
 
-    #dsqjs .dsqjs-order-radio:checked+.dsqjs-order-label {
-        background-color: var(--kbd)
+    #dsqjs .dsqjs-order-radio:checked + .dsqjs-order-label {
+        background-color: var(--kbd);
     }
 
-    #dsqjs .dsqjs-tab-active>span:after {
-        background-color: #2e9fff
+    #dsqjs .dsqjs-tab-active > span:after {
+        background-color: #2e9fff;
     }
 
-    #dsqjs .dsqjs-footer,#dsqjs .dsqjs-meta {
-        color: var(--t-l)
+    #dsqjs .dsqjs-footer,
+    #dsqjs .dsqjs-meta {
+        color: var(--t-l);
     }
 
     #dsqjs .dsqjs-post-body blockquote {
-        border-color: var(--border)
+        border-color: var(--border);
     }
 }

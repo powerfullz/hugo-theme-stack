@@ -12,12 +12,13 @@
     <p>当前视频av或BV号：{{ $vid }}，视频分P：{{ $videopage }}</p>
 {{ end }}
 
+
 <div class="video-wrapper">
-    <iframe src="https://player.bilibili.com/player.html?{{ $basicQuery | safeURL }}&{{ $videoQuery | safeURL }}"
-            scrolling="no"
-            frameborder="no"
-            framespacing="0"
-            allowfullscreen="true"
-    >
+    <iframe
+        src="https://player.bilibili.com/player.html?{{ $basicQuery | safeURL }}&{{ $videoQuery | safeURL }}"
+        scrolling="no"
+        frameborder="no"
+        framespacing="0"
+        allowfullscreen="true">
     </iframe>
 </div>

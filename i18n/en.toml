@@ -80,3 +80,4 @@ darkMode   = "Dark Mode"
 [pagination]
     jumpToPage = "Jump to page"
     jump = "Go"
+    pressEnter = "Press Enter to jump"

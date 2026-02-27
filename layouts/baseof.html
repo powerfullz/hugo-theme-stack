@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" dir="{{ default `ltr` .Language.LanguageDirection }}">
+<!doctype html>
+<html
+    lang="{{ .Site.LanguageCode }}"
+    dir="{{ default `ltr` .Language.LanguageDirection }}">
     <head>
         {{- partial "head/head.html" . -}}
         {{ if .Data.Singular }}
-        <meta name="robots" content="noindex">
+            <meta name="robots" content="noindex" />
         {{ end }}
         {{- block "head" . -}}{{ end }}
     </head>
@@ -17,7 +19,12 @@
                 {{- $hasWidget = true -}}
             {{- end -}}
         {{- end -}}
-        <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
+        <div
+            class="container main-container flex on-phone--column {{ if $hasWidget }}
+                extended
+            {{ else }}
+                compact
+            {{ end }}">
             {{- block "left-sidebar" . -}}
                 {{ partial "sidebar/left.html" . }}
             {{- end -}}
