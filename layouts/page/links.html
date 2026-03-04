@@ -21,17 +21,9 @@
 {{ end }}
 
 {{ define "main" }}
-    <article class="main-article {{ if .Params.image }}has-image{{ end }}">
-        {{ partial "article/components/header" (dict "Page" . "IsList" false) }}
+    {{ partial "article/article.html" . }}
 
-        <div class="article-links">
-            {{ partial "article/components/links" . }}
-        </div>
-
-        {{ partial "article/components/content" . }}
-
-        {{ partial "article/components/footer" . }}
-    </article>
+    {{ partial "article/components/links" . }}
 
     {{ partial "article/components/related-content" . }}
 

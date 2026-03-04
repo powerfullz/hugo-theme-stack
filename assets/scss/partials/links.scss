@@ -1,11 +1,7 @@
-.article-links {
-    padding: 0 var(--card-padding) var(--card-padding);
-}
-
 .link-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: var(--section-separation);
     opacity: 0;
 
     &.shuffled {
@@ -18,6 +14,7 @@
 
     @include respond(lg) {
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
 }
 
@@ -29,16 +26,12 @@
 
     a {
         display: flex;
+        flex-direction: row;
         align-items: center;
-        padding: 15px;
-        gap: 10px;
+        padding: var(--small-card-padding);
+        gap: 15px;
         text-decoration: none;
         color: inherit;
-
-        @include respond(md) {
-            padding: var(--small-card-padding);
-            gap: 15px;
-        }
     }
 
     &__info {
@@ -74,19 +67,14 @@
 
     &__avatar {
         flex-shrink: 0;
-        width: 44px;
-        height: 44px;
+        width: 60px;
+        height: 60px;
         border-radius: var(--card-border-radius);
         overflow: hidden;
         background-color: var(--card-background-selected);
         display: flex;
         align-items: center;
         justify-content: center;
-
-        @include respond(md) {
-            width: 60px;
-            height: 60px;
-        }
 
         img {
             width: 100%;
