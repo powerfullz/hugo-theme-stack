@@ -10,6 +10,16 @@
         {{ range $link := $links }}
             <article class="link-card">
                 <a href="{{ $link.website }}" target="_blank" rel="noopener">
+                    <div class="link-card__info">
+                        <h2 class="link-card__title">{{ $link.title }}</h2>
+                        <p class="link-card__description">
+                            {{ with $link.description }}
+                                {{ . }}
+                            {{ else }}
+                                {{ $link.website }}
+                            {{ end }}
+                        </p>
+                    </div>
                     <div class="link-card__avatar">
                         {{ with $link.image }}
                             {{ $permalink := . }}
@@ -25,16 +35,6 @@
                                 >{{ substr $link.title 0 1 | upper }}</span
                             >
                         {{ end }}
-                    </div>
-                    <div class="link-card__info">
-                        <h2 class="link-card__title">{{ $link.title }}</h2>
-                        <p class="link-card__description">
-                            {{ with $link.description }}
-                                {{ . }}
-                            {{ else }}
-                                {{ $link.website }}
-                            {{ end }}
-                        </p>
                     </div>
                 </a>
             </article>
