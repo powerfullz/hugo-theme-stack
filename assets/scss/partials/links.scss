@@ -14,9 +14,12 @@
 }
 
 .link-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  // Mobile: list-compact container style
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-background);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-l1);
   opacity: 0;
 
   &.shuffled {
@@ -24,8 +27,12 @@
   }
 
   @include respond(md) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+    background-color: unset;
+    border-radius: unset;
+    box-shadow: none;
   }
 
   @include respond(lg) {
@@ -35,8 +42,13 @@
 }
 
 .link-grid--compact {
+  // Override the mobile list-container style from .link-grid
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  background-color: unset;
+  border-radius: unset;
+  box-shadow: none;
 
   @include respond(md) {
     grid-template-columns: repeat(4, 1fr);
@@ -50,10 +62,25 @@
 }
 
 .link-card {
-  background-color: var(--card-background);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--shadow-l1);
+  // Mobile: no independent card appearance, flat rows inside shared container
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
+
+  &:not(:last-child) {
+    border-bottom: 1.5px solid var(--card-separator-color);
+  }
+
+  @include respond(md) {
+    background-color: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
 
   a {
     display: flex;
@@ -123,6 +150,15 @@
   }
 
   &--compact {
+    // Restore independent card appearance (compact grid has no shared container)
+    background-color: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+
     a {
       flex-direction: column;
       justify-content: center;
