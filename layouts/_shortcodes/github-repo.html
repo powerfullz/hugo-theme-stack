@@ -1,0 +1,117 @@
+{{- $repoParam := default "" (.Get "repo") -}}
+{{- if and (not $repoParam) (ge (len .Params) 1) -}}
+    {{- $repoParam = index .Params 0 -}}
+{{- end -}}
+{{- if not $repoParam -}}
+    {{- errorf "Shortcode github-repo requires a repo argument, for example {{< github-repo repo=\"owner/name\" >}}"
+    -}}
+{{- end -}}
+
+{{- $variant := default "full" (.Get "variant") -}}
+{{- if ne $variant "compact" -}}
+    {{- $variant = "full" -}}
+{{- end -}}
+
+{{- $showHomepage := true -}}
+{{- with .Get "showHomepage" -}}
+    {{- $showHomepage = eq (lower (printf "%v" .)) "true" -}}
+{{- end -}}
+
+{{- $showLanguage := true -}}
+{{- with .Get "showLanguage" -}}
+    {{- $showLanguage = eq (lower (printf "%v" .)) "true" -}}
+{{- end -}}
+
+{{- $token := os.Getenv "HUGO_GITHUB_TOKEN" -}}
+{{- $repo := partialCached "helper/github-repo" (dict "repo" $repoParam "token" $token) $repoParam -}}
+
+{{- $title := default $repo.fullName (.Get "title") -}}
+{{- $description := default $repo.description (.Get "description") -}}
+{{- $homepage := default $repo.homepage (.Get "homepage") -}}
+{{- $url := default $repo.url (.Get "url") -}}
+{{- $stars := default $repo.stars (.Get "stars") -}}
+{{- $forks := default $repo.forks (.Get "forks") -}}
+{{- $language := default $repo.language (.Get "language") -}}
+{{- $archived := default $repo.archived (.Get "archived") -}}
+
+{{- if and (not $title) $repoParam -}}
+    {{- $title = $repoParam -}}
+{{- end -}}
+
+
+<div
+    class="github-repo-card github-repo-card--{{ $variant }}{{ if $archived }}
+        is-archived
+    {{ end }}">
+    {{- if eq $variant "compact" -}}
+        <div class="github-repo-card__compact-main">
+            <span class="github-repo-card__brand">
+                {{ partial "helper/icon" "brand-github" }}
+                <span>GitHub</span>
+            </span>
+            <a
+                class="github-repo-card__compact-title"
+                href="{{ $url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                >{{ $title }}</a
+            >
+            {{- if $description -}}
+                <span class="github-repo-card__compact-desc"
+                    >{{ $description }}</span
+                >
+            {{- end -}}
+        </div>
+        <div class="github-repo-card__meta">
+            {{- if not (eq $stars nil) -}}
+                <span class="github-repo-card__stat">
+                    {{ partial "helper/icon" "star" }}
+                    <span>{{ $stars }}</span>
+                </span>
+            {{- end -}}
+        </div>
+    {{- else -}}
+        <div class="github-repo-card__header">
+            <span class="github-repo-card__brand">
+                {{ partial "helper/icon" "brand-github" }}
+                <span>GitHub</span>
+            </span>
+        </div>
+        <h3 class="github-repo-card__title">
+            <a href="{{ $url }}" target="_blank" rel="noopener noreferrer"
+                >{{ $title }}</a
+            >
+        </h3>
+        {{- if $description -}}
+            <p class="github-repo-card__description">{{ $description }}</p>
+        {{- end -}}
+        {{- if and $showHomepage $homepage -}}
+            <p class="github-repo-card__homepage">
+                {{ partial "helper/icon" "link" }}
+                <a
+                    href="{{ $homepage }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >{{ $homepage }}</a
+                >
+            </p>
+        {{- end -}}
+        <div class="github-repo-card__meta">
+            {{- if not (eq $stars nil) -}}
+                <span class="github-repo-card__stat">
+                    {{ partial "helper/icon" "star" }}
+                    <span>{{ $stars }}</span>
+                </span>
+            {{- end -}}
+            {{- if not (eq $forks nil) -}}
+                <span class="github-repo-card__stat">
+                    {{ partial "helper/icon" "git-fork" }}
+                    <span>{{ $forks }}</span>
+                </span>
+            {{- end -}}
+            {{- if and $showLanguage $language -}}
+                <span class="github-repo-card__language">{{ $language }}</span>
+            {{- end -}}
+        </div>
+    {{- end -}}
+</div>

@@ -89,6 +89,21 @@ Embed snippets from GitLab.
 {{</* gitlab 2349278 */>}}
 ```
 
+## GitHub Repo Card
+
+Show a repository card with build-time fetched GitHub metadata.
+
+{{< github-repo repo="solstice23/argon-theme" variant="full" description="Argon - 一个轻盈、简洁的 WordPress 主题" homepage="https://archive-blog.s23.moe" stars="5465" forks="620" >}}
+
+{{< github-repo repo="solstice23/hexo-theme-argon" variant="compact" description="Argon-Theme 的 Hexo 移植版" stars="321" >}}
+
+### Usage
+
+```markdown
+{{</* github-repo repo="owner/name" variant="full" */>}}
+{{</* github-repo repo="owner/name" variant="compact" */>}}
+```
+
 ## Diagrams
 
 Stack supports [Mermaid](https://mermaid.js.org/) diagrams out of the box.

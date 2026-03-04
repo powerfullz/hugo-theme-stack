@@ -1,0 +1,70 @@
+{{/* Params:
+    repo: owner/repo or GitHub repo URL
+    token: optional GitHub token (for higher rate limit)
+
+    Returns:
+    dict:
+    ok, fullName, url, description, homepage, stars, forks, language, archived
+*/}}
+
+{{- $result := dict
+    "ok" false
+    "fullName" ""
+    "url" ""
+    "description" ""
+    "homepage" ""
+    "stars" nil
+    "forks" nil
+    "language" ""
+    "archived" false
+-}}
+
+{{- $repoInput := default "" .repo -}}
+{{- $token := default "" .token -}}
+{{- $normalized := $repoInput -}}
+{{- $normalized = replaceRE "^https?://github\\.com/" "" $normalized -}}
+{{- $normalized = strings.TrimPrefix "/" $normalized -}}
+{{- $normalized = replaceRE "\\.git$" "" $normalized -}}
+
+{{- $parts := split $normalized "/" -}}
+{{- if ge (len $parts) 2 -}}
+    {{- $fullName := printf "%s/%s" (index $parts 0) (index $parts 1) -}}
+    {{- $apiURL := printf "https://api.github.com/repos/%s" $fullName -}}
+    {{- $headers := dict
+        "Accept" "application/vnd.github+json"
+        "X-GitHub-Api-Version" "2022-11-28"
+    -}}
+
+    {{- $result = merge $result (dict
+        "fullName" $fullName
+        "url" (printf "https://github.com/%s" $fullName)
+        )
+    -}}
+
+    {{- if $token -}}
+        {{- $headers = merge $headers (dict "Authorization" (printf "Bearer %s" $token)) -}}
+    {{- end -}}
+
+    {{- with try (resources.GetRemote $apiURL (dict "headers" $headers)) -}}
+        {{- with .Err -}}
+            {{- warnf "Failed to fetch GitHub repo data for %q: %s" $fullName . -}}
+        {{- else with .Value -}}
+            {{- $payload := . | transform.Unmarshal -}}
+            {{- if $payload -}}
+                {{- $result = dict
+                    "ok" true
+                    "fullName" (default $fullName (index $payload "full_name"))
+                    "url" (default (printf "https://github.com/%s" $fullName) (index $payload "html_url"))
+                    "description" (default "" (index $payload "description"))
+                    "homepage" (default "" (index $payload "homepage"))
+                    "stars" (index $payload "stargazers_count")
+                    "forks" (index $payload "forks_count")
+                    "language" (default "" (index $payload "language"))
+                    "archived" (default false (index $payload "archived"))
+                -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return $result -}}
