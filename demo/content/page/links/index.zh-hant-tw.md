@@ -13,7 +13,9 @@ comments: false
 
 ## 分類格式（推薦）
 
-使用物件格式，key 為分類名稱，value 為該分類下的連結陣列：
+使用物件格式，key 為分類名稱，value 可以是連結陣列（標準樣式）或包含 `compact` 選項的設定物件：
+
+**標準分類** — value 為連結陣列：
 
 ```json
 {
@@ -24,21 +26,32 @@ comments: false
             "website": "https://github.com",
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
         }
-    ],
-    "有用的資源": [
-        {
-            "title": "TypeScript",
-            "description": "TypeScript 是 JavaScript 的超集，可編譯為純 JavaScript。",
-            "website": "https://www.typescriptlang.org",
-            "image": "ts-logo-128.jpg"
-        }
     ]
 }
 ```
 
+**緊湊分類** — value 為設定物件，設定 `compact: true`；以密集圖示網格渲染（桌面端每行 6 個），只顯示頭像和名稱：
+
+```json
+{
+    "冷凍休眠艙": {
+        "compact": true,
+        "links": [
+            {
+                "title": "PTT",
+                "website": "https://www.ptt.cc",
+                "image": "https://www.ptt.cc/favicon.ico"
+            }
+        ]
+    }
+}
+```
+
+同一檔案中可以自由混用兩種分類樣式。
+
 ## 扁平格式（相容舊版）
 
-也支援純陣列格式，將作為無分類標題的單一網格渲染：
+也支援純陣列格式，將作為無分類標題的單一標準網格渲染：
 
 ```json
 [

@@ -14,7 +14,9 @@ To use this feature, add `layout: links` to the page's front matter, then create
 
 ## Categorized format (recommended)
 
-Use an object where each key is a category name and its value is an array of links:
+Use an object where each key is a category name and its value is either a plain array (standard layout) or a category config object (for extra options like `compact`):
+
+**Standard category** — value is a plain array:
 
 ```json
 {
@@ -25,21 +27,32 @@ Use an object where each key is a category name and its value is an array of lin
             "website": "https://github.com",
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
         }
-    ],
-    "Useful Resources": [
-        {
-            "title": "TypeScript",
-            "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
-            "website": "https://www.typescriptlang.org",
-            "image": "ts-logo-128.jpg"
-        }
     ]
 }
 ```
 
+**Compact category** — value is a config object with `compact: true`; renders as a dense icon-grid (6 per row on desktop) showing only avatar and name:
+
+```json
+{
+    "Cryosleep Pod": {
+        "compact": true,
+        "links": [
+            {
+                "title": "Reddit",
+                "website": "https://www.reddit.com",
+                "image": "https://www.reddit.com/favicon.ico"
+            }
+        ]
+    }
+}
+```
+
+Both category styles can be mixed freely in the same file.
+
 ## Flat array format (legacy)
 
-A plain array is also supported and will be rendered as a single uncategorized grid:
+A plain array is also supported and will be rendered as a single uncategorized standard grid:
 
 ```json
 [

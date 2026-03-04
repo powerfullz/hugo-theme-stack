@@ -45,6 +45,47 @@
       "image": "https://www.piglei.com/favicon.ico"
     }
   ],
+  "冷冻休眠舱": {
+    "compact": true,
+    "links": [
+      {
+        "title": "V2EX",
+        "description": "创意工作者的社区。",
+        "website": "https://www.v2ex.com",
+        "image": "https://www.v2ex.com/favicon.ico"
+      },
+      {
+        "title": "即刻",
+        "description": "年轻人的兴趣社区。",
+        "website": "https://okjike.com",
+        "image": "https://web.okjike.com/favicon.ico"
+      },
+      {
+        "title": "豆瓣",
+        "description": "书影音社区。",
+        "website": "https://www.douban.com",
+        "image": "https://www.douban.com/favicon.ico"
+      },
+      {
+        "title": "微博",
+        "description": "中国最大的社交媒体平台。",
+        "website": "https://weibo.com",
+        "image": "https://weibo.com/favicon.ico"
+      },
+      {
+        "title": "掘金",
+        "description": "面向开发者的技术社区。",
+        "website": "https://juejin.cn",
+        "image": "https://juejin.cn/favicon.ico"
+      },
+      {
+        "title": "CSDN",
+        "description": "专业 IT 技术社区。",
+        "website": "https://www.csdn.net",
+        "image": "https://www.csdn.net/favicon.ico"
+      }
+    ]
+  },
   "有用的资源": [
     {
       "title": "TypeScript",

@@ -13,7 +13,9 @@ comments: false
 
 ## 分类格式（推荐）
 
-使用对象格式，key 为分类名，value 为该分类下的链接数组：
+使用对象格式，key 为分类名，value 可以是链接数组（标准样式）或包含 `compact` 选项的配置对象：
+
+**标准分类** — value 为链接数组：
 
 ```json
 {
@@ -24,21 +26,32 @@ comments: false
             "website": "https://github.com",
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
         }
-    ],
-    "有用的资源": [
-        {
-            "title": "TypeScript",
-            "description": "TypeScript 是 JavaScript 的一个超集，它可以编译成纯 JavaScript。",
-            "website": "https://www.typescriptlang.org",
-            "image": "ts-logo-128.jpg"
-        }
     ]
 }
 ```
 
+**紧凑分类** — value 为配置对象，设置 `compact: true`；以密集图标网格渲染（桌面端每行 6 个），只显示头像和名称：
+
+```json
+{
+    "冷冻休眠舱": {
+        "compact": true,
+        "links": [
+            {
+                "title": "V2EX",
+                "website": "https://www.v2ex.com",
+                "image": "https://www.v2ex.com/favicon.ico"
+            }
+        ]
+    }
+}
+```
+
+同一文件中可以自由混用两种分类样式。
+
 ## 扁平格式（兼容旧版）
 
-也支持纯数组格式，将作为无分类标题的单一网格渲染：
+也支持纯数组格式，将作为无分类标题的单一标准网格渲染：
 
 ```json
 [

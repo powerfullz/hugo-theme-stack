@@ -45,6 +45,47 @@
       "image": "https://www.hillelwayne.com/favicon.ico"
     }
   ],
+  "Cryosleep Pod": {
+    "compact": true,
+    "links": [
+      {
+        "title": "Reddit",
+        "description": "The front page of the internet.",
+        "website": "https://www.reddit.com",
+        "image": "https://www.reddit.com/favicon.ico"
+      },
+      {
+        "title": "Twitter",
+        "description": "What's happening in the world.",
+        "website": "https://twitter.com",
+        "image": "https://twitter.com/favicon.ico"
+      },
+      {
+        "title": "Mastodon",
+        "description": "Decentralized social network.",
+        "website": "https://joinmastodon.org",
+        "image": "https://joinmastodon.org/favicon.ico"
+      },
+      {
+        "title": "Bluesky",
+        "description": "Decentralized social network by AT Protocol.",
+        "website": "https://bsky.app",
+        "image": "https://bsky.app/favicon.ico"
+      },
+      {
+        "title": "Lemmy",
+        "description": "Open-source federated link aggregator.",
+        "website": "https://join-lemmy.org",
+        "image": "https://join-lemmy.org/favicon.ico"
+      },
+      {
+        "title": "Tildes",
+        "description": "Non-profit community site.",
+        "website": "https://tildes.net",
+        "image": "https://tildes.net/favicon.ico"
+      }
+    ]
+  },
   "Useful Resources": [
     {
       "title": "TypeScript",

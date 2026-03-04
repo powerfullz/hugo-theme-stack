@@ -13,7 +13,9 @@ comments: false
 
 ## カテゴリ形式（推奨）
 
-オブジェクト形式を使用し、key をカテゴリ名、value をそのカテゴリのリンク配列にします：
+オブジェクト形式を使用し、key をカテゴリ名、value はリンク配列（標準スタイル）または `compact` オプションを含む設定オブジェクトにします：
+
+**標準カテゴリ** — value がリンク配列の場合：
 
 ```json
 {
@@ -24,17 +26,28 @@ comments: false
             "website": "https://github.com",
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
         }
-    ],
-    "便利なリソース": [
-        {
-            "title": "TypeScript",
-            "description": "TypeScript は JavaScript のスーパーセットで、純粋な JavaScript にコンパイルされます。",
-            "website": "https://www.typescriptlang.org",
-            "image": "ts-logo-128.jpg"
-        }
     ]
 }
 ```
+
+**コンパクトカテゴリ** — value が設定オブジェクトで `compact: true` を指定；密集アイコングリッド（デスクトップで1行6個）でアバターと名前のみ表示：
+
+```json
+{
+    "冷凍冬眠ポッド": {
+        "compact": true,
+        "links": [
+            {
+                "title": "Qiita",
+                "website": "https://qiita.com",
+                "image": "https://cdn.qiita.com/assets/favicons/public/apple-touch-icon-ec5ba42a24ae923f16825592efdc356f.png"
+            }
+        ]
+    }
+}
+```
+
+同一ファイル内で両方のカテゴリスタイルを自由に混在させることができます。
 
 ## フラット形式（旧バージョン互換）
 

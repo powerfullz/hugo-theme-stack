@@ -7,6 +7,29 @@
       "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     }
   ],
+  "冷凍冬眠ポッド": {
+    "compact": true,
+    "links": [
+      {
+        "title": "Zenn",
+        "description": "エンジニアのための情報共有コミュニティ。",
+        "website": "https://zenn.dev",
+        "image": "https://zenn.dev/favicon.ico"
+      },
+      {
+        "title": "Qiita",
+        "description": "プログラマの技術情報共有サービス。",
+        "website": "https://qiita.com",
+        "image": "https://qiita.com/favicon.ico"
+      },
+      {
+        "title": "note",
+        "description": "クリエイターが文章・画像・音声・動画を投稿できるメディア。",
+        "website": "https://note.com",
+        "image": "https://note.com/favicon.ico"
+      }
+    ]
+  },
   "便利なリソース": [
     {
       "title": "TypeScript",

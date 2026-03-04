@@ -7,6 +7,29 @@
       "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     }
   ],
+  "冷凍休眠艙": {
+    "compact": true,
+    "links": [
+      {
+        "title": "PTT",
+        "description": "台灣最大的網路論壇。",
+        "website": "https://www.ptt.cc",
+        "image": "https://www.ptt.cc/favicon.ico"
+      },
+      {
+        "title": "Dcard",
+        "description": "台灣年輕人最常使用的匿名社群平台。",
+        "website": "https://www.dcard.tw",
+        "image": "https://www.dcard.tw/favicon.ico"
+      },
+      {
+        "title": "iThome",
+        "description": "台灣 IT 產業媒體與社群。",
+        "website": "https://www.ithome.com.tw",
+        "image": "https://www.ithome.com.tw/favicon.ico"
+      }
+    ]
+  },
   "有用的資源": [
     {
       "title": "TypeScript",
