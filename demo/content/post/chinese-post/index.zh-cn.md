@@ -4,10 +4,10 @@ description: 展示 Hugo Theme Stack 的 i18n 支持和多语言特性
 slug: chinese-post
 date: 2026-02-08 12:00:00+0800
 categories:
-    - 教程
+  - 教程
 tags:
-    - 中文
-    - Hugo
+  - 中文
+  - Hugo
 ---
 
 这是一个专门为测试中文填充内容而创建的文章。

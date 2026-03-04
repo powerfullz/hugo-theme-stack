@@ -2,10 +2,10 @@
 title: "链接"
 layout: links
 menu:
-    main:
-        weight: -50
-        params:
-            icon: link
+  main:
+    weight: -50
+    params:
+      icon: link
 comments: false
 ---
 
@@ -19,17 +19,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "好伙伴",
-        "links": [
-            {
-                "title": "GitHub",
-                "description": "GitHub 是世界上最大的软件开发平台。",
-                "website": "https://github.com",
-                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            }
-        ]
-    }
+  {
+    "title": "好伙伴",
+    "links": [
+      {
+        "title": "GitHub",
+        "description": "GitHub 是世界上最大的软件开发平台。",
+        "website": "https://github.com",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      }
+    ]
+  }
 ]
 ```
 
@@ -37,17 +37,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "冷冻休眠舱",
-        "compact": true,
-        "links": [
-            {
-                "title": "V2EX",
-                "website": "https://www.v2ex.com",
-                "image": "https://www.v2ex.com/favicon.ico"
-            }
-        ]
-    }
+  {
+    "title": "冷冻休眠舱",
+    "compact": true,
+    "links": [
+      {
+        "title": "V2EX",
+        "website": "https://www.v2ex.com",
+        "image": "https://www.v2ex.com/favicon.ico"
+      }
+    ]
+  }
 ]
 ```
 
@@ -59,12 +59,12 @@ comments: false
 
 ```json
 [
-    {
-        "title": "GitHub",
-        "description": "GitHub 是世界上最大的软件开发平台。",
-        "website": "https://github.com",
-        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-    }
+  {
+    "title": "GitHub",
+    "description": "GitHub 是世界上最大的软件开发平台。",
+    "website": "https://github.com",
+    "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  }
 ]
 ```
 

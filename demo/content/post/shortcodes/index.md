@@ -3,10 +3,10 @@ title: Shortcodes
 date: 2026-01-26
 description: Sample article showcasing various shortcodes supported by Stack theme.
 categories:
-    - Documentation
+  - Documentation
 tags:
-    - shortcodes
-    - privacy
+  - shortcodes
+  - privacy
 ---
 
 Stack theme also provides some custom shortcodes to enhance your content.

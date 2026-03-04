@@ -3,12 +3,12 @@ title: Markdown 语法指南
 date: 2026-01-25
 description: 展示基本 Markdown 语法和 HTML 元素格式的示例文章。
 tags:
-    - markdown
-    - css
-    - html
-    - themes
+  - markdown
+  - css
+  - html
+  - themes
 categories:
-    - Documentation
+  - Documentation
 image: pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg
 ---
 
@@ -96,13 +96,13 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 ```html
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Example HTML5 Document</title>
-    </head>
-    <body>
-        <p>Test</p>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Example HTML5 Document</title>
+  </head>
+  <body>
+    <p>Test</p>
+  </body>
 </html>
 ```
 
@@ -152,12 +152,12 @@ rev = "11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13"
 ### 嵌套列表
 
 - 水果
-    - 苹果
-    - 橘子
-    - 香蕉
+  - 苹果
+  - 橘子
+  - 香蕉
 - 乳制品
-    - 牛奶
-    - 奶酪
+  - 牛奶
+  - 奶酪
 
 ## 其他元素 — abbr, sub, sup, kbd, mark
 

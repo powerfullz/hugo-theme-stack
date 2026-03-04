@@ -2,10 +2,10 @@
 title: "リンク"
 layout: links
 menu:
-    main:
-        weight: -50
-        params:
-            icon: link
+  main:
+    weight: -50
+    params:
+      icon: link
 comments: false
 ---
 
@@ -19,17 +19,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "友達",
-        "links": [
-            {
-                "title": "GitHub",
-                "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
-                "website": "https://github.com",
-                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            }
-        ]
-    }
+  {
+    "title": "友達",
+    "links": [
+      {
+        "title": "GitHub",
+        "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
+        "website": "https://github.com",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      }
+    ]
+  }
 ]
 ```
 
@@ -37,17 +37,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "冷凍冬眠ポッド",
-        "compact": true,
-        "links": [
-            {
-                "title": "Qiita",
-                "website": "https://qiita.com",
-                "image": "https://qiita.com/favicon.ico"
-            }
-        ]
-    }
+  {
+    "title": "冷凍冬眠ポッド",
+    "compact": true,
+    "links": [
+      {
+        "title": "Qiita",
+        "website": "https://qiita.com",
+        "image": "https://qiita.com/favicon.ico"
+      }
+    ]
+  }
 ]
 ```
 
@@ -59,12 +59,12 @@ comments: false
 
 ```json
 [
-    {
-        "title": "GitHub",
-        "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
-        "website": "https://github.com",
-        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-    }
+  {
+    "title": "GitHub",
+    "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
+    "website": "https://github.com",
+    "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  }
 ]
 ```
 

@@ -3,13 +3,13 @@ title: Mermaid Example
 date: 2025-12-03
 description: Sample article showcasing basic Mermaid diagrams.
 tags:
-    - markdown
-    - css
-    - html
-    - themes
+  - markdown
+  - css
+  - html
+  - themes
 categories:
-    - themes
-    - syntax
+  - themes
+  - syntax
 image: 1.jpg
 ---
 

@@ -3,9 +3,9 @@ title: 短代碼
 date: 2026-01-26
 description: 展示 Stack 主題支持的各種短代碼。
 categories:
-    - Documentation
+  - Documentation
 tags:
-    - 隐私
+  - 隐私
 ---
 
 Stack 主題還提供了一些自定義短代碼來增強你的內容。

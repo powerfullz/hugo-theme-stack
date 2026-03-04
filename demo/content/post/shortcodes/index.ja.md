@@ -3,9 +3,9 @@ title: ショートコード
 date: 2026-01-26
 description: Stack テーマでサポートされているさまざまなショートコードを紹介します。
 categories:
-    - Documentation
+  - Documentation
 tags:
-    - 隐私
+  - 隐私
 ---
 
 Stack テーマには、コンテンツを強化するためのカスタムショートコードがいくつか用意されています。

@@ -81,14 +81,7 @@ function buildBaseConfig(cfg: MermaidConfig): Record<string, any> {
 		flowchart: { htmlLabels: cfg.htmlLabels ?? true, useMaxWidth: true },
 		gantt: { useWidth: 800 },
 	};
-	const optional: (keyof MermaidConfig)[] = [
-		'maxTextSize',
-		'maxEdges',
-		'fontSize',
-		'fontFamily',
-		'curve',
-		'logLevel',
-	];
+	const optional: (keyof MermaidConfig)[] = ['maxTextSize', 'maxEdges', 'fontSize', 'fontFamily', 'curve', 'logLevel'];
 	for (const key of optional) {
 		if (cfg[key] != null) base[key] = cfg[key];
 	}

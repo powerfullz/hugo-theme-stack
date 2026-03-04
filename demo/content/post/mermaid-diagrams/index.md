@@ -4,12 +4,12 @@ title: Mermaid Diagrams
 date: 2025-12-23
 description: A comprehensive guide to creating diagrams with Mermaid in Hugo
 categories:
-    - Themes
-    - Syntax
+  - Themes
+  - Syntax
 tags:
-    - Mermaid
-    - Diagrams
-    - Markdown
+  - Mermaid
+  - Diagrams
+  - Markdown
 ---
 
 This theme supports [Mermaid](https://mermaid.js.org/) diagrams directly in your Markdown content. Mermaid lets you create diagrams and visualizations using text and code.
@@ -51,14 +51,14 @@ You can configure Mermaid in your site config:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            version: "11" # Mermaid version from CDN
-            look: classic # classic or handDrawn (sketch style)
-            lightTheme: default # Theme for light mode
-            darkTheme: neutral # Theme for dark mode
-            securityLevel: strict # strict (default), loose, antiscript, sandbox
-            htmlLabels: true # Enable HTML in labels
+  article:
+    mermaid:
+      version: "11" # Mermaid version from CDN
+      look: classic # classic or handDrawn (sketch style)
+      lightTheme: default # Theme for light mode
+      darkTheme: neutral # Theme for dark mode
+      securityLevel: strict # strict (default), loose, antiscript, sandbox
+      htmlLabels: true # Enable HTML in labels
 ```
 
 **hugo.toml:**
@@ -81,14 +81,14 @@ These optional settings use Mermaid's defaults when not specified:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            maxTextSize: 50000 # Maximum text size (default: 50000)
-            maxEdges: 500 # Maximum edges allowed (default: 500)
-            fontSize: 16 # Global font size in pixels (default: 16)
-            fontFamily: "arial" # Global font family
-            curve: "basis" # Line curve: basis, cardinal, linear (default: basis)
-            logLevel: 5 # Debug level 0-5, 0=debug, 5=fatal (default: 5)
+  article:
+    mermaid:
+      maxTextSize: 50000 # Maximum text size (default: 50000)
+      maxEdges: 500 # Maximum edges allowed (default: 500)
+      fontSize: 16 # Global font size in pixels (default: 16)
+      fontFamily: "arial" # Global font family
+      curve: "basis" # Line curve: basis, cardinal, linear (default: basis)
+      logLevel: 5 # Debug level 0-5, 0=debug, 5=fatal (default: 5)
 ```
 
 **hugo.toml:**
@@ -134,19 +134,19 @@ For full control, use the `base` theme with custom variables:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            lightTheme: base
-            darkTheme: base
-            lightThemeVariables:
-                primaryColor: "#4a90d9"
-                primaryTextColor: "#ffffff"
-                lineColor: "#333333"
-            darkThemeVariables:
-                primaryColor: "#6ab0f3"
-                primaryTextColor: "#ffffff"
-                lineColor: "#cccccc"
-                background: "#1a1a2e"
+  article:
+    mermaid:
+      lightTheme: base
+      darkTheme: base
+      lightThemeVariables:
+        primaryColor: "#4a90d9"
+        primaryTextColor: "#ffffff"
+        lineColor: "#333333"
+      darkThemeVariables:
+        primaryColor: "#6ab0f3"
+        primaryTextColor: "#ffffff"
+        lineColor: "#cccccc"
+        background: "#1a1a2e"
 ```
 
 **hugo.toml:**
@@ -366,10 +366,10 @@ To use HTML in labels, you must set `securityLevel: loose` in your site config:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            securityLevel: loose
-            htmlLabels: true
+  article:
+    mermaid:
+      securityLevel: loose
+      htmlLabels: true
 ```
 
 **hugo.toml:**
@@ -546,14 +546,14 @@ Mermaid.js's built-in themes have some limitations:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            darkTheme: base
-            darkThemeVariables:
-                primaryColor: "#1f2937"
-                primaryTextColor: "#ffffff"
-                lineColor: "#9ca3af"
-                textColor: "#e5e7eb"
+  article:
+    mermaid:
+      darkTheme: base
+      darkThemeVariables:
+        primaryColor: "#1f2937"
+        primaryTextColor: "#ffffff"
+        lineColor: "#9ca3af"
+        textColor: "#e5e7eb"
 ```
 
 **hugo.toml:**
@@ -587,10 +587,10 @@ HTML in labels requires `securityLevel: loose`. Update your configuration:
 
 ```yaml
 params:
-    article:
-        mermaid:
-            securityLevel: loose
-            htmlLabels: true
+  article:
+    mermaid:
+      securityLevel: loose
+      htmlLabels: true
 ```
 
 **hugo.toml:**

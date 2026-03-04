@@ -4,7 +4,7 @@ date: 2026-01-24
 description: 在 Stack 主题中启用和使用 KaTeX 的指南
 math: true
 categories:
-    - Documentation
+  - Documentation
 slug: math-typesetting
 ---
 
@@ -31,7 +31,7 @@ math: true
 
 ```yaml
 article:
-    math: true
+  math: true
 ```
 
 ## 示例

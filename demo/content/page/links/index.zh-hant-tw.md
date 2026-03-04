@@ -2,10 +2,10 @@
 title: "鏈接"
 layout: links
 menu:
-    main:
-        weight: -50
-        params:
-            icon: link
+  main:
+    weight: -50
+    params:
+      icon: link
 comments: false
 ---
 
@@ -19,17 +19,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "好夥伴",
-        "links": [
-            {
-                "title": "GitHub",
-                "description": "GitHub 是世界上最大的軟體開發平台。",
-                "website": "https://github.com",
-                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            }
-        ]
-    }
+  {
+    "title": "好夥伴",
+    "links": [
+      {
+        "title": "GitHub",
+        "description": "GitHub 是世界上最大的軟體開發平台。",
+        "website": "https://github.com",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      }
+    ]
+  }
 ]
 ```
 
@@ -37,17 +37,17 @@ comments: false
 
 ```json
 [
-    {
-        "title": "冷凍休眠艙",
-        "compact": true,
-        "links": [
-            {
-                "title": "PTT",
-                "website": "https://www.ptt.cc",
-                "image": "https://www.ptt.cc/favicon.ico"
-            }
-        ]
-    }
+  {
+    "title": "冷凍休眠艙",
+    "compact": true,
+    "links": [
+      {
+        "title": "PTT",
+        "website": "https://www.ptt.cc",
+        "image": "https://www.ptt.cc/favicon.ico"
+      }
+    ]
+  }
 ]
 ```
 
@@ -59,12 +59,12 @@ comments: false
 
 ```json
 [
-    {
-        "title": "GitHub",
-        "description": "GitHub 是世界上最大的軟體開發平台。",
-        "website": "https://github.com",
-        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-    }
+  {
+    "title": "GitHub",
+    "description": "GitHub 是世界上最大的軟體開發平台。",
+    "website": "https://github.com",
+    "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  }
 ]
 ```
 

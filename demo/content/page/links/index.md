@@ -2,10 +2,10 @@
 title: Links
 layout: links
 menu:
-    main:
-        weight: 4
-        params:
-            icon: link
+  main:
+    weight: 4
+    params:
+      icon: link
 
 comments: false
 ---
@@ -20,17 +20,17 @@ Use an array of category objects. Each object has a `title`, a `links` array, an
 
 ```json
 [
-    {
-        "title": "Friends",
-        "links": [
-            {
-                "title": "GitHub",
-                "description": "GitHub is the world's largest software development platform.",
-                "website": "https://github.com",
-                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            }
-        ]
-    }
+  {
+    "title": "Friends",
+    "links": [
+      {
+        "title": "GitHub",
+        "description": "GitHub is the world's largest software development platform.",
+        "website": "https://github.com",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      }
+    ]
+  }
 ]
 ```
 
@@ -38,17 +38,17 @@ Use an array of category objects. Each object has a `title`, a `links` array, an
 
 ```json
 [
-    {
-        "title": "Cryosleep Pod",
-        "compact": true,
-        "links": [
-            {
-                "title": "Reddit",
-                "website": "https://www.reddit.com",
-                "image": "https://www.reddit.com/favicon.ico"
-            }
-        ]
-    }
+  {
+    "title": "Cryosleep Pod",
+    "compact": true,
+    "links": [
+      {
+        "title": "Reddit",
+        "website": "https://www.reddit.com",
+        "image": "https://www.reddit.com/favicon.ico"
+      }
+    ]
+  }
 ]
 ```
 
@@ -60,12 +60,12 @@ A flat array of link objects (without `title`/`links` wrapper) is also supported
 
 ```json
 [
-    {
-        "title": "GitHub",
-        "description": "GitHub is the world's largest software development platform.",
-        "website": "https://github.com",
-        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-    }
+  {
+    "title": "GitHub",
+    "description": "GitHub is the world's largest software development platform.",
+    "website": "https://github.com",
+    "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  }
 ]
 ```
 

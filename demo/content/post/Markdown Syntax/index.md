@@ -3,12 +3,12 @@ title: Markdown Syntax Guide
 date: 2026-01-25
 description: Sample article showcasing basic Markdown syntax and formatting for HTML elements.
 tags:
-    - markdown
-    - css
-    - html
-    - themes
+  - markdown
+  - css
+  - html
+  - themes
 categories:
-    - Documentation
+  - Documentation
 image: pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg
 ---
 
@@ -96,13 +96,13 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 ```html
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Example HTML5 Document</title>
-    </head>
-    <body>
-        <p>Test</p>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Example HTML5 Document</title>
+  </head>
+  <body>
+    <p>Test</p>
+  </body>
 </html>
 ```
 
@@ -152,12 +152,12 @@ rev = "11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13"
 ### Nested list
 
 - Fruit
-    - Apple
-    - Orange
-    - Banana
+  - Apple
+  - Orange
+  - Banana
 - Dairy
-    - Milk
-    - Cheese
+  - Milk
+  - Cheese
 
 ## Other Elements — abbr, sub, sup, kbd, mark
 
