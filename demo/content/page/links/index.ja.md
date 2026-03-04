@@ -13,45 +13,49 @@ comments: false
 
 ## カテゴリ形式（推奨）
 
-オブジェクト形式を使用し、key をカテゴリ名、value はリンク配列（標準スタイル）または `compact` オプションを含む設定オブジェクトにします：
+カテゴリオブジェクトの配列を使用します。各オブジェクトには `title`（カテゴリ名）、`links`（リンク配列）、およびオプションの `compact` フラグがあります。カテゴリは配列内の順序で表示されます。
 
-**標準カテゴリ** — value がリンク配列の場合：
+**標準カテゴリ：**
 
 ```json
-{
-    "友達": [
-        {
-            "title": "GitHub",
-            "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
-            "website": "https://github.com",
-            "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-        }
-    ]
-}
+[
+    {
+        "title": "友達",
+        "links": [
+            {
+                "title": "GitHub",
+                "description": "GitHub は世界最大のソフトウェア開発プラットフォームです。",
+                "website": "https://github.com",
+                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            }
+        ]
+    }
+]
 ```
 
-**コンパクトカテゴリ** — value が設定オブジェクトで `compact: true` を指定；密集アイコングリッド（デスクトップで1行6個）でアバターと名前のみ表示：
+**コンパクトカテゴリ** — `compact: true` を設定すると、密集アイコングリッド（デスクトップで1行6個）でアバターと名前のみ表示されます：
 
 ```json
-{
-    "冷凍冬眠ポッド": {
+[
+    {
+        "title": "冷凍冬眠ポッド",
         "compact": true,
         "links": [
             {
                 "title": "Qiita",
                 "website": "https://qiita.com",
-                "image": "https://cdn.qiita.com/assets/favicons/public/apple-touch-icon-ec5ba42a24ae923f16825592efdc356f.png"
+                "image": "https://qiita.com/favicon.ico"
             }
         ]
     }
-}
+]
 ```
 
-同一ファイル内で両方のカテゴリスタイルを自由に混在させることができます。
+同一配列内で両方のカテゴリスタイルを自由に混在させることができます。
 
 ## フラット形式（旧バージョン互換）
 
-配列形式もサポートしており、カテゴリタイトルなしの単一グリッドとしてレンダリングされます：
+`title`/`links` ラッパーなしの純粋なリンクオブジェクト配列もサポートしており、カテゴリタイトルなしの単一標準グリッドとしてレンダリングされます：
 
 ```json
 [

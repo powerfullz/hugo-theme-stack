@@ -14,28 +14,32 @@ To use this feature, add `layout: links` to the page's front matter, then create
 
 ## Categorized format (recommended)
 
-Use an object where each key is a category name and its value is either a plain array (standard layout) or a category config object (for extra options like `compact`):
+Use an array of category objects. Each object has a `title`, a `links` array, and an optional `compact` flag. Categories are displayed in the order they appear in the array.
 
-**Standard category** — value is a plain array:
+**Standard category:**
 
 ```json
-{
-    "Friends": [
-        {
-            "title": "GitHub",
-            "description": "GitHub is the world's largest software development platform.",
-            "website": "https://github.com",
-            "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-        }
-    ]
-}
+[
+    {
+        "title": "Friends",
+        "links": [
+            {
+                "title": "GitHub",
+                "description": "GitHub is the world's largest software development platform.",
+                "website": "https://github.com",
+                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            }
+        ]
+    }
+]
 ```
 
-**Compact category** — value is a config object with `compact: true`; renders as a dense icon-grid (6 per row on desktop) showing only avatar and name:
+**Compact category** — set `compact: true` to render a dense icon-grid (6 per row on desktop) showing only avatar and name:
 
 ```json
-{
-    "Cryosleep Pod": {
+[
+    {
+        "title": "Cryosleep Pod",
         "compact": true,
         "links": [
             {
@@ -45,14 +49,14 @@ Use an object where each key is a category name and its value is either a plain 
             }
         ]
     }
-}
+]
 ```
 
-Both category styles can be mixed freely in the same file.
+Both category styles can be mixed freely in the same array.
 
 ## Flat array format (legacy)
 
-A plain array is also supported and will be rendered as a single uncategorized standard grid:
+A flat array of link objects (without `title`/`links` wrapper) is also supported and will be rendered as a single uncategorized standard grid:
 
 ```json
 [

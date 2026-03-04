@@ -6,11 +6,19 @@
 {{- end -}}
 
 {{ if $data }}
-    {{ if reflect.IsSlice $data }}
+    {{- $isFlat := false -}}
+    {{- with index $data 0 -}}
+        {{- if not .links -}}
+            {{- $isFlat = true -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{ if $isFlat }}
         {{/* Legacy flat array format — render as a single standard grid with no category title */}}
         <section class="link-category">
             <div class="link-grid">
                 {{ range $link := $data }}
+                    {{- $alt := or $link.alt $link.title -}}
                     <article class="link-card">
                         <a
                             href="{{ $link.website }}"
@@ -37,12 +45,10 @@
                                     <img
                                         src="{{ $permalink }}"
                                         loading="lazy"
-                                        {{ with $link.alt }}
-                                            alt="{{ . }}"
-                                        {{ end }} />
+                                        alt="{{ $alt }}" />
                                 {{ else }}
                                     <span class="link-card__avatar--placeholder"
-                                        >{{ substr $link.title 0 1 | upper }}</span
+                                        >{{ strings.SliceString $link.title 0 1 | upper }}</span
                                     >
                                 {{ end }}
                             </div>
@@ -52,22 +58,19 @@
             </div>
         </section>
     {{ else }}
-        {{/* Categorized object format: value is either a plain array or { compact: true, links: [...] } */}}
-        {{ range $category, $value := $data }}
-            {{- $links := $value -}}
-            {{- $compact := false -}}
-            {{- if not (reflect.IsSlice $value) -}}
-                {{- $links = $value.links -}}
-                {{- $compact = $value.compact -}}
+        {{/* Categorized array format: each element is { title, links, compact? } */}}
+        {{ range $category := $data }}
+            {{- $compact := $category.compact -}}
+            {{- $gridClass := "link-grid" -}}
+            {{- if $compact -}}
+                {{- $gridClass = "link-grid link-grid--compact" -}}
             {{- end -}}
             <section class="link-category">
-                <h2 class="link-category__title">{{ $category }}</h2>
-                <div
-                    class="link-grid{{ if $compact }}
-                        link-grid--compact
-                    {{ end }}">
+                <h2 class="link-category__title">{{ $category.title }}</h2>
+                <div class="{{ $gridClass }}">
                     {{ if $compact }}
-                        {{ range $link := $links }}
+                        {{ range $link := $category.links }}
+                            {{- $alt := or $link.alt $link.title -}}
                             <article class="link-card link-card--compact">
                                 <a
                                     href="{{ $link.website }}"
@@ -83,13 +86,11 @@
                                             <img
                                                 src="{{ $permalink }}"
                                                 loading="lazy"
-                                                {{ with $link.alt }}
-                                                    alt="{{ . }}"
-                                                {{ end }} />
+                                                alt="{{ $alt }}" />
                                         {{ else }}
                                             <span
                                                 class="link-card__avatar--placeholder"
-                                                >{{ substr $link.title 0 1 | upper }}</span
+                                                >{{ strings.SliceString $link.title 0 1 | upper }}</span
                                             >
                                         {{ end }}
                                     </div>
@@ -100,7 +101,8 @@
                             </article>
                         {{ end }}
                     {{ else }}
-                        {{ range $link := $links }}
+                        {{ range $link := $category.links }}
+                            {{- $alt := or $link.alt $link.title -}}
                             <article class="link-card">
                                 <a
                                     href="{{ $link.website }}"
@@ -127,13 +129,11 @@
                                             <img
                                                 src="{{ $permalink }}"
                                                 loading="lazy"
-                                                {{ with $link.alt }}
-                                                    alt="{{ . }}"
-                                                {{ end }} />
+                                                alt="{{ $alt }}" />
                                         {{ else }}
                                             <span
                                                 class="link-card__avatar--placeholder"
-                                                >{{ substr $link.title 0 1 | upper }}</span
+                                                >{{ strings.SliceString $link.title 0 1 | upper }}</span
                                             >
                                         {{ end }}
                                     </div>

@@ -13,28 +13,32 @@ comments: false
 
 ## 分类格式（推荐）
 
-使用对象格式，key 为分类名，value 可以是链接数组（标准样式）或包含 `compact` 选项的配置对象：
+使用分类对象数组。每个对象包含 `title`（分类名）、`links`（链接数组）和可选的 `compact` 标记。分类按数组中的顺序显示。
 
-**标准分类** — value 为链接数组：
+**标准分类：**
 
 ```json
-{
-    "好伙伴": [
-        {
-            "title": "GitHub",
-            "description": "GitHub 是世界上最大的软件开发平台。",
-            "website": "https://github.com",
-            "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-        }
-    ]
-}
+[
+    {
+        "title": "好伙伴",
+        "links": [
+            {
+                "title": "GitHub",
+                "description": "GitHub 是世界上最大的软件开发平台。",
+                "website": "https://github.com",
+                "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            }
+        ]
+    }
+]
 ```
 
-**紧凑分类** — value 为配置对象，设置 `compact: true`；以密集图标网格渲染（桌面端每行 6 个），只显示头像和名称：
+**紧凑分类** — 设置 `compact: true`，以密集图标网格渲染（桌面端每行 6 个），只显示头像和名称：
 
 ```json
-{
-    "冷冻休眠舱": {
+[
+    {
+        "title": "冷冻休眠舱",
         "compact": true,
         "links": [
             {
@@ -44,14 +48,14 @@ comments: false
             }
         ]
     }
-}
+]
 ```
 
-同一文件中可以自由混用两种分类样式。
+同一数组中可以自由混用两种分类样式。
 
 ## 扁平格式（兼容旧版）
 
-也支持纯数组格式，将作为无分类标题的单一标准网格渲染：
+也支持不带 `title`/`links` 包裹的纯链接对象数组，将作为无分类标题的单一标准网格渲染：
 
 ```json
 [

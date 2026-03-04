@@ -1,41 +1,45 @@
-{
-  "好夥伴": [
-    {
-      "title": "GitHub",
-      "description": "GitHub 是世界上最大的軟件開發平台。",
-      "website": "https://github.com",
-      "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-    }
-  ],
-  "冷凍休眠艙": {
+[
+  {
+    "title": "好夥伴",
+    "links": [
+      {
+        "title": "GitHub",
+        "description": "GitHub 是世界上最大的軟件開發平台。",
+        "website": "https://github.com",
+        "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      }
+    ]
+  },
+  {
+    "title": "有用的資源",
+    "links": [
+      {
+        "title": "TypeScript",
+        "description": "TypeScript 是 JavaScript 的一個超集，它可以編譯成純 JavaScript。",
+        "website": "https://www.typescriptlang.org",
+        "image": "ts-logo-128.jpg"
+      }
+    ]
+  },
+  {
+    "title": "冷凍休眠艙",
     "compact": true,
     "links": [
       {
         "title": "PTT",
-        "description": "台灣最大的網路論壇。",
         "website": "https://www.ptt.cc",
         "image": "https://www.ptt.cc/favicon.ico"
       },
       {
         "title": "Dcard",
-        "description": "台灣年輕人最常使用的匿名社群平台。",
         "website": "https://www.dcard.tw",
         "image": "https://www.dcard.tw/favicon.ico"
       },
       {
         "title": "iThome",
-        "description": "台灣 IT 產業媒體與社群。",
         "website": "https://www.ithome.com.tw",
         "image": "https://www.ithome.com.tw/favicon.ico"
       }
     ]
-  },
-  "有用的資源": [
-    {
-      "title": "TypeScript",
-      "description": "TypeScript 是 JavaScript 的一個超集，它可以編譯成純 JavaScript。",
-      "website": "https://www.typescriptlang.org",
-      "image": "ts-logo-128.jpg"
-    }
-  ]
-}
+  }
+]
