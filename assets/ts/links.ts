@@ -1,7 +1,4 @@
-function shuffleLinks(): void {
-	const grid = document.querySelector<HTMLElement>('.link-grid');
-	if (!grid) return;
-
+function shuffleGrid(grid: HTMLElement): void {
 	const cards = Array.from(grid.children) as HTMLElement[];
 
 	// Fisher-Yates shuffle
@@ -19,6 +16,11 @@ function shuffleLinks(): void {
 
 	// Reveal grid after shuffle to prevent flash of original order
 	grid.classList.add('shuffled');
+}
+
+function shuffleLinks(): void {
+	const grids = document.querySelectorAll<HTMLElement>('.link-grid');
+	grids.forEach(shuffleGrid);
 }
 
 shuffleLinks();
