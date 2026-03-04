@@ -9,7 +9,7 @@ The runnable example site is in `demo/` with its own `config/`, `content/`, and 
 ## Build, Test, and Development Commands
 
 - `cd demo && hugo server --gc --themesDir=../.. --disableFastRender`: run the demo locally with the theme from this repository (`debug.bat` wraps this on Windows).
-- `cd demo && hugo --gc --minify --themesDir=../.. --theme=repo`: produce a production build of the demo site.
+- `cd demo && hugo --gc --minify --themesDir=../..`: produce a production build of the demo site.
 - `pnpm install`: install formatting tooling.
 - `pnpm exec prettier . --check`: verify formatting.
 - `pnpm exec prettier . --write`: apply formatting fixes.
