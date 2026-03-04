@@ -1,23 +1,5 @@
 {{ define "body-class" }}
     article-page
-    {{- $HasWidgetNotTOC := false -}}
-    {{- $TOCWidgetEnabled := false -}}
-    {{- range .Site.Params.widgets.page -}}
-        {{- if ne .type "toc" -}}
-            {{- if ne .type "search" -}}
-                {{ $HasWidgetNotTOC = true -}}
-            {{- end -}}
-        {{- else -}}
-            {{ $TOCWidgetEnabled = true -}}
-        {{- end -}}
-    {{- end -}}
-
-    {{- $TOCManuallyDisabled := eq .Params.toc false -}}
-    {{- $TOCEnabled := and (not $TOCManuallyDisabled) $TOCWidgetEnabled -}}
-    {{- $hasTOC := ge (len .TableOfContents) 100 -}}
-    {{- .Scratch.Set "TOCEnabled" (and $TOCEnabled $hasTOC) -}}
-
-    {{- .Scratch.Set "hasWidget" (or $HasWidgetNotTOC (and $TOCEnabled $hasTOC)) -}}
 {{ end }}
 
 {{ define "main" }}
@@ -51,8 +33,4 @@
     >
 {{ end }}
 
-{{ define "right-sidebar" }}
-    {{ if .Scratch.Get "hasWidget" }}
-        {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page" "Exclude" (slice "search")) }}
-    {{ end }}
-{{ end }}
+{{ define "right-sidebar" }}{{ end }}
