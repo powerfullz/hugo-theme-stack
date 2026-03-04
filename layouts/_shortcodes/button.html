@@ -1,0 +1,38 @@
+{{- $href := .Get "href" -}}
+{{- $text := .Get "text" -}}
+{{- $target := .Get "target" -}}
+{{- $rel := .Get "rel" -}}
+{{- $title := .Get "title" -}}
+{{- $download := .Get "download" -}}
+{{- $isExternal := or (hasPrefix $href "http://") (hasPrefix $href "https://") -}}
+
+{{- if not $href -}}
+    {{- errorf "button shortcode requires 'href' at %s" .Position -}}
+{{- end -}}
+
+{{- if and $isExternal (not $target) -}}
+    {{- $target = "_blank" -}}
+{{- end -}}
+{{- if and $isExternal (not $rel) -}}
+    {{- $rel = "noopener noreferrer" -}}
+{{- end -}}
+
+{{- $label := "" -}}
+{{- if .Inner -}}
+    {{- $label = .Inner | strings.TrimSpace -}}
+{{- else if $text -}}
+    {{- $label = $text -}}
+{{- else -}}
+    {{- $label = $href -}}
+{{- end -}}
+
+
+<a
+    href="{{ $href }}"
+    {{ with $title }}title="{{ . }}"{{ end }}{{ with $target }}
+        target="{{ . }}"
+    {{ end }}{{ with $rel }}rel="{{ . }}"{{ end }}{{ with $download }}
+        download="{{ . }}"
+    {{ end }}>
+    {{- $label -}}
+</a>

@@ -1,0 +1,42 @@
+{{- $title := .Get "title" -}}
+{{- $desc := .Get "desc" -}}
+{{- $href := .Get "href" -}}
+{{- $text := .Get "text" | default "了解更多" -}}
+{{- $target := .Get "target" -}}
+{{- $rel := .Get "rel" -}}
+{{- $isExternal := or (hasPrefix $href "http://") (hasPrefix $href "https://") -}}
+
+{{- if and $isExternal (not $target) -}}
+    {{- $target = "_blank" -}}
+{{- end -}}
+{{- if and $isExternal (not $rel) -}}
+    {{- $rel = "noopener noreferrer" -}}
+{{- end -}}
+
+
+<aside>
+    {{- with $title -}}
+        <h3>{{ . }}</h3>
+    {{- end -}}
+
+    {{- with $desc -}}
+        <p>{{ . }}</p>
+    {{- end -}}
+
+    {{- with .Inner -}}
+        {{ . | markdownify }}
+    {{- end -}}
+
+    {{- with $href -}}
+        <p>
+            <a
+                href="{{ . }}"
+                role="button"
+                {{ with $target }}target="{{ . }}"{{ end }}{{ with $rel }}
+                    rel="{{ . }}"
+                {{ end }}
+                >{{ $text }}</a
+            >
+        </p>
+    {{- end -}}
+</aside>
