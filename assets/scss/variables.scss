@@ -1,13 +1,3 @@
-// Theme Colors - Neon
-$neon-purple: #8c00ff;
-$neon-purple-dark: #450693;
-$neon-bg: #1e1433;
-$neon-bg-selected: #2a1d45;
-$neon-bg-darker: #100b1a;
-$neon-code-bg: #150f24;
-$neon-gold: #ffc400;
-$neon-pink: #ff3f7f;
-$neon-cyan: #00f0ff;
 /*
 *   Global style
 */
@@ -33,12 +23,12 @@ $neon-cyan: #00f0ff;
   --scrollbar-track: var(--body-background);
 
   &[data-scheme="dark"] {
-    --body-background: #{$neon-bg-darker};
-    --accent-color: #{$neon-pink};
-    --accent-color-darker: #{$neon-gold};
-    --accent-color-text: #fff;
-    --body-text-color: rgba(255, 255, 255, 0.8);
-    --scrollbar-thumb: #{$neon-purple-dark};
+    --body-background: #303030;
+    --accent-color: #ecf0f1;
+    --accent-color-darker: #bdc3c7;
+    --accent-color-text: #000;
+    --body-text-color: rgba(255, 255, 255, 0.7);
+    --scrollbar-thumb: hsl(0, 0%, 40%);
     --scrollbar-track: var(--body-background);
   }
 }
@@ -87,12 +77,11 @@ $neon-cyan: #00f0ff;
   }
 
   &[data-scheme="dark"] {
-    --card-background: #{$neon-bg};
-    --card-background-selected: #{$neon-bg-selected};
+    --card-background: #424242;
+    --card-background-selected: rgba(255, 255, 255, 0.16);
     --card-text-color-main: rgba(255, 255, 255, 0.9);
     --card-text-color-secondary: rgba(255, 255, 255, 0.7);
-    --card-text-color-tertiary: rgba(255, 255, 255, 0.6);
-    --card-separator-color: rgba(255, 255, 255, 0.12);
+    --card-text-color-tertiary: rgba(255, 255, 255, 0.5);
     --card-separator-color: rgba(255, 255, 255, 0.12);
   }
 }
@@ -147,15 +136,13 @@ $neon-cyan: #00f0ff;
   --kbd-border-color: #dadada;
 
   &[data-scheme="dark"] {
-    --pre-background-color: #0d0d12;
-    --code-background-color: #{$neon-code-bg};
-    --code-text-color: #{$neon-pink};
-    --code-shadow-color: #{$neon-purple-dark};
+    --code-background-color: #272822;
+    --code-text-color: rgba(255, 255, 255, 0.9);
 
-    --table-border-color: var(--card-separator-color);
-    --tr-even-background-color: var(--card-background-selected);
+    --table-border-color: #717171;
+    --tr-even-background-color: #545454;
 
-    --blockquote-background-color: var(--card-background-selected);
+    --blockquote-background-color: rgb(75 75 75);
   }
 }
 

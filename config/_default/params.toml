@@ -39,9 +39,9 @@ SortBy             = "default"
         # Visual style: classic or handDrawn (sketch style)
         look                  = "classic"
         # Theme for light mode: default, neutral, dark, forest, base, null
-        lightTheme            = "base"
+        lightTheme            = "default"
         # Theme for dark mode: default, neutral, dark, forest, base, null
-        darkTheme             = "base"
+        darkTheme             = "dark"
         # Custom theme variables for light mode (only works with lightTheme: base)
         # lightThemeVariables = { primaryColor = "#ff0000" }
         # Custom theme variables for dark mode (only works with darkTheme: base)

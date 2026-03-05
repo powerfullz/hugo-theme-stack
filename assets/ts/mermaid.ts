@@ -24,39 +24,6 @@ type Scheme = 'light' | 'dark';
 
 const PANZOOM_CDN = 'https://testingcf.jsdelivr.net/npm/panzoom@9.4.3/+esm';
 
-const DARK_THEME_VARIABLES_DEFAULT = {
-	primaryColor: '#2a1d45',
-	primaryTextColor: '#ffffff',
-	primaryBorderColor: '#8C00FF',
-	lineColor: '#FFC400',
-	secondaryColor: '#100b1a',
-	tertiaryColor: '#1e1433',
-
-	mainBkg: '#2a1d45',
-	nodeBorder: '#8C00FF',
-	clusterBkg: '#1e1433',
-	clusterBorder: '#FF3F7F',
-	defaultLinkColor: '#FFC400',
-	titleColor: '#FF3F7F',
-	edgeLabelBackground: '#100b1a',
-
-	xyChart: {
-		backgroundColor: 'var(--card-background)',
-		titleColor: '#FF3F7F',
-		xAxisLabelColor: '#ffffff',
-		xAxisTitleColor: '#FF3F7F',
-		xAxisTickColor: '#FFC400',
-		xAxisLineColor: '#FFC400',
-		yAxisLabelColor: '#ffffff',
-		yAxisTitleColor: '#FF3F7F',
-		yAxisTickColor: '#FFC400',
-		yAxisLineColor: '#FFC400',
-		plotColorPalette: '#8C00FF, #FFC400, #FF3F7F',
-	},
-
-	fontFamily: 'var(--base-font-family)',
-};
-
 function getScheme(): Scheme {
 	return document.documentElement.dataset.scheme === 'dark' ? 'dark' : 'light';
 }
@@ -64,9 +31,7 @@ function getScheme(): Scheme {
 function buildThemeConfig(cfg: MermaidConfig, scheme: Scheme) {
 	const isLight = scheme === 'light';
 	const theme = isLight ? (cfg.lightTheme ?? 'default') : (cfg.darkTheme ?? 'dark');
-	const vars = isLight
-		? (cfg.lightThemeVariables ?? {})
-		: { ...DARK_THEME_VARIABLES_DEFAULT, ...(cfg.darkThemeVariables ?? {}) };
+	const vars = isLight ? (cfg.lightThemeVariables ?? {}) : (cfg.darkThemeVariables ?? {});
 	return {
 		theme,
 		themeVariables: { ...vars, ...(cfg.transparentBackground ? { background: 'transparent' } : {}) },
