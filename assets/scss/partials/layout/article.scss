@@ -184,7 +184,7 @@
   padding: 0 var(--card-padding);
   margin-top: 20px;
 
-  @include respond(lg) {
+  @include respond(xl) {
     display: none;
   }
 

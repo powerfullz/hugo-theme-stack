@@ -95,7 +95,7 @@
     top: 0;
   }
 
-  @include respond(lg) {
+  @include respond(xl) {
     padding-top: var(--main-top-padding);
     padding-bottom: var(--main-top-padding);
   }
