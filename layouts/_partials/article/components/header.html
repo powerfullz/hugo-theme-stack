@@ -1,7 +1,7 @@
 {{- $IsList := .IsList -}}
 {{- $Page := .Page -}}
 <header class="article-header">
-  {{- $image := partial "helper/image" (dict "Image" $Page.Params.image "Resources" $Page.Resources) -}}
+  {{- $image := partial "helper/image" (dict "Image" $Page.Params.image "Resources" $Page.Resources "Context" $Page) -}}
   {{ if $image }}
     <div class="article-image">
       <a href="{{ $Page.RelPermalink }}">
@@ -17,7 +17,7 @@
           "sizes" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px"
           )
           )
-        }}
+          }}
       </a>
     </div>
   {{ end }}
