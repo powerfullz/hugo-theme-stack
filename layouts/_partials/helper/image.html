@@ -4,9 +4,7 @@
 ///     Image: Image URL
 
 /// Returns:
-///     Local: true if the image is local, false if it is remote
-///     Resource: Hugo image resource object, not nil if the image is local
-///     ColorResource: Hugo image resource object used for color extraction
+///     Resource: Hugo image resource object
 ///     Permalink: Image URL
 ///     Height: Image height
 ///     Width: Image width
@@ -15,10 +13,15 @@
 
 {{ if .Image }}
   {{ $url := urls.Parse .Image }}
+  {{ $permalink := .Image }}
   {{ $resource := "" }}
+
   {{ if not (in (slice "https" "http") $url.Scheme) }}
+    {{/* Local image */}}
     {{ $resource = .Resources.Get (printf "%s" (.Image | safeURL)) }}
+    {{ $permalink = $resource.RelPermalink }}
   {{ else }}
+    {{/* Remote image */}}
     {{ with try (resources.GetRemote $url) }}
       {{ with .Err }}
         {{ warnf "Failed to get remote resource %q: %s" $url . }}
@@ -30,98 +33,23 @@
     {{ end }}
   {{ end }}
 
-  {{ if $resource }}
-    {{- $isSVG := eq $resource.MediaType.SubType "svg" -}}
-    {{- if $isSVG -}}
+  {{ with $resource }}
+    {{ if reflect.IsImageResourceProcessable . }}
       {{ $result = dict
-        "Local" true
         "Resource" $resource
-        "ColorResource" $resource
-        "Permalink" $resource.RelPermalink
+        "Permalink" $permalink
+        "Height" $resource.Height
+        "Width" $resource.Width
+      }}
+    {{ else }}
+      {{ $result = dict
+        "Resource" $resource
+        "Permalink" $permalink
         "Height" nil
         "Width" nil
       }}
-    {{- else -}}
-      {{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
-        {{- $maxSize := default (default 2048 .Page.Site.Params.imageProcessing.content.maxWidth) .Page.Site.Params.imageProcessing.content.maxSize -}}
-        {{- $processed := $resource -}}
-        {{- $quality := default 90 .Page.Site.Params.imageProcessing.content.quality -}}
-        {{- $enableResize := default true .Page.Site.Params.imageProcessing.content.resize -}}
-        {{- with .Page.Params.imageResize -}}
-          {{- $enableResize = . -}}
-        {{- end -}}
-        {{- $stripEXIF := default true .Page.Site.Params.imageProcessing.content.stripEXIF -}}
-        {{- with .Page.Params.imageStripEXIF -}}
-          {{- $stripEXIF = . -}}
-        {{- end -}}
-        {{- $sourceType := lower $processed.MediaType.SubType -}}
-        {{- $canStripEXIF := in (slice "jpeg" "jpg" "png" "tiff" "webp") $sourceType -}}
-        {{- $shouldStripEXIF := and $stripEXIF $canStripEXIF -}}
-        {{- $shouldConvertToWebp := in (slice "jpeg" "jpg" "png" "tiff") $sourceType -}}
-        {{- $targetType := $sourceType -}}
-        {{- if $shouldConvertToWebp -}}
-          {{- $targetType = "webp" -}}
-        {{- end -}}
+    {{ end }}
+  {{ end }}
+{{ end }}
 
-        {{/* Build one Resize spec so resize/format conversion/EXIF stripping happen in a single re-encode. */}}
-        {{- $resizeSpec := "" -}}
-        {{- if and $enableResize (gt $maxSize 0) (ge $processed.Width $processed.Height) (gt $processed.Width $maxSize) -}}
-          {{- $resizeSpec = printf "%dx" $maxSize -}}
-        {{- else if and $enableResize (gt $maxSize 0) (lt $processed.Width $processed.Height) (gt $processed.Height $maxSize) -}}
-          {{- $resizeSpec = printf "x%d" $maxSize -}}
-          {{/* No resize needed, but keep one-pass re-encode for EXIF stripping or format conversion. */}}
-        {{- else if or $shouldStripEXIF (ne $targetType $sourceType) -}}
-          {{- $resizeSpec = printf "%dx%d" $processed.Width $processed.Height -}}
-        {{- end -}}
-
-        {{- if $resizeSpec -}}
-          {{/* Attach output format/quality directly to Resize options. */}}
-          {{- $resizeOptions := $resizeSpec -}}
-          {{- if eq $targetType "webp" -}}
-            {{- $resizeOptions = printf "%s webp q%d" $resizeSpec $quality -}}
-          {{- else if in (slice "jpeg" "jpg") $targetType -}}
-            {{- $resizeOptions = printf "%s jpeg q%d" $resizeSpec $quality -}}
-          {{- end -}}
-
-          {{- with try ($processed.Resize $resizeOptions) -}}
-            {{- with .Err -}}
-              {{ warnf "Failed to process image %q: %s" $processed.RelPermalink . }}
-              {{- $processed = $resource -}}
-            {{- else with .Value -}}
-              {{- $processed = . -}}
-            {{- end -}}
-          {{- end -}}
-        {{- end -}}
-
-        {{- $result = dict
-          "Local" true
-          "Resource" $processed
-          "ColorResource" $resource
-          "Permalink" $processed.RelPermalink
-          "Height" $processed.Height
-          "Width" $processed.Width
-        }}
-      {{- else -}}
-        {{ $result = dict
-          "Local" true
-          "Resource" $resource
-          "ColorResource" $resource
-          "Permalink" $resource.RelPermalink
-          "Height" nil
-          "Width" nil
-        }}
-      {{- end -}}
-    {{- end -}}
-  {{- else -}}
-    {{ $result = dict
-      "Local" false
-      "Resource" nil
-      "ColorResource" nil
-      "Permalink" .Image
-      "Height" nil
-      "Width" nil
-    }}
-  {{- end -}}
-{{- end -}}
-
-{{- return $result -}}
+{{ return $result }}
