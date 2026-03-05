@@ -75,17 +75,13 @@ SortBy             = "default"
     toggle  = true
     default = "auto"
 
-[imageProcessing.cover]
-    enabled = true
+[imageProcessing]
+    [imageProcessing.content]
+        widths  = [800, 1600, 2400]
+        enabled = true
 
-[imageProcessing.content]
-    enabled = true
-    # Resize images larger than maxSize/maxWidth. Can be overridden per article by `imageResize`.
-    resize = true
-    # Re-encode local images to strip EXIF metadata and reduce privacy leakage.
-    stripEXIF = true
-    # Use high default quality to reduce visible color shift on gradients/dark scenes.
-    quality = 90
+    [imageProcessing.thumbnail]
+        enabled = true
 
 # GDPR Cookie Consent Configuration
 # When enabled, analytics and functional cookies require user consent
