@@ -3,7 +3,7 @@
 {{- $title := .Title | markdownify -}}
 
 {{/* There are some types of images that don't have width and height attributes, such as SVG */}}
-{{- $galleryImage := and $image.Height $image.Width -}}
+{{- $galleryImage := and (reflect.IsMap $image) $image.Height $image.Width -}}
 
 {{- $attributes := dict -}}
 {{- if $galleryImage -}}
