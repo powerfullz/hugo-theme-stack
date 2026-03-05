@@ -31,21 +31,19 @@
     {{ end }}
   </div>
 
-  {{ $showReadingTime := $Page.Params.readingTime | default ($Page.Site.Params.article.readingTime) }}
-  {{ $showDate := not $Page.Date.IsZero }}
-  {{ $showFooter := or $showDate $showReadingTime }}
-  {{ if $showFooter }}
-    <footer class="article-time">
-      {{ if $showDate }}
-        <div>
-          {{ partial "helper/icon" "date" }}
-          <time
-            class="article-time--published"
-            datetime="{{ $Page.Date.Format "2006-01-02T15:04:05Z07:00" }}">
-            {{- $Page.Date | time.Format $Page.Site.Params.dateFormat.published -}}
-          </time>
-        </div>
-      {{ end }}
+    {{ $showReadingTime := $Page.Params.readingTime | default ($Page.Site.Params.article.readingTime) }}
+    {{ $showDate := not $Page.Date.IsZero }}
+    {{ $showFooter := or $showDate $showReadingTime }}
+    {{ if $showFooter }}
+    <footer class="article-footer">
+        {{ if $showDate }}
+            <div>
+                {{ partial "helper/icon" "date" }}
+                <time class="article-time--published" datetime='{{ $Page.Date.Format "2006-01-02T15:04:05Z07:00" }}'>
+                    {{- $Page.Date | time.Format $Page.Site.Params.dateFormat.published -}}
+                </time>
+            </div>
+        {{ end }}
 
       {{ if $showReadingTime }}
         <div>
