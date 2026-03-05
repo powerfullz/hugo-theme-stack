@@ -26,15 +26,15 @@ const tagsToReplace = {
 	'…': '&hellip;',
 };
 
-function replaceTag(tag) {
-	return tagsToReplace[tag] || tag;
+function replaceTag(tag: string) {
+	return (tagsToReplace as Record<string, string>)[tag] || tag;
 }
 
-function replaceHTMLEnt(str) {
+function replaceHTMLEnt(str: string) {
 	return str.replace(/[&<>"]/g, replaceTag);
 }
 
-function escapeRegExp(string) {
+function escapeRegExp(string: string) {
 	return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 }
 
@@ -45,13 +45,27 @@ class Search {
 	private list: HTMLDivElement;
 	private resultTitle: HTMLHeadElement;
 	private resultTitleTemplate: string;
+	private container: HTMLDivElement;
 
-	constructor({ form, input, list, resultTitle, resultTitleTemplate }) {
+	constructor({
+		form,
+		input,
+		list,
+		resultTitle,
+		resultTitleTemplate,
+	}: {
+		form: HTMLFormElement;
+		input: HTMLInputElement;
+		list: HTMLDivElement;
+		resultTitle: HTMLHeadingElement;
+		resultTitleTemplate: string;
+	}) {
 		this.form = form;
 		this.input = input;
 		this.list = list;
 		this.resultTitle = resultTitle;
 		this.resultTitleTemplate = resultTitleTemplate;
+		this.container = list.parentElement as HTMLDivElement;
 
 		/// Check if there's already value in the search input
 		if (this.input.value.trim() !== '') {
@@ -214,16 +228,18 @@ class Search {
 			results.length,
 			((endTime - startTime) / 1000).toPrecision(1),
 		);
+
+		this.container?.classList.remove('hidden');
 	}
 
-	private generateResultTitle(resultLen, time) {
-		return this.resultTitleTemplate.replace('#PAGES_COUNT', resultLen).replace('#TIME_SECONDS', time);
+	private generateResultTitle(resultLen: number, time: string) {
+		return this.resultTitleTemplate.replace('#PAGES_COUNT', resultLen.toString()).replace('#TIME_SECONDS', time);
 	}
 
 	public async getData() {
 		if (!this.data) {
 			/// Not fetched yet
-			const jsonURL = this.form.dataset.json;
+			const jsonURL = this.form.dataset.json as string;
 			this.data = await fetch(jsonURL).then((res) => res.json());
 			const parser = new DOMParser();
 
@@ -238,7 +254,7 @@ class Search {
 	private bindSearchForm() {
 		let lastSearch = '';
 
-		const eventHandler = (e) => {
+		const eventHandler = (e: Event) => {
 			e.preventDefault();
 			const keywords = this.input.value.trim();
 
@@ -262,6 +278,7 @@ class Search {
 	private clear() {
 		this.list.innerHTML = '';
 		this.resultTitle.innerText = '';
+		this.container.classList.add('hidden');
 	}
 
 	private bindQueryStringChange() {
@@ -272,7 +289,7 @@ class Search {
 
 	private handleQueryString() {
 		const pageURL = new URL(window.location.toString());
-		const keywords = pageURL.searchParams.get('keyword');
+		const keywords = pageURL.searchParams.get('keyword') || '';
 		this.input.value = keywords;
 
 		if (keywords) {
@@ -326,9 +343,11 @@ declare global {
 window.addEventListener('load', () => {
 	setTimeout(function () {
 		const searchForm = document.querySelector('.search-form') as HTMLFormElement,
-			searchInput = searchForm.querySelector('input') as HTMLInputElement,
+			searchInput = searchForm?.querySelector('input') as HTMLInputElement,
 			searchResultList = document.querySelector('.search-result--list') as HTMLDivElement,
 			searchResultTitle = document.querySelector('.search-result--title') as HTMLHeadingElement;
+
+		if (!searchForm || !searchInput || !searchResultList || !searchResultTitle) return;
 
 		new Search({
 			form: searchForm,
