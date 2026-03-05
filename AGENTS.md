@@ -28,6 +28,26 @@ There is no dedicated automated test suite yet. Validate changes by:
 - Building with `hugo --gc --minify` to catch template and asset pipeline issues.
 - Running Prettier checks before opening a PR.
 
+### Testing Against the Production Blog
+
+The production blog lives at `../blog/` (a sibling directory of this repo). To test theme changes against it before publishing:
+
+1. Add a `replace` directive to `../blog/go.mod` to point at the local theme:
+
+   ```
+   replace github.com/powerfullz/hugo-theme-stack/v2 => ../hugo-theme-stack
+   ```
+
+2. Build the blog:
+
+   ```
+   cd ../blog && hugo --gc --minify
+   ```
+
+3. Check for errors. A successful build prints a page/image count table with no `ERROR` lines.
+
+4. **After testing, remove the `replace` line from `../blog/go.mod`** before committing, so the blog continues to use the published module version in CI.
+
 ## Key Partials & Components
 
 ### Pagination (`layouts/_partials/pagination.html`)
