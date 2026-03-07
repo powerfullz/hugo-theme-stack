@@ -1,11 +1,11 @@
 {{- /*
-  Params:
-  Resource: Hugo image resource object (Optional, for processing)
-  Width: Image width (Required)
-  Height: Image height (Required)
-  Resize: Whether to perform resize (Optional, default: false)
-  Attributes: Map of HTML attributes for the <img> tag
-  */
+    Params:
+    Resource: Hugo image resource object (Optional, for processing)
+    Width: Image width (Required)
+    Height: Image height (Required)
+    Resize: Whether to perform resize (Optional, default: false)
+    Attributes: Map of HTML attributes for the <img> tag
+    */
 -}}
 
 {{- $resource := .Resource -}}
@@ -15,35 +15,35 @@
 {{- $attributes := .Attributes | default dict -}}
 
 {{- if and $resize $resource (reflect.IsImageResourceProcessable $resource) $width $height -}}
-  {{- $canConvertWebp := in (slice "jpeg" "jpg" "png" "tiff") (lower $resource.MediaType.SubType) -}}
-  {{/* Create thumbnail with 1x/2x descriptors */}}
-  {{- $srcset := slice -}}
-  {{- range (slice 1 2) -}}
-    {{- $w := mul $width . -}}
-    {{- $h := mul $height . -}}
-    {{- if and (le $w $resource.Width) (le $h $resource.Height) -}}
-      {{- $fillSpec := printf "%dx%d" $w $h -}}
-      {{- if $canConvertWebp -}}
-        {{- $fillSpec = printf "%dx%d webp" $w $h -}}
-      {{- end -}}
-      {{- $resized := $resource.Fill $fillSpec -}}
-      {{- $srcset = $srcset | append (printf "%s %dx" $resized.RelPermalink .) -}}
+    {{- $canConvertWebp := in (slice "jpeg" "jpg" "png" "tiff") (lower $resource.MediaType.SubType) -}}
+    {{/* Create thumbnail with 1x/2x descriptors */}}
+    {{- $srcset := slice -}}
+    {{- range (slice 1 2) -}}
+        {{- $w := mul $width . -}}
+        {{- $h := mul $height . -}}
+        {{- if and (le $w $resource.Width) (le $h $resource.Height) -}}
+            {{- $fillSpec := printf "%dx%d" $w $h -}}
+            {{- if $canConvertWebp -}}
+                {{- $fillSpec = printf "%dx%d webp" $w $h -}}
+            {{- end -}}
+            {{- $resized := $resource.Fill $fillSpec -}}
+            {{- $srcset = $srcset | append (printf "%s %dx" $resized.RelPermalink .) -}}
 
-      {{- if eq . 1 -}}
-        {{- $attributes = merge $attributes (dict "src" $resized.RelPermalink) -}}
-      {{- end -}}
+            {{- if eq . 1 -}}
+                {{- $attributes = merge $attributes (dict "src" $resized.RelPermalink) -}}
+            {{- end -}}
+        {{- end -}}
     {{- end -}}
-  {{- end -}}
 
-  {{- if gt (len $srcset) 0 -}}
-    {{- $attributes = merge $attributes (dict "width" $width "height" $height "srcset" (delimit $srcset ", ")) -}}
-  {{- end -}}
+    {{- if gt (len $srcset) 0 -}}
+        {{- $attributes = merge $attributes (dict "width" $width "height" $height "srcset" (delimit $srcset ", ")) -}}
+    {{- end -}}
 {{- end -}}
 
 
 <img
-  {{- range $k, $v := $attributes -}}
-    {{- if $v -}}
-      {{- printf " %s=%q" (lower $k) (printf "%v" $v) | safeHTMLAttr -}}
-    {{- end -}}
-  {{- end -}} />
+    {{- range $k, $v := $attributes -}}
+        {{- if $v -}}
+            {{- printf " %s=%q" (lower $k) (printf "%v" $v) | safeHTMLAttr -}}
+        {{- end -}}
+    {{- end -}} />

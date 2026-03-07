@@ -1,6 +1,6 @@
 {{ $baseUrl := "" }}
 {{ range $pag.Pagers }}
-  {{ if eq .PageNumber 2 }}
-    {{ $baseUrl = replace .URL "2/" "" }}
-  {{ end }}
+    {{ if eq .PageNumber 2 }}
+        {{ $baseUrl = replace .URL "2/" "" }}
+    {{ end }}
 {{ end }}

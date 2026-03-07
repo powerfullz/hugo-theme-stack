@@ -1,11 +1,11 @@
 {{- $pc := .Site.Config.Privacy.Disqus -}}
 {{- $disqusjs := .Site.Params.Comments.disqusjs -}}
 {{- if and (not $pc.Disable) (and $disqusjs.Shortname $disqusjs.ApiKey) -}}
-  {{- $style := resources.Get "scss/partials/comments/disqusjs.scss" | toCSS | minify -}}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+    {{- $style := resources.Get "scss/partials/comments/disqusjs.scss" | toCSS | minify -}}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 
-  <div class="disqus-container">
-    <div id="disqus_thread"></div>
+    <div class="disqus-container">
+        <div id="disqus_thread"></div>
     <script type="application/javascript">
         let disqusjs;
         function loadDisqusJS() {
@@ -59,11 +59,11 @@
             lazyLoadDisqusJS();
         }
     </script>
-    <noscript
-      >Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript"
-        >comments powered by Disqus.</a
-      ></noscript
-    >
-  </div>
+        <noscript
+            >Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript"
+                >comments powered by Disqus.</a
+            ></noscript
+        >
+    </div>
 {{- end -}}
