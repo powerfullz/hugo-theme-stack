@@ -17,9 +17,7 @@
   // Mobile: list-compact container style
   display: flex;
   flex-direction: column;
-  background-color: var(--card-background);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--shadow-l1);
+  @include card-style;
   opacity: 0;
 
   &.shuffled {
@@ -73,9 +71,7 @@
   }
 
   @include respond(md) {
-    background-color: var(--card-background);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--shadow-l1);
+    @include card-style;
 
     &:not(:last-child) {
       border-bottom: none;
@@ -151,9 +147,7 @@
 
   &--compact {
     // Restore independent card appearance (compact grid has no shared container)
-    background-color: var(--card-background);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--shadow-l1);
+    @include card-style;
 
     &:not(:last-child) {
       border-bottom: none;

@@ -10,28 +10,28 @@
 // - https://bugs.chromium.org/p/chromium/issues/detail?id=1043933
 // - https://bugs.chromium.org/p/chromium/issues/detail?id=1121151
 
-const anchorLinksQuery = 'a[href]';
+const anchorLinksQuery = "a[href]";
 
 function setupSmoothAnchors() {
-	document.querySelectorAll(anchorLinksQuery).forEach((aElement) => {
-		let href = aElement.getAttribute('href');
-		if (!href.startsWith('#')) {
-			return;
-		}
-		aElement.addEventListener('click', (clickEvent) => {
-			clickEvent.preventDefault();
+    document.querySelectorAll(anchorLinksQuery).forEach(aElement => {
+        let href = aElement.getAttribute("href");
+        if (!href.startsWith("#")) {
+            return;
+        }
+        aElement.addEventListener("click", clickEvent => {
+            clickEvent.preventDefault();
 
-			const targetId = decodeURI(aElement.getAttribute('href').substring(1)),
-				target = document.getElementById(targetId) as HTMLElement,
-				offset = target.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
+            const targetId = decodeURI(aElement.getAttribute("href").substring(1)),
+                target = document.getElementById(targetId) as HTMLElement,
+                offset = target.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
 
-			window.history.pushState({}, '', aElement.getAttribute('href'));
-			scrollTo({
-				top: offset,
-				behavior: 'smooth',
-			});
-		});
-	});
+            window.history.pushState({}, "", aElement.getAttribute("href"));
+            scrollTo({
+                top: offset,
+                behavior: "smooth"
+            });
+        });
+    });
 }
 
 export { setupSmoothAnchors };

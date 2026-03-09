@@ -3,12 +3,12 @@ title: Markdown 语法指南
 date: 2026-01-25
 description: 展示基本 Markdown 语法和 HTML 元素格式的示例文章。
 tags:
-  - markdown
-  - css
-  - html
-  - themes
+    - markdown
+    - css
+    - html
+    - themes
 categories:
-  - Documentation
+    - Documentation
 image: pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg
 ---
 
@@ -21,11 +21,8 @@ image: pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg
 以下 HTML `<h1>`—`<h6>` 元素代表了六个级别的章节标题。`<h1>` 是最高级别，而 `<h6>` 是最低级别。
 
 ### H3
-
 #### H4
-
 ##### H5
-
 ###### H6
 
 ## 段落 (Paragraph)
@@ -41,7 +38,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 ### 不带出处的引用
 
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-> **注意**：你可以在引用中使用 _Markdown 语法_。
+> **注意**：你可以在引用中使用 *Markdown 语法*。
 
 ### 带有出处的引用
 
@@ -74,35 +71,34 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 表格虽然不是 Markdown 核心规范的一部分，但 Hugo 出箱即用地支持它们。
 
-| 姓名  | 年龄 |
-| ----- | ---- |
-| Bob   | 27   |
-| Alice | 23   |
+   | 姓名  | 年龄 |
+   | ----- | ---- |
+   | Bob   | 27   |
+   | Alice | 23   |
 
 ### 表格内的行内 Markdown
 
 | 斜体      | 加粗     | 代码   |
 | --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| *italics* | **bold** | `code` |
 
 | A                                                        | B                                                                                                             | C                                                                                                                                    | D                                                 | E                                                          | F                                                                    |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------- |
 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. | Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex. | Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus | Proin sit amet velit nec enim imperdiet vehicula. | Ut bibendum vestibulum quam, eu egestas turpis gravida nec | Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien |
 
 ## 代码块 (Code Blocks)
-
 ### 使用反引号的代码块
 
 ```html
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Example HTML5 Document</title>
-  </head>
-  <body>
-    <p>Test</p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Example HTML5 Document</title>
+</head>
+<body>
+  <p>Test</p>
+</body>
 </html>
 ```
 
@@ -145,19 +141,19 @@ rev = "11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13"
 
 ### 无序列表
 
-- 列表项
-- 另一项
-- 还有一项
+* 列表项
+* 另一项
+* 还有一项
 
 ### 嵌套列表
 
-- 水果
-  - 苹果
-  - 橘子
-  - 香蕉
-- 乳制品
-  - 牛奶
-  - 奶酪
+* 水果
+  * 苹果
+  * 橘子
+  * 香蕉
+* 乳制品
+  * 牛奶
+  * 奶酪
 
 ## 其他元素 — abbr, sub, sup, kbd, mark
 

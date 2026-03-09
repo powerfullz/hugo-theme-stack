@@ -55,7 +55,7 @@ darkMode   = "Dark Mode"
 
 [cookies]
     title             = "Cookie Consent"
-    text              = "We use cookies to enhance your browsing experience."
+    text              = "We use cookies to enhance your browsing experience and analyze site traffic."
     acceptAll         = "Accept All"
     deny              = "Deny"
     managePreferences = "Manage preferences"
@@ -79,5 +79,5 @@ darkMode   = "Dark Mode"
 
 [pagination]
     jumpToPage = "Jump to page"
-    jump = "Go"
+    jump       = "Go"
     pressEnter = "Press Enter to jump"

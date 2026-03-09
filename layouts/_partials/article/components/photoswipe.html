@@ -10,7 +10,7 @@
 
     const articleContent = document.querySelector('.article-content');
     const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
-
+    
     if (shouldLoad) {
         gallery(articleContent);
 

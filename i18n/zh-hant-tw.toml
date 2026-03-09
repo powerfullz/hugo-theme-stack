@@ -70,5 +70,5 @@ darkMode   = "夜晚模式"
 
 [pagination]
     jumpToPage = "跳轉到頁碼"
-    jump = "跳轉"
+    jump       = "跳轉"
     pressEnter = "按 Enter 鍵跳轉"

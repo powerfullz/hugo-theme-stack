@@ -13,14 +13,19 @@ function shuffleGrid(grid: HTMLElement): void {
 	for (const card of cards) {
 		grid.appendChild(card);
 	}
-
-	// Reveal grid after shuffle to prevent flash of original order
-	grid.classList.add('shuffled');
 }
 
-function shuffleLinks(): void {
+function initLinks(): void {
 	const grids = document.querySelectorAll<HTMLElement>('.link-grid');
-	grids.forEach(shuffleGrid);
+	grids.forEach(grid => {
+		if (grid.hasAttribute('data-shuffle')) {
+			shuffleGrid(grid);
+		}
+		// Reveal the grid regardless of shuffle — opacity:0 is set in CSS to
+		// prevent a flash of unsorted order; grids without shuffle still need
+		// to become visible.
+		grid.classList.add('shuffled');
+	});
 }
 
-shuffleLinks();
+initLinks();

@@ -58,16 +58,17 @@
             </div>
         </section>
     {{ else }}
-        {{/* Categorized array format: each element is { title, links, compact? } */}}
+        {{/* Categorized array format: each element is { title, links, compact?, shuffle? } */}}
         {{ range $category := $data }}
             {{- $compact := $category.compact -}}
+            {{- $shuffle := $category.shuffle -}}
             {{- $gridClass := "link-grid" -}}
             {{- if $compact -}}
                 {{- $gridClass = "link-grid link-grid--compact" -}}
             {{- end -}}
             <section class="link-category">
                 <h2 class="link-category__title">{{ $category.title }}</h2>
-                <div class="{{ $gridClass }}">
+                <div class="{{ $gridClass }}"{{ if $shuffle }} data-shuffle{{ end }}>
                     {{ if $compact }}
                         {{ range $link := $category.links }}
                             {{- $alt := or $link.alt $link.title -}}

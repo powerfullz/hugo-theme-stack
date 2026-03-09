@@ -1,4 +1,3 @@
-{{/* prettier-ignore-start */}}
 /// Params:
 ///     Resources: Where to search for images
 ///     Image: Image URL
@@ -9,13 +8,18 @@
 ///     Permalink: Image URL
 ///     Height: Image height
 ///     Width: Image width
-{{/* prettier-ignore-end */}}
+
 {{ $result := dict }}
 
 {{ if .Image }}
     {{ $url := urls.Parse .Image }}
     {{ $permalink := .Image }}
-    {{ $resource := "" }}
+    {{ $resource := dict
+        "Resource" nil
+        "Permalink" $permalink
+        "Height" nil
+        "Width" nil
+    }}
     {{ $local := true }}
 
     {{ if not (in (slice "https" "http") $url.Scheme) }}
@@ -23,16 +27,16 @@
         {{ $resource = .Resources.Get (printf "%s" (.Image | safeURL)) }}
     {{ else }}
         {{/* Remote image */}}
-        {{ with try (resources.GetRemote $url) }}
+        {{ with try (resources.GetRemote $url (dict "timeout" .Context.Site.Params.imageProcessing.external.timeout)) }}
             {{ with .Err }}
-                {{ warnf "Failed to get remote resource %q: %s" $url . }}
+                {{ warnf "Failed to fetch remote resource %q: %s" $url . }}
             {{ else with .Value }}
                 {{ $resource = . }}
                 {{ $local = false }}
             {{ else }}
                 {{ warnf "Unable to get remote resource %q" $url }}
             {{ end }}
-        {{ end }}
+        {{ end }}   
     {{ end }}
 
     {{ if $resource }}

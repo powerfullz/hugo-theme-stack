@@ -3,9 +3,9 @@ title: ショートコード
 date: 2026-01-26
 description: Stack テーマでサポートされているさまざまなショートコードを紹介します。
 categories:
-  - Documentation
+    - Documentation
 tags:
-  - 隐私
+    - 隐私
 ---
 
 Stack テーマには、コンテンツを強化するためのカスタムショートコードがいくつか用意されています。
@@ -28,6 +28,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 {{</* /quote */>}}
 ```
 
+
 ## ビデオ (Video)
 
 `video` ショートコードを使用すると、セルフホストまたはリモートのビデオファイルを埋め込むことができます。
@@ -39,6 +40,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```markdown
 {{</* video src="https://example.com/video.mp4" */>}}
 ```
+
 
 ## Bilibili
 
@@ -52,6 +54,7 @@ Bilibili からビデオを埋め込みます。`av` および `bv` ID の両方
 {{</* bilibili "BV1634y1t7xR" */>}}
 ```
 
+
 ## YouTube
 
 Hugo 内蔵の YouTube ショートコードです。
@@ -63,6 +66,7 @@ Hugo 内蔵の YouTube ショートコードです。
 ```markdown
 {{</* youtube ZJthWmvUzzc */>}}
 ```
+
 
 ## 騰訊視頻 (Tencent Video)
 
@@ -76,6 +80,7 @@ Tencent Video からビデオを埋め込みます。
 {{</* tencent "u00306ng962" */>}}
 ```
 
+
 ## GitLab Snippet
 
 GitLab からスニペットを埋め込みます。
@@ -87,6 +92,7 @@ GitLab からスニペットを埋め込みます。
 ```markdown
 {{</* gitlab 2349278 */>}}
 ```
+
 
 ## 図表 (Diagrams)
 

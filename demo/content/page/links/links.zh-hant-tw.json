@@ -1,6 +1,7 @@
 [
   {
     "title": "好夥伴",
+    "shuffle": true,
     "links": [
       {
         "title": "GitHub",

@@ -4,10 +4,10 @@ description: 关于本站及其作者的一切。
 date: 2026-01-26
 lastmod: 2026-01-26
 menu:
-  main:
-    weight: -90
-    params:
-      icon: user
+    main: 
+        weight: -90
+        params:
+            icon: user
 ---
 
 ## 这是给谁看的？
@@ -39,8 +39,7 @@ menu:
 ---
 
 > "Logic will get you from A to B. Imagination will take you everywhere."  
-> — _Albert Einstein_
+> — *Albert Einstein*
 
 ---
-
-_此页面由 AI 生成。_
+*此页面由 AI 生成。*

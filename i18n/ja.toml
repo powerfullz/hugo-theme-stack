@@ -70,5 +70,5 @@ darkMode   = "ダークモード"
 
 [pagination]
     jumpToPage = "ページにジャンプ"
-    jump = "ジャンプ"
+    jump       = "ジャンプ"
     pressEnter = "Enter キーでジャンプ"

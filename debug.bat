@@ -1,1 +1,0 @@
-cd demo && hugo server --gc --themesDir=../.. --disableFastRender

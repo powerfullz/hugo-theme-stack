@@ -3,7 +3,7 @@
     window.addEventListener("DOMContentLoaded", () => {
         const elementsToRender = [".main-article", ".widget--toc"];
 
-        elementsToRender.forEach((selector) => {
+        elementsToRender.forEach(selector => {
             const element = document.querySelector(selector);
             if (element) {
                 renderMathInElement(element, {
@@ -11,9 +11,9 @@
                         { left: "$$", right: "$$", display: true },
                         { left: "$", right: "$", display: false },
                         { left: "\\(", right: "\\)", display: false },
-                        { left: "\\[", right: "\\]", display: true },
+                        { left: "\\[", right: "\\]", display: true }
                     ],
-                    ignoredClasses: ["gist"],
+                    ignoredClasses: ["gist"]
                 });
             }
         });

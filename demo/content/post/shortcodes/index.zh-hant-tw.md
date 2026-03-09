@@ -3,9 +3,9 @@ title: 短代碼
 date: 2026-01-26
 description: 展示 Stack 主題支持的各種短代碼。
 categories:
-  - Documentation
+    - Documentation
 tags:
-  - 隐私
+    - 隐私
 ---
 
 Stack 主題還提供了一些自定義短代碼來增強你的內容。
@@ -64,6 +64,7 @@ Hugo 內置的 YouTube 短代碼。
 {{</* youtube ZJthWmvUzzc */>}}
 ```
 
+
 ## 騰訊視頻 (Tencent Video)
 
 嵌入來自騰訊視頻的視頻。
@@ -76,6 +77,7 @@ Hugo 內置的 YouTube 短代碼。
 {{</* tencent "u00306ng962" */>}}
 ```
 
+
 ## GitLab Snippet
 
 嵌入來自 GitLab 的代碼片段。
@@ -87,6 +89,7 @@ Hugo 內置的 YouTube 短代碼。
 ```markdown
 {{</* gitlab 2349278 */>}}
 ```
+
 
 ## 圖表 (Diagrams)
 

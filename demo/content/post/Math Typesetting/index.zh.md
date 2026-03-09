@@ -4,7 +4,7 @@ date: 2026-01-24
 description: 在 Stack 主题中启用和使用 KaTeX 的指南
 math: true
 categories:
-  - Documentation
+    - Documentation
 slug: math-typesetting
 ---
 
@@ -31,7 +31,7 @@ math: true
 
 ```yaml
 article:
-  math: true
+    math: true
 ```
 
 ## 示例
@@ -47,7 +47,7 @@ article:
 对于较大的方程式，请使用双美元符号 `$$` 创建数学块。
 
 $$
- \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
 $$
 
 ### 更复杂的公式

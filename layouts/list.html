@@ -16,24 +16,23 @@
                     <h2 class="section-description">{{ . }}</h2>
                 {{ end }}
             </div>
-
+    
             {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
             {{ if $image }}
                 <div class="section-image">
-                    {{ partial "helper/thumbnail-image" (dict
+                    {{ partial "helper/thumbnail-image" (dict 
                         "Resource" $image.Resource
                         "Width" 60
                         "Height" 60
                         "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
                         "Attributes" (dict
-                        "src" $image.Permalink
-                        "alt" .Title
-                        "loading" "lazy"
-                        "width" $image.Width
-                        "height" $image.Height
+                            "src" $image.Permalink
+                            "alt" .Title
+                            "loading" "lazy"
+                            "width" $image.Width
+                            "height" $image.Height
                         )
-                        )
-                        }}
+                    ) }}
                 </div>
             {{ end }}
         </div>
@@ -41,12 +40,14 @@
 
     {{- $pages := partial "helper/pages.html" . -}}
     {{- $subsections := .Sections -}}
+    
+    {{- if and (eq (len $pages) (len $subsections)) (eq $pages $subsections) -}}
+        {{- $subsections = slice -}}
+    {{- end -}}
 
     {{- with $subsections -}}
         <aside>
-            <h2 class="section-title">
-                {{ T "list.subsection" (len $subsections) }}
-            </h2>
+            <h2 class="section-title">{{ T "list.subsection" (len $subsections) }}</h2>
             <div class="subsection-list">
                 <div class="article-list--tile">
                     {{ range . }}
@@ -56,7 +57,7 @@
             </div>
         </aside>
     {{- end -}}
-
+    
     {{/* List only pages that are not a subsection */}}
     {{ $paginator := partial "helper/paginator.html" . }}
     {{ with $paginator }}

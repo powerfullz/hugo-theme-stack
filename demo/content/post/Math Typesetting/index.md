@@ -4,7 +4,7 @@ date: 2026-01-24
 description: Guide to enabling and using KaTeX in the Stack theme
 math: true
 categories:
-  - Documentation
+    - Documentation
 slug: math-typesetting
 ---
 
@@ -31,7 +31,7 @@ To enable KaTeX for all posts, set `article.math` to `true` in your site configu
 
 ```yaml
 article:
-  math: true
+    math: true
 ```
 
 ## Examples
@@ -47,7 +47,7 @@ For example: `$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $` renders as $ \
 For larger equations, use double dollar signs `$$` to create a math block.
 
 $$
- \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
 $$
 
 ### More Complex Formula

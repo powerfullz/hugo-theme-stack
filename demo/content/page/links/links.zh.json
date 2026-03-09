@@ -1,6 +1,7 @@
 [
   {
     "title": "好伙伴",
+    "shuffle": true,
     "links": [
       {
         "title": "GitHub",
@@ -30,6 +31,7 @@
   },
   {
     "title": "单向关注",
+    "shuffle": true,
     "links": [
       {
         "title": "阮一峰的网络日志",

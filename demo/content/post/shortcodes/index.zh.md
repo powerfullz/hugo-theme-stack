@@ -3,9 +3,9 @@ title: 短代码
 date: 2026-01-26
 description: 展示 Stack 主题支持的各种短代码。
 categories:
-  - Documentation
+    - Documentation
 tags:
-  - 隐私
+    - 隐私
 ---
 
 Stack 主题还提供了一些自定义短代码来增强你的内容。
