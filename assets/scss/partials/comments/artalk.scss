@@ -21,8 +21,18 @@
 }
 
 .artalk a {
-    color: var(--accent-color);
+    color: var(--at-color-link);
     text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--accent-color-darker);
+    }
+}
+
+.artalk .atk-content a,
+.artalk .atk-editor-plug-preview a {
+    color: var(--accent-color);
     box-shadow: 0px -2px 0px rgba(var(--link-background-color), var(--link-background-opacity)) inset;
     transition: all 0.3s ease;
 
