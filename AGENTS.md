@@ -33,7 +33,35 @@ cd demo
 hugo --gc --minify --themesDir=../..
 ```
 
-**3. Running a "Test"**
+**3. Build with the Production Blog (Recommended)**
+A real production blog lives at `../blog/` (i.e., `/home/powerfullz/repos/blog`). It uses Hugo Modules to import the theme via `github.com/powerfullz/hugo-theme-stack/v2`. To build or serve the blog using your **local, in-development** theme source, use Hugo's `--replacements` flag to redirect the module to the local path:
+
+```bash
+# Development server with the production blog
+cd ../blog
+hugo server --gc --replacements "github.com/powerfullz/hugo-theme-stack/v2 -> ../hugo-theme-stack"
+
+# Production build with the production blog
+cd ../blog
+hugo --gc --minify --replacements "github.com/powerfullz/hugo-theme-stack/v2 -> ../hugo-theme-stack"
+```
+
+This is the **preferred** way to verify theme changes because it exercises the theme against real-world content, configurations (multilingual, CJK, Git info, pagination, etc.), and custom layouts that the minimal `demo` site may not cover.
+
+**4. Build with the Demo Site (Fallback)**
+The `demo/` directory contains a minimal sample site for quick iteration:
+```bash
+cd demo
+./run.sh
+# This executes: hugo server --gc --themesDir=../..
+```
+Production build:
+```bash
+cd demo
+hugo --gc --minify --themesDir=../..
+```
+
+**5. Running a "Test"**
 Because there are no unit tests, "running a test" means successfully starting the Hugo dev server and verifying there are no syntax errors in the Go templates, SCSS compilation failures, or TypeScript build errors logged to the console.
 
 ---
@@ -67,6 +95,6 @@ Because there are no unit tests, "running a test" means successfully starting th
 ## 🛑 4. Rules of Engagement for Agents
 
 1. **Do not assume a Node environment.** Do not try to run `npx`, `npm run build`, or `yarn`. Everything relies on `hugo`.
-2. **Always test compilation.** Before concluding a task, you MUST run `cd demo && hugo --gc --minify --themesDir=../..` to guarantee your changes do not break the Hugo build pipeline. Pay special attention to Go template syntax errors or missing SCSS variables.
+2. **Always test compilation.** Before concluding a task, you MUST run the production blog build (`cd ../blog && hugo --gc --minify --replacements "github.com/powerfullz/hugo-theme-stack/v2 -> ../hugo-theme-stack"`) to guarantee your changes do not break the Hugo build pipeline. If the production blog is unavailable, fall back to the demo site build (`cd demo && hugo --gc --minify --themesDir=../..`). Pay special attention to Go template syntax errors or missing SCSS variables.
 3. **Respect existing conventions.** Mimic the surrounding code's styling. Do not introduce large third-party libraries unless explicitly instructed to do so. Keep the theme lightweight.
 4. **Target the correct file.** If fixing a styling issue, look in `assets/scss/`. If fixing a layout structure, look in `layouts/`. If modifying client-side behavior, edit `assets/ts/`.
