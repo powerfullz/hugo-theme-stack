@@ -99,3 +99,12 @@ Because there are no unit tests, "running a test" means successfully starting th
 3. **UI Testing with Playwright MCP.** When verifying layout, CSS, or interactive features, you should use the Playwright MCP. First, start a local development server (`./run.sh` in the `demo` directory or the blog directory) in the background. Then, use the Playwright MCP tools to navigate to `http://localhost:1313`, interact with the page, take snapshots, and verify visual correctness.
 4. **Respect existing conventions.** Mimic the surrounding code's styling. Do not introduce large third-party libraries unless explicitly instructed to do so. Keep the theme lightweight.
 5. **Target the correct file.** If fixing a styling issue, look in `assets/scss/`. If fixing a layout structure, look in `layouts/`. If modifying client-side behavior, edit `assets/ts/`.
+6. **Adjacent Upstream Repository:** You may be asked to backport or submit commits to the upstream repository located at `../hugo-theme-stack-upstream`. **DO NOT** submit, push, or modify the adjacent repository unless explicitly instructed to do so by the user. If instructed, you can transfer commits using `git format-patch` and `git am`.
+   ```bash
+   # Example workflow for backporting a commit:
+   git format-patch -1 <commit-hash> --stdout > /tmp/patch.patch
+   cd ../hugo-theme-stack-upstream
+   git checkout <target-branch>
+   git am /tmp/patch.patch
+   git push origin <target-branch>
+   ```
