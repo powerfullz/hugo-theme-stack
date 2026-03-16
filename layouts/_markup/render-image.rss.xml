@@ -1,0 +1,6 @@
+{{- $image := partial "helper/image" (dict "Resources" .Page.Resources "Image" .Destination "Context" .Page) -}}
+{{- $alt := .PlainText | safeHTML -}}
+{{- $title := .Title | markdownify -}}
+
+{{/* Simplify the image tag for RSS feeds, as some feed readers may not support complex attributes. */}}
+<img src="{{ $image.Permalink | absURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} />
