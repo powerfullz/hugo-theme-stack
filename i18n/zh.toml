@@ -45,9 +45,9 @@ darkMode   = "暗色模式"
     designedBy = "主题 {{ .Theme }} 由 {{ .DesignedBy }} 设计"
 
 [cookies]
-    title             = "Cookie 同意"
-    text              = "我们使用 Cookie 来增强您的浏览体验并分析网站流量。"
-    acceptAll         = "接受所有"
+    title             = "美味小饼干🍪"
+    text              = "本站使用 Cookie 来增强您的浏览体验。"
+    acceptAll         = "接受"
     deny              = "拒绝"
     managePreferences = "管理偏好设置"
     settingsTitle     = "Cookie 偏好设置"
