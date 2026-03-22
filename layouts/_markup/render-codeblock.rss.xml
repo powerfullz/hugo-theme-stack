@@ -1,1 +1,1 @@
-<pre><code>{{ .Inner }}</code></pre>
+<pre><code{{ with .Type }} class="language-{{ . }}"{{ end }}>{{ .Inner | safeHTML }}</code></pre>
