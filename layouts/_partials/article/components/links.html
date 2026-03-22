@@ -38,10 +38,18 @@
                             </div>
                             <div class="link-card__avatar">
                                 {{ with $link.image }}
-                                    {{ $permalink := . }}
-                                    {{ with ($page.Resources.GetMatch (printf "%s" (. | safeURL))) }}
-                                        {{ $permalink = .RelPermalink }}
-                                    {{ end }}
+                                    {{- $image := partial "helper/image" (dict "Context" $page "Image" . "Resources" $page.Resources) -}}
+                                    {{- $permalink := . -}}
+                                    {{- if and $image $image.Permalink -}}
+                                        {{- $permalink = $image.Permalink -}}
+                                    {{- end -}}
+                                    {{- if and $image $image.Resource -}}
+                                        {{- if reflect.IsImageResourceProcessable $image.Resource -}}
+                                            {{- $permalink = ($image.Resource.Resize "120x120").RelPermalink -}}
+                                        {{- else -}}
+                                            {{- $permalink = $image.Resource.RelPermalink -}}
+                                        {{- end -}}
+                                    {{- end -}}
                                     <img
                                         src="{{ $permalink }}"
                                         loading="lazy"
@@ -80,10 +88,18 @@
                                     title="{{ $link.title }}">
                                     <div class="link-card__avatar">
                                         {{ with $link.image }}
-                                            {{ $permalink := . }}
-                                            {{ with ($page.Resources.GetMatch (printf "%s" (. | safeURL))) }}
-                                                {{ $permalink = .RelPermalink }}
-                                            {{ end }}
+                                            {{- $image := partial "helper/image" (dict "Context" $page "Image" . "Resources" $page.Resources) -}}
+                                            {{- $permalink := . -}}
+                                            {{- if and $image $image.Permalink -}}
+                                                {{- $permalink = $image.Permalink -}}
+                                            {{- end -}}
+                                            {{- if and $image $image.Resource -}}
+                                                {{- if reflect.IsImageResourceProcessable $image.Resource -}}
+                                                    {{- $permalink = ($image.Resource.Resize "120x120").RelPermalink -}}
+                                                {{- else -}}
+                                                    {{- $permalink = $image.Resource.RelPermalink -}}
+                                                {{- end -}}
+                                            {{- end -}}
                                             <img
                                                 src="{{ $permalink }}"
                                                 loading="lazy"
@@ -123,10 +139,18 @@
                                     </div>
                                     <div class="link-card__avatar">
                                         {{ with $link.image }}
-                                            {{ $permalink := . }}
-                                            {{ with ($page.Resources.GetMatch (printf "%s" (. | safeURL))) }}
-                                                {{ $permalink = .RelPermalink }}
-                                            {{ end }}
+                                            {{- $image := partial "helper/image" (dict "Context" $page "Image" . "Resources" $page.Resources) -}}
+                                            {{- $permalink := . -}}
+                                            {{- if and $image $image.Permalink -}}
+                                                {{- $permalink = $image.Permalink -}}
+                                            {{- end -}}
+                                            {{- if and $image $image.Resource -}}
+                                                {{- if reflect.IsImageResourceProcessable $image.Resource -}}
+                                                    {{- $permalink = ($image.Resource.Resize "120x120").RelPermalink -}}
+                                                {{- else -}}
+                                                    {{- $permalink = $image.Resource.RelPermalink -}}
+                                                {{- end -}}
+                                            {{- end -}}
                                             <img
                                                 src="{{ $permalink }}"
                                                 loading="lazy"
