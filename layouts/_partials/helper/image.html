@@ -16,6 +16,11 @@
     {{ $permalink := .Image }}
     {{ $resource := false }}
     {{ $local := true }}
+    {{ $contentProcessing := .Context.Site.Params.ImageProcessing.Content | default dict }}
+    {{ $maxWidth := int (default 0 $contentProcessing.maxWidth) }}
+    {{ $maxHeight := int (default 0 $contentProcessing.maxHeight) }}
+    {{ $outputFormat := lower (default "" $contentProcessing.format) }}
+    {{ $quality := int (default 0 $contentProcessing.quality) }}
 
     {{ if not (in (slice "https" "http") $url.Scheme) }}
         {{/* Local image */}}
@@ -38,6 +43,26 @@
         {{ if and .Context.Site.Params.imageProcessing.autoOrient (reflect.IsImageResourceProcessable $resource) }}
             {{ $filter := images.AutoOrient }}
             {{ $resource = $resource | images.Filter $filter }}
+        {{ end }}
+
+        {{ if reflect.IsImageResourceProcessable $resource }}
+            {{ $formatAndQuality := slice }}
+            {{ if $outputFormat }}
+                {{ $formatAndQuality = $formatAndQuality | append $outputFormat }}
+            {{ end }}
+            {{ if gt $quality 0 }}
+                {{ $formatAndQuality = $formatAndQuality | append (printf "q%d" $quality) }}
+            {{ end }}
+
+            {{ if and (gt $maxWidth 0) (gt $maxHeight 0) (or (gt $resource.Width $maxWidth) (gt $resource.Height $maxHeight)) }}
+                {{ $fitSpec := printf "%dx%d" $maxWidth $maxHeight }}
+                {{ if gt (len $formatAndQuality) 0 }}
+                    {{ $fitSpec = printf "%s %s" $fitSpec (delimit $formatAndQuality " ") }}
+                {{ end }}
+                {{ $resource = $resource.Fit $fitSpec }}
+            {{ else if gt (len $formatAndQuality) 0 }}
+                {{ $resource = $resource.Process (delimit $formatAndQuality " ") }}
+            {{ end }}
         {{ end }}
 
         {{ if $local }}

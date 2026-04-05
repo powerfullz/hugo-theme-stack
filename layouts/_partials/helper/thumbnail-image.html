@@ -4,6 +4,9 @@ Params:
     Width: Image width (Required)
     Height: Image height (Required)
     Resize: Whether to perform resize (Optional, default: false)
+    Process: Map of image processing options
+        - Format: Output format (Optional)
+        - Quality: Output quality (Optional)
     Attributes: Map of HTML attributes for the <img> tag
 */ -}}
 
@@ -11,7 +14,17 @@ Params:
 {{- $width := .Width -}}
 {{- $height := .Height -}}
 {{- $resize := .Resize -}}
+{{- $process := .Process | default dict -}}
 {{- $attributes := .Attributes | default dict -}}
+{{- $format := lower (default "" $process.Format) -}}
+{{- $quality := int (default 0 $process.Quality) -}}
+{{- $options := slice -}}
+{{- if $format -}}
+    {{- $options = $options | append $format -}}
+{{- end -}}
+{{- if gt $quality 0 -}}
+    {{- $options = $options | append (printf "q%d" $quality) -}}
+{{- end -}}
 
 {{- if and $resize $resource (reflect.IsImageResourceProcessable $resource) $width $height -}}
     {{/* Create thumbnail with 1x/2x descriptors */}}
@@ -20,7 +33,11 @@ Params:
         {{- $w := mul $width . -}}
         {{- $h := mul $height . -}}
         {{- if and (le $w $resource.Width) (le $h $resource.Height) -}}
-            {{- $resized := $resource.Fill (printf "%dx%d" $w $h) -}}
+            {{- $fillSpec := printf "%dx%d" $w $h -}}
+            {{- if gt (len $options) 0 -}}
+                {{- $fillSpec = printf "%s %s" $fillSpec (delimit $options " ") -}}
+            {{- end -}}
+            {{- $resized := $resource.Fill $fillSpec -}}
             {{- $srcset = $srcset | append (printf "%s %dx" $resized.RelPermalink .) -}}
             
             {{- if eq . 1 -}}

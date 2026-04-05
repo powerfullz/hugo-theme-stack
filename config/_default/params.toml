@@ -83,6 +83,10 @@ SortBy         = "default"
     [imageProcessing.content]
         widths  = [800, 1600, 2400]
         enabled = true
+        maxWidth = 2560
+        maxHeight = 2560
+        format = "webp"
+        quality = 80
 
     [imageProcessing.thumbnail]
         enabled = true

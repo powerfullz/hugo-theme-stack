@@ -8,6 +8,10 @@
                 "Width" 250
                 "Height" 150
                 "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
+                "Process" (dict
+                    "Format" .Site.Params.ImageProcessing.Content.Format
+                    "Quality" .Site.Params.ImageProcessing.Content.Quality
+                )
                 "Attributes" (dict
                     "src" $image.Permalink
                     "alt" (printf "Featured image of post %s" .Title)
