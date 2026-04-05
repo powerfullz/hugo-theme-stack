@@ -488,8 +488,8 @@
 .footnote-popover {
     position: fixed;
     z-index: 40;
-    width: 420px;
-    max-width: calc(100vw - var(--card-padding) * 2);
+    width: var(--footnote-popover-width);
+    max-width: calc(100vw - var(--footnote-popover-viewport-padding) * 2);
     max-height: 60vh;
     overflow: auto;
     background: var(--card-background);
@@ -519,11 +519,11 @@
     &.footnote-popover--mobile {
         left: 50%;
         right: auto;
-        bottom: var(--card-padding);
+        bottom: var(--footnote-popover-viewport-padding);
         top: auto;
         transform: translateX(-50%);
-        width: 520px;
-        max-width: calc(100vw - var(--card-padding) * 2);
+        width: var(--footnote-popover-mobile-width);
+        max-width: calc(100vw - var(--footnote-popover-viewport-padding) * 2);
         max-height: 55vh;
     }
 }

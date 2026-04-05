@@ -179,6 +179,13 @@
     --spacing-2xl: 30px;
     --spacing-3xl: 40px;
 
+    /* Footnote popover layout tokens */
+    --footnote-popover-viewport-padding: var(--card-padding);
+    --footnote-popover-offset: var(--spacing-sm);
+    --footnote-popover-mobile-breakpoint: 768px;
+    --footnote-popover-width: 420px;
+    --footnote-popover-mobile-width: 520px;
+
     /* Article image height variables */
     --article-image-height: 150px;
 

@@ -2,9 +2,19 @@ import { scrollToAnchorHref } from './smoothAnchors';
 
 const FOOTNOTE_REFERENCE_QUERY = 'sup.footnote-ref a, sup[id^="fnref:"] > a.footnote-ref, sup[id^="fnref:"] > a[href^="#fn:"]';
 const FOOTNOTE_CONTAINER_QUERY = '.footnotes';
-const VIEWPORT_PADDING = 16;
-const POPOVER_OFFSET = 12;
-const MOBILE_BREAKPOINT = 767;
+const FOOTNOTE_POPOVER_VIEWPORT_PADDING_TOKEN = '--footnote-popover-viewport-padding';
+const FOOTNOTE_POPOVER_OFFSET_TOKEN = '--footnote-popover-offset';
+const FOOTNOTE_POPOVER_MOBILE_BREAKPOINT_TOKEN = '--footnote-popover-mobile-breakpoint';
+
+function parsePixelValue(value: string): number {
+    return Number.parseFloat(value);
+}
+
+function getRootTokenPixelValue(tokenName: string): number {
+    const rootStyle = window.getComputedStyle(document.documentElement);
+    const tokenValue = rootStyle.getPropertyValue(tokenName).trim();
+    return parsePixelValue(tokenValue);
+}
 
 function isFootnoteNavigation(href: string): boolean {
     return href.startsWith('#fn:') || href.startsWith('#fnref:');
@@ -68,7 +78,11 @@ function createPopover(footnoteElement: HTMLElement): HTMLElement {
 }
 
 function positionPopover(reference: HTMLAnchorElement, popover: HTMLElement): void {
-    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+    const viewportPadding = getRootTokenPixelValue(FOOTNOTE_POPOVER_VIEWPORT_PADDING_TOKEN);
+    const popoverOffset = getRootTokenPixelValue(FOOTNOTE_POPOVER_OFFSET_TOKEN);
+    const mobileBreakpoint = getRootTokenPixelValue(FOOTNOTE_POPOVER_MOBILE_BREAKPOINT_TOKEN);
+
+    if (window.innerWidth < mobileBreakpoint) {
         popover.classList.add('footnote-popover--mobile');
         popover.style.top = '';
         popover.style.left = '';
@@ -81,16 +95,16 @@ function positionPopover(reference: HTMLAnchorElement, popover: HTMLElement): vo
     const popoverRect = popover.getBoundingClientRect();
 
     let left = referenceRect.left + referenceRect.width / 2 - popoverRect.width / 2;
-    const maxLeft = window.innerWidth - VIEWPORT_PADDING - popoverRect.width;
-    left = Math.min(Math.max(VIEWPORT_PADDING, left), Math.max(VIEWPORT_PADDING, maxLeft));
+    const maxLeft = window.innerWidth - viewportPadding - popoverRect.width;
+    left = Math.min(Math.max(viewportPadding, left), Math.max(viewportPadding, maxLeft));
 
-    let top = referenceRect.bottom + POPOVER_OFFSET;
-    const maxTop = window.innerHeight - VIEWPORT_PADDING - popoverRect.height;
+    let top = referenceRect.bottom + popoverOffset;
+    const maxTop = window.innerHeight - viewportPadding - popoverRect.height;
     if (top > maxTop) {
-        top = referenceRect.top - popoverRect.height - POPOVER_OFFSET;
+        top = referenceRect.top - popoverRect.height - popoverOffset;
     }
 
-    top = Math.min(Math.max(VIEWPORT_PADDING, top), Math.max(VIEWPORT_PADDING, maxTop));
+    top = Math.min(Math.max(viewportPadding, top), Math.max(viewportPadding, maxTop));
 
     popover.style.left = `${left}px`;
     popover.style.top = `${top}px`;
