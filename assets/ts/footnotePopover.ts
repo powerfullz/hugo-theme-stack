@@ -6,6 +6,10 @@ const FOOTNOTE_POPOVER_VIEWPORT_PADDING_TOKEN = '--footnote-popover-viewport-pad
 const FOOTNOTE_POPOVER_OFFSET_TOKEN = '--footnote-popover-offset';
 const FOOTNOTE_POPOVER_MOBILE_BREAKPOINT_TOKEN = '--footnote-popover-mobile-breakpoint';
 
+const SWIPE_CLOSE_THRESHOLD = 60;
+const SWIPE_DRAG_RESISTANCE = 5;
+const ANIMATION_DURATION_MS = 300;
+
 function parsePixelValue(value: string): number {
     return Number.parseFloat(value);
 }
@@ -168,7 +172,7 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
             if (currentPopover.parentNode) {
                 currentPopover.parentNode.removeChild(currentPopover);
             }
-        }, 300);
+        }, ANIMATION_DURATION_MS);
     };
 
     const openPopover = (reference: HTMLAnchorElement, footnoteElement: HTMLElement): void => {
@@ -212,7 +216,7 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
 
             if (deltaY > 0) {
                 popover.style.transform = `translateX(-50%) translateY(${deltaY}px)`;
-                if (e.cancelable && (isDragStartedFromHandle || deltaY > 5)) {
+                if (e.cancelable && (isDragStartedFromHandle || deltaY > SWIPE_DRAG_RESISTANCE)) {
                     e.preventDefault();
                 }
             } else {
@@ -225,9 +229,9 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
             isDragging = false;
 
             const deltaY = currentY - startY;
-            popover.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            popover.style.transition = `transform ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
 
-            if (deltaY > 60) {
+            if (deltaY > SWIPE_CLOSE_THRESHOLD) {
                 popover.style.transform = `translateX(-50%) translateY(100%)`;
                 popover.style.opacity = '0';
                 
@@ -242,14 +246,14 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
                     if (currentPopover && currentPopover.parentNode) {
                         currentPopover.parentNode.removeChild(currentPopover);
                     }
-                }, 300);
+                }, ANIMATION_DURATION_MS);
             } else {
                 popover.style.transform = '';
                 setTimeout(() => {
                     if (popover) {
                         popover.style.transition = '';
                     }
-                }, 300);
+                }, ANIMATION_DURATION_MS);
             }
         };
 
