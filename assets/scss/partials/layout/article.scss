@@ -485,32 +485,28 @@
     }
 }
 
-$footnote-popover-anim-offset: 6px;
-
 @keyframes footnote-fade-up {
-    from { opacity: 0; transform: translateY($footnote-popover-anim-offset); }
+    from { opacity: 0; transform: translateY(var(--footnote-popover-anim-offset)); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes footnote-fade-up-mobile {
-    from { opacity: 0; transform: translate(-50%, $footnote-popover-anim-offset); }
+    from { opacity: 0; transform: translate(-50%, var(--footnote-popover-anim-offset)); }
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 @keyframes footnote-fade-out {
     from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY($footnote-popover-anim-offset); }
+    to { opacity: 0; transform: translateY(var(--footnote-popover-anim-offset)); }
 }
 
 @keyframes footnote-fade-out-mobile {
     from { opacity: 1; transform: translate(-50%, 0); }
-    to { opacity: 0; transform: translate(-50%, $footnote-popover-anim-offset); }
+    to { opacity: 0; transform: translate(-50%, var(--footnote-popover-anim-offset)); }
 }
 
 .footnote-popover {
-    $arrow-size: 6px;
-    $arrow-border: 1px;
-    $arrow-outer: $arrow-size + $arrow-border;
+    $arrow-outer: calc(var(--footnote-popover-arrow-size) + var(--footnote-popover-arrow-border));
 
     position: fixed;
     z-index: 40;
@@ -540,26 +536,26 @@ $footnote-popover-anim-offset: 6px;
 
     &.footnote-popover--top {
         &::before {
-            bottom: -#{$arrow-outer};
+            bottom: calc(-1 * #{$arrow-outer});
             border-width: $arrow-outer $arrow-outer 0 $arrow-outer;
             border-top-color: var(--card-separator-color);
         }
         &::after {
-            bottom: -#{$arrow-size};
-            border-width: $arrow-size $arrow-size 0 $arrow-size;
+            bottom: calc(-1 * var(--footnote-popover-arrow-size));
+            border-width: var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size) 0 var(--footnote-popover-arrow-size);
             border-top-color: var(--card-background);
         }
     }
 
     &.footnote-popover--bottom {
         &::before {
-            top: -#{$arrow-outer};
+            top: calc(-1 * #{$arrow-outer});
             border-width: 0 $arrow-outer $arrow-outer $arrow-outer;
             border-bottom-color: var(--card-separator-color);
         }
         &::after {
-            top: -#{$arrow-size};
-            border-width: 0 $arrow-size $arrow-size $arrow-size;
+            top: calc(-1 * var(--footnote-popover-arrow-size));
+            border-width: 0 var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size);
             border-bottom-color: var(--card-background);
         }
     }
@@ -594,10 +590,6 @@ $footnote-popover-anim-offset: 6px;
     }
 
     &.footnote-popover--mobile {
-        $drag-handle-width: 36px;
-        $drag-handle-height: 4px;
-        $drag-handle-top: 8px;
-
         left: 50%;
         right: auto;
         bottom: var(--footnote-popover-viewport-padding);
@@ -614,13 +606,13 @@ $footnote-popover-anim-offset: 6px;
         .footnote-popover__drag-handle {
             display: block;
             position: absolute;
-            top: $drag-handle-top;
+            top: var(--footnote-popover-drag-handle-top);
             left: 50%;
             transform: translateX(-50%);
-            width: $drag-handle-width;
-            height: $drag-handle-height;
+            width: var(--footnote-popover-drag-handle-width);
+            height: var(--footnote-popover-drag-handle-height);
             background-color: var(--card-separator-color);
-            border-radius: calc(#{$drag-handle-height} / 2);
+            border-radius: calc(var(--footnote-popover-drag-handle-height) / 2);
             cursor: grab;
 
             &:active {
@@ -630,7 +622,7 @@ $footnote-popover-anim-offset: 6px;
 
         .footnote-popover__content {
             max-height: 55vh;
-            padding-top: calc(var(--spacing-lg) + #{$drag-handle-height});
+            padding-top: calc(var(--spacing-lg) + var(--footnote-popover-drag-handle-height));
         }
 
         &::before, &::after {
