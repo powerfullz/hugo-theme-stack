@@ -12,10 +12,17 @@
 
 const anchorLinksQuery = "a[href]";
 
+function shouldSkipSmoothAnchor(href: string): boolean {
+    return href.startsWith('#fn:') || href.startsWith('#fnref:');
+}
+
 function setupSmoothAnchors() {
     document.querySelectorAll(anchorLinksQuery).forEach(aElement => {
         let href = aElement.getAttribute("href");
         if (!href.startsWith("#")) {
+            return;
+        }
+        if (shouldSkipSmoothAnchor(href)) {
             return;
         }
         aElement.addEventListener("click", clickEvent => {

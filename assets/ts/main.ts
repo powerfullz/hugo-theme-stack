@@ -11,6 +11,7 @@ import StackColorScheme from './colorScheme';
 import { setupScrollspy } from './scrollspy';
 import { setupSmoothAnchors } from './smoothAnchors';
 import { setupPaginationJump } from './pagination';
+import { setupFootnotePopover } from './footnotePopover';
 
 let Stack = {
     init: () => {
@@ -23,6 +24,7 @@ let Stack = {
         if (articleContent) {
             setupSmoothAnchors();
             setupScrollspy();
+            setupFootnotePopover(articleContent);
         }
 
         setupPaginationJump();
