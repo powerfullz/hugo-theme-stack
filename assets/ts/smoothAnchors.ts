@@ -13,7 +13,33 @@
 const anchorLinksQuery = "a[href]";
 
 function shouldSkipSmoothAnchor(href: string): boolean {
-    return href.startsWith('#fn:') || href.startsWith('#fnref:');
+    return href.startsWith('#fn:');
+}
+
+function scrollToAnchorHref(href: string): boolean {
+    if (!href || !href.startsWith('#')) {
+        return false;
+    }
+
+    const targetId = decodeURI(href.substring(1));
+    if (!targetId) {
+        return false;
+    }
+
+    const target = document.getElementById(targetId) as HTMLElement | null;
+    if (!target) {
+        return false;
+    }
+
+    const offset = target.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
+
+    window.history.pushState({}, '', href);
+    scrollTo({
+        top: offset,
+        behavior: 'smooth'
+    });
+
+    return true;
 }
 
 function setupSmoothAnchors() {
@@ -27,18 +53,9 @@ function setupSmoothAnchors() {
         }
         aElement.addEventListener("click", clickEvent => {
             clickEvent.preventDefault();
-
-            const targetId = decodeURI(aElement.getAttribute("href").substring(1)),
-                target = document.getElementById(targetId) as HTMLElement,
-                offset = target.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
-
-            window.history.pushState({}, "", aElement.getAttribute("href"));
-            scrollTo({
-                top: offset,
-                behavior: "smooth"
-            });
+            scrollToAnchorHref(aElement.getAttribute('href'));
         });
     });
 }
 
-export { setupSmoothAnchors };
+export { setupSmoothAnchors, scrollToAnchorHref };

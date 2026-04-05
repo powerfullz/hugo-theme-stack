@@ -1,3 +1,5 @@
+import { scrollToAnchorHref } from './smoothAnchors';
+
 const FOOTNOTE_REFERENCE_QUERY = 'sup.footnote-ref a, sup[id^="fnref:"] > a.footnote-ref, sup[id^="fnref:"] > a[href^="#fn:"]';
 const FOOTNOTE_CONTAINER_QUERY = '.footnotes';
 const VIEWPORT_PADDING = 16;
@@ -131,13 +133,16 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
 
     references.forEach((reference: HTMLAnchorElement) => {
         reference.addEventListener('click', (event: MouseEvent) => {
-            if (event.ctrlKey || event.metaKey) {
-                closePopover();
+            const href = reference.getAttribute('href');
+            if (!href || !href.startsWith('#')) {
                 return;
             }
 
-            const href = reference.getAttribute('href');
-            if (!href || !href.startsWith('#')) {
+            if (event.ctrlKey || event.metaKey) {
+                event.preventDefault();
+                closePopover();
+
+                scrollToAnchorHref(href);
                 return;
             }
 
