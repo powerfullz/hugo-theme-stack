@@ -484,3 +484,149 @@
         display: inline-block;
     }
 }
+
+@keyframes footnote-fade-up {
+    from { opacity: 0; transform: translateY(var(--footnote-popover-anim-offset)); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes footnote-fade-up-mobile {
+    from { opacity: 0; transform: translate(-50%, var(--footnote-popover-anim-offset)); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes footnote-fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(var(--footnote-popover-anim-offset)); }
+}
+
+@keyframes footnote-fade-out-mobile {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, var(--footnote-popover-anim-offset)); }
+}
+
+.footnote-popover {
+    $arrow-outer: calc(var(--footnote-popover-arrow-size) + var(--footnote-popover-arrow-border));
+
+    position: fixed;
+    z-index: 40;
+    width: var(--footnote-popover-width);
+    max-width: calc(100vw - var(--footnote-popover-viewport-padding) * 2);
+    background: var(--card-background);
+    color: var(--card-text-color-main);
+    border: 1px solid var(--card-separator-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l2);
+    line-height: var(--article-line-height);
+    font-size: 0.9em;
+    animation: footnote-fade-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --arrow-left: 50%;
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        left: var(--arrow-left);
+        transform: translateX(-50%);
+        border-style: solid;
+        border-color: transparent;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+    }
+
+    &.footnote-popover--top {
+        &::before {
+            bottom: calc(-1 * #{$arrow-outer});
+            border-width: $arrow-outer $arrow-outer 0 $arrow-outer;
+            border-top-color: var(--card-separator-color);
+        }
+        &::after {
+            bottom: calc(-1 * var(--footnote-popover-arrow-size));
+            border-width: var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size) 0 var(--footnote-popover-arrow-size);
+            border-top-color: var(--card-background);
+        }
+    }
+
+    &.footnote-popover--bottom {
+        &::before {
+            top: calc(-1 * #{$arrow-outer});
+            border-width: 0 $arrow-outer $arrow-outer $arrow-outer;
+            border-bottom-color: var(--card-separator-color);
+        }
+        &::after {
+            top: calc(-1 * var(--footnote-popover-arrow-size));
+            border-width: 0 var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size) var(--footnote-popover-arrow-size);
+            border-bottom-color: var(--card-background);
+        }
+    }
+
+    .footnote-popover__drag-handle {
+        display: none;
+    }
+
+    .footnote-popover__content {
+        padding: var(--spacing-md) var(--spacing-lg);
+        max-height: 60vh;
+        overflow: auto;
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    p,
+    ul,
+    ol {
+        margin: var(--spacing-sm) 0;
+    }
+
+    &.footnote-popover--closing {
+        animation: footnote-fade-out 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        pointer-events: none;
+    }
+
+    &.footnote-popover--mobile {
+        left: 50%;
+        right: auto;
+        bottom: var(--footnote-popover-viewport-padding);
+        top: auto;
+        transform: translateX(-50%);
+        width: var(--footnote-popover-mobile-width);
+        max-width: calc(100vw - var(--footnote-popover-viewport-padding) * 2);
+        animation: footnote-fade-up-mobile 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+        &.footnote-popover--closing {
+            animation: footnote-fade-out-mobile 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .footnote-popover__drag-handle {
+            display: block;
+            position: absolute;
+            top: var(--footnote-popover-drag-handle-top);
+            left: 50%;
+            transform: translateX(-50%);
+            width: var(--footnote-popover-drag-handle-width);
+            height: var(--footnote-popover-drag-handle-height);
+            background-color: var(--card-separator-color);
+            border-radius: calc(var(--footnote-popover-drag-handle-height) / 2);
+            cursor: grab;
+
+            &:active {
+                cursor: grabbing;
+            }
+        }
+
+        .footnote-popover__content {
+            max-height: 55vh;
+            padding-top: calc(var(--spacing-lg) + var(--footnote-popover-drag-handle-height));
+        }
+
+        &::before, &::after {
+            display: none;
+        }
+    }
+}
