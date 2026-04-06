@@ -15,6 +15,9 @@
     --accent-color-text: #fff;
     --body-text-color: #707070;
 
+    --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+
     --tag-border-radius: 4px;
 
     --section-separation: 40px;
@@ -25,6 +28,9 @@
         --accent-color-darker: #bdc3c7;
         --accent-color-text: #000;
         --body-text-color: rgba(255, 255, 255, 0.7);
+
+        --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+        --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
     }
 }
 
