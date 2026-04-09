@@ -1,4 +1,14 @@
 .article-page {
+    .main-container {
+        @include respond(md) {
+            gap: var(--spacing-xl);
+        }
+
+        @include respond(xl) {
+            gap: var(--section-separation);
+        }
+    }
+
     &.hide-sidebar-sm .left-sidebar {
         display: none;
 
@@ -146,7 +156,7 @@
     padding: 0 var(--card-padding);
     margin-top: var(--spacing-lg);
 
-    @include respond(lg) {
+    @include respond(xl) {
         display: none;
     }
 
