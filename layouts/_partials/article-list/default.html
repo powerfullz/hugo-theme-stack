@@ -1,4 +1,6 @@
-{{ $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) }}
+{{- $page := .Page -}}
+{{- $isFirst := default false .IsFirst -}}
+{{ $image := partial "helper/image" (dict "Image" $page.Params.image "Resources" $page.Resources "Context" $page) }}
 <article class="{{ if $image }}has-image{{ end }}">
-    {{ partial "article/components/header" (dict "Page" . "IsList" true) }}
+    {{ partial "article/components/header" (dict "Page" $page "IsList" true "IsCriticalImage" $isFirst) }}
 </article>

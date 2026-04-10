@@ -3,7 +3,7 @@
 
     <section class="article-list">
         {{ range $index, $element := $paginator.Pages }}
-            {{ partial "article-list/default" . }}
+            {{ partial "article-list/default" (dict "Page" . "IsFirst" (eq $index 0)) }}
         {{ end }}
     </section>
 

@@ -14,7 +14,8 @@
                         width="{{ $avatar.Width }}"
                         height="{{ $avatar.Height }}"
                         class="site-logo"
-                        loading="lazy"
+                        loading="eager"
+                        fetchpriority="low"
                         alt="Avatar">
                 </a>
                 {{ with $.Site.Params.sidebar.emoji }}
