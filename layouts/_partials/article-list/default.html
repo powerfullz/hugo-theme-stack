@@ -2,5 +2,5 @@
 {{- $isFirst := default false .IsFirst -}}
 {{ $image := partial "helper/image" (dict "Image" $page.Params.image "Resources" $page.Resources "Context" $page) }}
 <article class="{{ if $image }}has-image{{ end }}">
-    {{ partial "article/components/header" (dict "Page" $page "IsList" true "IsCriticalImage" $isFirst) }}
+    {{ partial "article/components/header" (dict "Page" $page "IsList" true "IsFirst" $isFirst) }}
 </article>

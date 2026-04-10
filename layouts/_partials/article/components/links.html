@@ -1,4 +1,5 @@
 {{- $page := . -}}
+{{- $imageLoading := partial "helper/performance/media-attrs" (dict "Context" $page "Role" "content") -}}
 {{- $data := false -}}
 {{- $dataFile := printf "links.%s.json" .Language.Lang -}}
 {{- with .Resources.GetMatch $dataFile -}}
@@ -52,7 +53,7 @@
                                     {{- end -}}
                                     <img
                                         src="{{ $permalink }}"
-                                        loading="lazy"
+                                        loading="{{ index $imageLoading "loading" }}"
                                         alt="{{ $alt }}" />
                                 {{ else }}
                                     <span class="link-card__avatar--placeholder"
@@ -102,7 +103,7 @@
                                             {{- end -}}
                                             <img
                                                 src="{{ $permalink }}"
-                                                loading="lazy"
+                                                loading="{{ index $imageLoading "loading" }}"
                                                 alt="{{ $alt }}" />
                                         {{ else }}
                                             <span
@@ -153,7 +154,7 @@
                                             {{- end -}}
                                             <img
                                                 src="{{ $permalink }}"
-                                                loading="lazy"
+                                                loading="{{ index $imageLoading "loading" }}"
                                                 alt="{{ $alt }}" />
                                         {{ else }}
                                             <span

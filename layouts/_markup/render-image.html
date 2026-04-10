@@ -1,6 +1,7 @@
 {{- $image := partial "helper/image" (dict "Resources" .Page.Resources "Image" .Destination "Context" .Page) -}}
 {{- $alt := .PlainText | safeHTML -}}
 {{- $title := .Title | markdownify -}}
+{{- $imageLoading := partial "helper/performance/media-attrs" (dict "Context" .Page "Role" "content") -}}
 
 {{/* There are some types of images that don't have width and height attributes, such as SVG */}}
 {{- $galleryImage := and $image.Height $image.Width -}}
@@ -28,7 +29,7 @@
         "title" $title
         "data-title-escaped" ($title | htmlEscape)
         "class" (cond $galleryImage "gallery-image" "")
-        "loading" "lazy"
+        "loading" (index $imageLoading "loading")
         "sizes" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px"
     ))
 ) }}

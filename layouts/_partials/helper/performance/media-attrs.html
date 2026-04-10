@@ -1,0 +1,38 @@
+{{- /*
+Build loading/fetchpriority attributes for media elements.
+
+Params:
+  Context: Page or Site context (required)
+  Role: featured | avatar | content | related | embed | search
+  IsFirst: whether item is the first one in a list (optional)
+  IsDetail: whether item belongs to article detail page (optional)
+*/ -}}
+
+{{- $context := .Context | default . -}}
+{{- $role := lower (default "content" .Role) -}}
+{{- $isFirst := default false .IsFirst -}}
+{{- $isDetail := default false .IsDetail -}}
+{{- $strategy := partial "helper/performance/lazyload-strategy" (dict "Context" $context) -}}
+
+{{- $loading := "lazy" -}}
+
+{{- if eq $strategy "off" -}}
+    {{- $loading = "eager" -}}
+{{- else if eq $strategy "normal" -}}
+    {{- $lazyRoles := slice "content" "related" "embed" "search" -}}
+    {{- if not (in $lazyRoles $role) -}}
+        {{- $loading = "eager" -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $attrs := dict "loading" $loading -}}
+
+{{- if and (eq $role "featured") (ne $strategy "aggressive") (or $isDetail $isFirst) -}}
+    {{- $attrs = merge $attrs (dict "fetchpriority" "high") -}}
+{{- end -}}
+
+{{- if and (eq $role "avatar") (ne $strategy "aggressive") -}}
+    {{- $attrs = merge $attrs (dict "fetchpriority" "low") -}}
+{{- end -}}
+
+{{- return $attrs -}}
