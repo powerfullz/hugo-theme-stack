@@ -17,6 +17,13 @@ SortBy         = "default"
     compact = false
     avatar  = ""
 
+[performance]
+    # Lazy-load strategy for images and embeds:
+    # off: disable lazy-loading everywhere
+    # normal: lazy-load content and related media, keep key visuals eager
+    # aggressive: lazy-load almost everything
+    lazyLoadStrategy = "normal"
+
 [article]
     headingAnchor = false
     math          = false

@@ -1,0 +1,17 @@
+{{- /*
+Resolves lazy-load strategy from site params.
+
+Valid values:
+- off
+- normal
+- aggressive
+*/ -}}
+
+{{- $context := .Context | default . -}}
+{{- $strategy := lower (default "normal" $context.Site.Params.performance.lazyLoadStrategy) -}}
+
+{{- if not (in (slice "off" "normal" "aggressive") $strategy) -}}
+    {{- $strategy = "normal" -}}
+{{- end -}}
+
+{{- return $strategy -}}

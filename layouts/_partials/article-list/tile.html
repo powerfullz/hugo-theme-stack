@@ -1,4 +1,5 @@
 {{ $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) }}
+{{- $imageLoading := partial "helper/performance/media-attrs" (dict "Context" . "Role" "related") -}}
 <article class="{{ if $image }}has-image{{ end }}">
     <a href="{{ .RelPermalink }}">
         {{ if $image }}
@@ -15,7 +16,7 @@
                 "Attributes" (dict
                     "src" $image.Permalink
                     "alt" (printf "Featured image of post %s" .Title)
-                    "loading" "lazy"
+                    "loading" (index $imageLoading "loading")
                     "width" $image.Width
                     "height" $image.Height
                 )

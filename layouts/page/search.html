@@ -5,7 +5,8 @@
     {{- end -}}
 {{ end }}
 {{ define "main" }}
-<form action="{{ .RelPermalink }}" class="search-form"{{ with .OutputFormats.Get "json" -}} data-json="{{ .RelPermalink }}"{{- end }}>
+{{- $searchImageLoading := partial "helper/performance/media-attrs" (dict "Context" . "Role" "search") -}}
+<form action="{{ .RelPermalink }}" class="search-form"{{ with .OutputFormats.Get "json" -}} data-json="{{ .RelPermalink }}"{{- end }} data-image-loading="{{ index $searchImageLoading "loading" }}">
     <p>
         <label>{{ T "search.title" }}</label>
         <input name="keyword" placeholder="{{ T `search.placeholder` }}" />

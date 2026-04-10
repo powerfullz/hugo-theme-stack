@@ -1,4 +1,5 @@
 {{ define "main" }}
+    {{- $sectionImageLoading := partial "helper/performance/media-attrs" (dict "Context" . "Role" "related") -}}
     <header>
         <h3 class="section-title">
             {{ if eq .Parent (.GetPage "/") }}
@@ -32,7 +33,7 @@
                         "Attributes" (dict
                             "src" $image.Permalink
                             "alt" .Title
-                            "loading" "lazy"
+                            "loading" (index $sectionImageLoading "loading")
                             "width" $image.Width
                             "height" $image.Height
                         )

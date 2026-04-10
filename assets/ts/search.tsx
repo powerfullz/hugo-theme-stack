@@ -46,6 +46,7 @@ class Search {
     private resultTitle: HTMLHeadElement;
     private resultTitleTemplate: string;
     private container: HTMLDivElement;
+    private imageLoading: 'lazy' | 'eager';
 
     constructor({ form, input, list, resultTitle, resultTitleTemplate }: {
         form: HTMLFormElement,
@@ -60,6 +61,7 @@ class Search {
         this.resultTitle = resultTitle;
         this.resultTitleTemplate = resultTitleTemplate;
         this.container = list.parentElement as HTMLDivElement;
+        this.imageLoading = form.dataset.imageLoading === 'eager' ? 'eager' : 'lazy';
 
         /// Check if there's already value in the search input
         if (this.input.value.trim() !== '') {
@@ -205,7 +207,7 @@ class Search {
         this.clear();
 
         for (const item of results) {
-            this.list.append(Search.render(item));
+            this.list.append(Search.render(item, this.imageLoading));
         }
 
         const endTime = performance.now();
@@ -301,7 +303,7 @@ class Search {
         }
     }
 
-    public static render(item: pageData) {
+    public static render(item: pageData, imageLoading: 'lazy' | 'eager') {
         return (
             <article>
                 <a href={item.permalink}>
@@ -311,7 +313,7 @@ class Search {
                     </div>
                     {item.image &&
                         <div class="article-image">
-                            <img src={item.image} loading="lazy" />
+                            <img src={item.image} loading={imageLoading} />
                         </div>
                     }
                 </a>

@@ -1,3 +1,4 @@
+{{- $imageLoading := partial "helper/performance/media-attrs" (dict "Context" . "Role" "related") -}}
 <article>
     <a href="{{ .RelPermalink }}">
         <div class="article-details">
@@ -42,7 +43,7 @@
                 "Attributes" (dict
                     "src" $image.Permalink
                     "alt" .Title
-                    "loading" "lazy"
+                    "loading" (index $imageLoading "loading")
                     "width" $image.Width
                     "height" $image.Height
                 )

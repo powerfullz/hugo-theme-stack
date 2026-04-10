@@ -10,6 +10,9 @@ favicon        = "img/avatar.png"
     subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     avatar   = "img/avatar.png"
 
+[performance]
+    lazyLoadStrategy = "normal"
+
 [article]
     [article.license]
         enabled = true
