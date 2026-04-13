@@ -1,6 +1,15 @@
 {{- $IsList := .IsList -}}
 {{- $Page := .Page -}}
 {{- $isFirst := default false .IsFirst -}}
+{{- $contentProcessing := $Page.Site.Params.ImageProcessing.Content | default dict -}}
+{{- $defaultListWidths := slice 400 600 800 1000 1200 1600 -}}
+{{- $configuredListWidths := or (index $contentProcessing "listWidths") (index $contentProcessing "listwidths") -}}
+{{- $listWidths := default $defaultListWidths $configuredListWidths -}}
+{{- $featuredImageSizes := cond $IsList "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) calc(100vw - 260px), (max-width: 1279px) calc(100vw - 320px), 760px" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" -}}
+{{- $featuredImageWidths := false -}}
+{{- if $contentProcessing.Enabled -}}
+    {{- $featuredImageWidths = cond $IsList $listWidths $contentProcessing.Widths -}}
+{{- end -}}
 {{- $imageLoading := partial "helper/performance/media-attrs" (dict
     "Context" $Page
     "Role" "featured"
@@ -18,17 +27,17 @@
                 "height" $image.Height
                 "alt" (printf "Featured image of post %s" $Page.Title)
                 "loading" (index $imageLoading "loading")
-                "sizes" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px"
+                "sizes" $featuredImageSizes
             -}}
             {{- with index $imageLoading "fetchpriority" -}}
                 {{- $imageAttributes = merge $imageAttributes (dict "fetchpriority" .) -}}
             {{- end -}}
             {{ partial "helper/responsive-image" (dict
                 "Resource" $image.Resource
-                "Widths" (cond $Page.Site.Params.ImageProcessing.Content.Enabled $Page.Site.Params.ImageProcessing.Content.Widths nil)
+                "Widths" $featuredImageWidths
                 "Process" (dict
-                    "Format" $Page.Site.Params.ImageProcessing.Content.Format
-                    "Quality" $Page.Site.Params.ImageProcessing.Content.Quality
+                    "Format" $contentProcessing.Format
+                    "Quality" $contentProcessing.Quality
                 )
                 "Attributes" $imageAttributes
             ) }}
