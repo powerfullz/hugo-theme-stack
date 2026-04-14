@@ -2,7 +2,7 @@
 {{- $Page := .Page -}}
 {{- $isFirst := default false .IsFirst -}}
 {{- $contentProcessing := $Page.Site.Params.ImageProcessing.Content | default dict -}}
-{{- $defaultContentWidths := slice 360 480 640 768 960 1200 1440 1680 2048 2400 -}}
+{{- $defaultContentWidths := slice 360 760 960 1520 1920 -}}
 {{- $contentWidths := default $defaultContentWidths $contentProcessing.Widths -}}
 {{- $featuredImageSizeKind := cond $IsList "list" "detail" -}}
 {{- $featuredImageSizes := partial "helper/image-sizes" (dict "Context" $Page "Kind" $featuredImageSizeKind) -}}
