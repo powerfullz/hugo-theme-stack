@@ -88,7 +88,7 @@ SortBy         = "default"
         timeout = "5s"
 
     [imageProcessing.content]
-        widths  = [360, 480, 640, 768, 960, 1200, 1440, 1680, 2048, 2400]
+        widths  = [360, 480, 640, 768, 960, 1200, 1440, 1680, 2048]
         enabled = true
         maxWidth = 2560
         maxHeight = 2560
