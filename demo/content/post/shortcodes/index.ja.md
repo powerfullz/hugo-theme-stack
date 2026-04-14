@@ -2,6 +2,7 @@
 title: ショートコード
 date: 2026-01-26
 description: Stack テーマでサポートされているさまざまなショートコードを紹介します。
+image: cover.jpeg
 categories:
     - Documentation
 tags:

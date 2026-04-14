@@ -2,6 +2,7 @@
 title: 短代碼
 date: 2026-01-26
 description: 展示 Stack 主題支持的各種短代碼。
+image: cover.jpeg
 categories:
     - Documentation
 tags:

@@ -2,6 +2,7 @@
 title: 短代码
 date: 2026-01-26
 description: 展示 Stack 主题支持的各种短代码。
+image: cover.jpeg
 categories:
     - Documentation
 tags:
