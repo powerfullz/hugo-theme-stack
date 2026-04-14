@@ -12,6 +12,7 @@ import { setupScrollspy } from './scrollspy';
 import { setupSmoothAnchors } from './smoothAnchors';
 import { setupPaginationJump } from './pagination';
 import { setupFootnotePopover } from './footnotePopover';
+import { setupMobileToc } from './mobileToc';
 
 let Stack = {
     init: () => {
@@ -28,6 +29,7 @@ let Stack = {
         }
 
         setupPaginationJump();
+        setupMobileToc();
 
         /**
          * Add copy button to code block
