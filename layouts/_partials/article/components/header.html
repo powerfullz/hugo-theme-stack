@@ -1,6 +1,15 @@
 {{- $IsList := .IsList -}}
 {{- $Page := .Page -}}
 {{- $isFirst := default false .IsFirst -}}
+{{- $contentProcessing := $Page.Site.Params.ImageProcessing.Content | default dict -}}
+{{- $defaultContentWidths := slice 360 480 640 768 960 1200 1440 1680 2048 2400 -}}
+{{- $contentWidths := default $defaultContentWidths $contentProcessing.Widths -}}
+{{- $featuredImageSizeKind := cond $IsList "list" "detail" -}}
+{{- $featuredImageSizes := partial "helper/image-sizes" (dict "Context" $Page "Kind" $featuredImageSizeKind) -}}
+{{- $featuredImageWidths := false -}}
+{{- if $contentProcessing.Enabled -}}
+    {{- $featuredImageWidths = $contentWidths -}}
+{{- end -}}
 {{- $imageLoading := partial "helper/performance/media-attrs" (dict
     "Context" $Page
     "Role" "featured"
@@ -18,17 +27,17 @@
                 "height" $image.Height
                 "alt" (printf "Featured image of post %s" $Page.Title)
                 "loading" (index $imageLoading "loading")
-                "sizes" "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px"
+                "sizes" $featuredImageSizes
             -}}
             {{- with index $imageLoading "fetchpriority" -}}
                 {{- $imageAttributes = merge $imageAttributes (dict "fetchpriority" .) -}}
             {{- end -}}
             {{ partial "helper/responsive-image" (dict
                 "Resource" $image.Resource
-                "Widths" (cond $Page.Site.Params.ImageProcessing.Content.Enabled $Page.Site.Params.ImageProcessing.Content.Widths nil)
+                "Widths" $featuredImageWidths
                 "Process" (dict
-                    "Format" $Page.Site.Params.ImageProcessing.Content.Format
-                    "Quality" $Page.Site.Params.ImageProcessing.Content.Quality
+                    "Format" $contentProcessing.Format
+                    "Quality" $contentProcessing.Quality
                 )
                 "Attributes" $imageAttributes
             ) }}

@@ -1,5 +1,7 @@
 <aside class="sidebar left-sidebar sticky {{ if .Site.Params.sidebar.compact }}compact{{ end }}">
     {{- $avatarLoading := partial "helper/performance/media-attrs" (dict "Context" . "Role" "avatar") -}}
+    {{- $contentProcessing := .Site.Params.ImageProcessing.Content | default dict -}}
+    {{- $thumbnailEnabled := default true .Site.Params.ImageProcessing.Thumbnail.Enabled -}}
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="{{ T `toggleMenu` }}">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -11,13 +13,29 @@
             {{- $avatar := partial "helper/image" (dict "Image" . "Resources" resources "Context" $) -}}
             <figure class="site-avatar">
                 <a href="{{ $.Site.Home.RelPermalink }}">
-                    <img src="{{ $avatar.Permalink }}" 
-                        width="{{ $avatar.Width }}"
-                        height="{{ $avatar.Height }}"
-                        class="site-logo"
-                        loading="{{ index $avatarLoading "loading" }}"
-                        {{ with index $avatarLoading "fetchpriority" }}fetchpriority="{{ . }}"{{ end }}
-                        alt="Avatar">
+                    {{- $avatarAttributes := dict
+                        "src" $avatar.Permalink
+                        "width" 120
+                        "height" 120
+                        "sizes" "(max-width: 1535px) 100px, 120px"
+                        "class" "site-logo"
+                        "alt" "Avatar"
+                        "loading" (index $avatarLoading "loading")
+                    -}}
+                    {{- with index $avatarLoading "fetchpriority" -}}
+                        {{- $avatarAttributes = merge $avatarAttributes (dict "fetchpriority" .) -}}
+                    {{- end -}}
+                    {{ partial "helper/thumbnail-image" (dict
+                        "Resource" $avatar.Resource
+                        "Width" 120
+                        "Height" 120
+                        "Resize" $thumbnailEnabled
+                        "Process" (dict
+                            "Format" $contentProcessing.Format
+                            "Quality" $contentProcessing.Quality
+                        )
+                        "Attributes" $avatarAttributes
+                    ) }}
                 </a>
                 {{ with $.Site.Params.sidebar.emoji }}
                     <span class="emoji">{{ . }}</span>
