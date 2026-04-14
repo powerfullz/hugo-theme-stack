@@ -4,11 +4,8 @@
 {{- $contentProcessing := $Page.Site.Params.ImageProcessing.Content | default dict -}}
 {{- $defaultContentWidths := slice 360 480 640 768 960 1200 1440 1680 2048 2400 -}}
 {{- $contentWidths := default $defaultContentWidths $contentProcessing.Widths -}}
-{{- $defaultListSizes := "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) calc(100vw - 260px), (max-width: 1279px) calc(100vw - 320px), 760px" -}}
-{{- $defaultDetailSizes := "(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) calc(100vw - 40px), (max-width: 1279px) calc(100vw - 280px), 960px" -}}
-{{- $configuredListSizes := or (index $contentProcessing "listSizes") (index $contentProcessing "listsizes") -}}
-{{- $configuredDetailSizes := or (index $contentProcessing "detailSizes") (index $contentProcessing "detailsizes") -}}
-{{- $featuredImageSizes := cond $IsList (default $defaultListSizes $configuredListSizes) (default $defaultDetailSizes $configuredDetailSizes) -}}
+{{- $featuredImageSizeKind := cond $IsList "list" "detail" -}}
+{{- $featuredImageSizes := partial "helper/image-sizes" (dict "Context" $Page "Kind" $featuredImageSizeKind) -}}
 {{- $featuredImageWidths := false -}}
 {{- if $contentProcessing.Enabled -}}
     {{- $featuredImageWidths = $contentWidths -}}
