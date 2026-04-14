@@ -22,7 +22,7 @@ interface MermaidConfig {
 
 type Scheme = 'light' | 'dark';
 
-const PANZOOM_CDN = "https://testingcf.jsdelivr.net/npm/panzoom@9.4.4/+esm";
+const PANZOOM_CDN = "https://unpkg.com/panzoom@9.4.4/+esm";
 
 function getScheme(): Scheme {
     return document.documentElement.dataset.scheme === 'dark' ? 'dark' : 'light';
