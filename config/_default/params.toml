@@ -154,7 +154,7 @@ SortBy         = "default"
         serverURL    = ""
         lang         = ""
         pageview     = ""
-        emoji        = ["https://fastly.jsdelivr.net/npm/@waline/emojis@1.0.1/weibo"]
+        emoji        = ["https://cdn.jsdelivr.net/npm/@waline/emojis@1.0.1/weibo"]
         requiredMeta = ["name", "email", "url"]
 
         [comments.waline.locale]
