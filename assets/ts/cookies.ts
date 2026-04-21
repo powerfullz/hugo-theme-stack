@@ -1,3 +1,5 @@
+import './commentsConsent';
+
 interface ConsentState {
     necessary: boolean;
     analytics: boolean;

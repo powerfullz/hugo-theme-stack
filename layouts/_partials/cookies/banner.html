@@ -66,3 +66,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    {
+        const cookie = document.cookie.match(/(^|;)\s*cookie_consent=([^;]+)/);
+        if (!cookie) {
+            const banner = document.getElementById('cookie-consent-banner');
+            banner?.removeAttribute('aria-hidden');
+        }
+    }
+</script>

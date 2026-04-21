@@ -17,10 +17,6 @@
         <template id="comments-template">
             {{ partial (printf "comments/provider/%s" .Site.Params.comments.provider) . }}
         </template>
-        {{- $opts := dict "minify" hugo.IsProduction -}}
-        {{/* commentsConsent.ts is intentionally built and loaded here as an independent entry */}}
-        {{- $commentsScript := resources.Get "ts/commentsConsent.ts" | js.Build $opts | fingerprint -}}
-        <script type="text/javascript" src="{{ $commentsScript.RelPermalink }}" defer></script>
     {{- else -}}
         {{/* No consent required - load comments normally */}}
         {{ partial (printf "comments/provider/%s" .Site.Params.comments.provider) . }}
