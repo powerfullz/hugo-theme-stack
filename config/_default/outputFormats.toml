@@ -1,0 +1,6 @@
+[HEADERS]
+    mediaType       = "text/headers"
+
+    baseName        = "_headers"
+    isPlainText     = true
+    notAlternative  = true

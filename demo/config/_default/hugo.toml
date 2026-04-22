@@ -20,3 +20,6 @@ hasCJKLanguage         = false
 
 [services.disqus]
     shortname = "hugo-theme-stack"
+
+[outputs]
+    home = ["HTML", "RSS", "HEADERS"]
