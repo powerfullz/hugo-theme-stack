@@ -1,3 +1,9 @@
 {{- $sass := resources.Get "scss/style.scss" -}}
 {{- $style := $sass | toCSS | minify | resources.Fingerprint "sha256" -}}
+
+{{- /* Publish self-hosted Poppins font files so CSS url() references resolve correctly */ -}}
+{{- range resources.Match "fonts/poppins/*.woff2" -}}
+    {{- .Publish -}}
+{{- end -}}
+
 {{- return $style -}}
