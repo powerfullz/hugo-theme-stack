@@ -48,6 +48,7 @@ class Search {
     private container: HTMLDivElement;
     private imageLoading: 'lazy' | 'eager';
 
+
     constructor({ form, input, list, resultTitle, resultTitleTemplate }: {
         form: HTMLFormElement,
         input: HTMLInputElement,
@@ -66,11 +67,9 @@ class Search {
         /// Check if there's already value in the search input
         if (this.input.value.trim() !== '') {
             this.doSearch(this.input.value.split(' '));
-        }
-        else {
+        } else {
             this.handleQueryString();
         }
-
         this.bindQueryStringChange();
         this.bindSearchForm();
     }

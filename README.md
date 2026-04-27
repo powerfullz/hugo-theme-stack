@@ -14,12 +14,12 @@ Use this template: [CaiJimmy/hugo-theme-stack-starter](https://github.com/CaiJim
 
 ## Demo
 
-Check [demo.stack.l3zc.com](https://demo.stack.cai.im)
+Check [demo.stack.l3zc.com](https://demo.stack.l3zc.com)
 
 ## Documentation
 
-- [English](https://stack.cai.im)
-- [中文](https://stack.cai.im/zh)
+- [English](https://stack.l3zc.com)
+- [中文](https://stack.l3zc.com/zh)
 
 ## Copyright
 

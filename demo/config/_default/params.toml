@@ -35,12 +35,3 @@ favicon        = "img/avatar.png"
     [comments.artalk]
         serverUrl = "https://comment.l3zc.com"
         site      = "ExampleSite"
-
-# GDPR Cookie Consent Configuration
-# When enabled, analytics and functional cookies require user consent
-[cookies]
-    enabled = true
-
-    [cookies.categories]
-        analytics  = true
-        functional = true

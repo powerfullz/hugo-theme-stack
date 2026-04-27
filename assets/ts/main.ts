@@ -5,14 +5,15 @@
 *   @website: https://jimmycai.com
 *   @link: https://github.com/CaiJimmy/hugo-theme-stack
 */
-import menu from './menu';
-import createElement from './createElement';
-import StackColorScheme from './colorScheme';
-import { setupScrollspy } from './scrollspy';
-import { setupSmoothAnchors } from './smoothAnchors';
-import { setupPaginationJump } from './pagination';
-import { setupFootnotePopover } from './footnotePopover';
-import { setupMobileToc } from './mobileToc';
+import menu from 'ts/menu';
+import createElement from 'ts/createElement';
+import StackColorScheme from 'ts/colorScheme';
+import { setupScrollspy } from 'ts/scrollspy';
+import { setupSmoothAnchors } from 'ts/smoothAnchors';
+import { setupPaginationJump } from 'ts/pagination';
+import { setupCodeCopy } from 'ts/code-copy';
+import { setupFootnotePopover } from 'ts/footnotePopover';
+import { setupMobileToc } from 'ts/mobileToc';
 
 let Stack = {
     init: () => {
@@ -21,47 +22,16 @@ let Stack = {
          */
         menu();
 
+        setupCodeCopy();
+        setupPaginationJump();
+        setupMobileToc();
+
         const articleContent = document.querySelector('.article-content') as HTMLElement;
         if (articleContent) {
             setupSmoothAnchors();
             setupScrollspy();
             setupFootnotePopover(articleContent);
         }
-
-        setupPaginationJump();
-        setupMobileToc();
-
-        /**
-         * Add copy button to code block
-        */
-        const highlights = document.querySelectorAll('.article-content div.highlight');
-        const copyText = `Copy`,
-            copiedText = `Copied!`;
-
-        highlights.forEach(highlight => {
-            const copyButton = document.createElement('button');
-            copyButton.innerHTML = copyText;
-            copyButton.classList.add('copyCodeButton');
-            highlight.appendChild(copyButton);
-
-            const codeBlock = highlight.querySelector('code[data-lang]');
-            if (!codeBlock) return;
-
-            copyButton.addEventListener('click', () => {
-                navigator.clipboard.writeText(codeBlock.textContent)
-                    .then(() => {
-                        copyButton.textContent = copiedText;
-
-                        setTimeout(() => {
-                            copyButton.textContent = copyText;
-                        }, 1000);
-                    })
-                    .catch(err => {
-                        alert(err)
-                        console.log('Something went wrong', err);
-                    });
-            });
-        });
 
         new StackColorScheme(document.getElementById('dark-mode-toggle')!);
     }

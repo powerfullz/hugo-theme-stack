@@ -18,33 +18,34 @@
         {{- /* Previous page button */ -}}
         <a
             class="page-link {{ if not $pag.Prev }}disabled{{ end }}"
-            {{- if $pag.Prev -}}href="{{ $pag.Prev.URL }}"{{- end -}}
-            aria-label="Previous page"
+            {{- if $pag.Prev -}}
+                href="{{ $pag.Prev.URL }}"
+                aria-label="Previous page"
+            {{- end -}}
             {{- if not $pag.Prev -}}aria-disabled="true"{{- end -}}>
             {{ partial "helper/icon" "chevron-left" }}
         </a>
 
         {{- /* Page numbers logic */ -}}
-        {{- /* Compute the visible middle window [start, end] (excluding first and last page) so that */ -}}
-        {{- /* exactly 3 middle pages are shown; overall visible controls (prev/next, ellipsis, etc.) may exceed 5. */ -}}
+        {{- /* Compute visible middle window [start, end] (excluding first and last page). */ -}}
+        {{- /* Keep 3 middle pages when possible; if total <= 5, show all middle pages. */ -}}
         {{- $curr := $pag.PageNumber -}}
         {{- $total := $pag.TotalPages -}}
-        {{- $start := sub $curr 1 -}}
-        {{- $end := add $curr 1 -}}
-        {{- /* Clamp near the start */ -}}
-        {{- if le $start 1 -}}
-            {{- $start = 2 -}}
-            {{- $end = 4 -}}
-        {{- end -}}
-        {{- /* Clamp near the end */ -}}
-        {{- if ge $end $total -}}
-            {{- $end = sub $total 1 -}}
-            {{- $start = sub $total 3 -}}
-        {{- end -}}
-        {{- /* When total pages <= 5 just show all middle pages */ -}}
-        {{- if le $total 5 -}}
-            {{- $start = 2 -}}
-            {{- $end = sub $total 1 -}}
+        {{- $middleMinPage := 2 -}}
+        {{- $middleMaxPage := sub $total 1 -}}
+        {{- $start := $middleMinPage -}}
+        {{- $end := $middleMaxPage -}}
+
+        {{- if gt $total 5 -}}
+            {{- $start = sub $curr 1 -}}
+            {{- if lt $start $middleMinPage -}}
+                {{- $start = $middleMinPage -}}
+            {{- end -}}
+            {{- $end = add $start 2 -}}
+            {{- if gt $end $middleMaxPage -}}
+                {{- $end = $middleMaxPage -}}
+                {{- $start = sub $end 2 -}}
+            {{- end -}}
         {{- end -}}
 
         {{- /* First page */ -}}
@@ -57,19 +58,21 @@
         </a>
 
         {{- /* Left ellipsis - show if the window start is beyond page 2 */ -}}
-        {{- if gt $start 2 -}}
-            <span class="page-link pagination-link pagination-jump-trigger">
+        {{- if gt $start $middleMinPage -}}
+            <button
+                type="button"
+                class="page-link pagination-link pagination-jump-trigger"
+                aria-label="{{ i18n "pagination.jumpToPage" | default "Jump to page" }}">
                 {{ partial "helper/icon" "dots" }}
-            </span>
+            </button>
         {{- end -}}
 
         {{- /* Middle pages - show pages in [start, end] */ -}}
         {{- range $pag.Pagers -}}
             {{- if and (ge .PageNumber $start) (le .PageNumber $end) -}}
-                {{- $diff := sub .PageNumber $curr -}}
-                {{- if lt $diff 0 -}}{{- $diff = mul $diff -1 -}}{{- end -}}
+                {{- $hideOnMobile := and (ne .PageNumber $curr) (ne .PageNumber (sub $curr 1)) (ne .PageNumber (add $curr 1)) -}}
                 <a
-                    class="page-link {{ if eq .PageNumber $curr }}current{{ end }} {{ if gt $diff 1 }}hide-on-mobile{{ end }}"
+                    class="page-link {{ if eq .PageNumber $curr }}current{{ end }} {{ if $hideOnMobile }}hide-on-mobile{{ end }}"
                     {{- if eq .PageNumber $curr -}}aria-current="page"{{- end -}}
                     href="{{ .URL }}"
                     aria-label="Page {{ .PageNumber }}">
@@ -79,10 +82,13 @@
         {{- end -}}
 
         {{- /* Right ellipsis - show if the window end is before the second-to-last page */ -}}
-        {{- if lt $end (sub $total 1) -}}
-            <span class="page-link pagination-link pagination-jump-trigger">
+        {{- if lt $end $middleMaxPage -}}
+            <button
+                type="button"
+                class="page-link pagination-link pagination-jump-trigger"
+                aria-label="{{ i18n "pagination.jumpToPage" | default "Jump to page" }}">
                 {{ partial "helper/icon" "dots" }}
-            </span>
+            </button>
         {{- end -}}
 
         {{- /* Last page */ -}}
@@ -97,8 +103,10 @@
         {{- /* Next page button */ -}}
         <a
             class="page-link {{ if not $pag.Next }}disabled{{ end }}"
-            {{- if $pag.Next -}}href="{{ $pag.Next.URL }}"{{- end -}}
-            aria-label="Next page"
+            {{- if $pag.Next -}}
+                href="{{ $pag.Next.URL }}"
+                aria-label="Next page"
+            {{- end -}}
             {{- if not $pag.Next -}}aria-disabled="true"{{- end -}}>
             {{ partial "helper/icon" "chevron-right" }}
         </a>

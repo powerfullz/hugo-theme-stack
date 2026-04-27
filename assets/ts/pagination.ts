@@ -1,5 +1,5 @@
 export function setupPaginationJump() {
-    const triggers = document.querySelectorAll('.pagination-jump-trigger');
+    const triggers = document.querySelectorAll<HTMLButtonElement>('.pagination-jump-trigger');
     const dialog = document.getElementById('pagination-jump-dialog') as HTMLDialogElement;
 
     if (!dialog || triggers.length === 0) return;
@@ -7,8 +7,12 @@ export function setupPaginationJump() {
     const nav = document.querySelector('.pagination') as HTMLElement;
     const input = document.getElementById('pagination-jump-input') as HTMLInputElement;
     const form = dialog.querySelector('.pagination-jump-form') as HTMLFormElement;
+    const supportsDialog = typeof dialog.showModal === 'function' && typeof dialog.close === 'function';
+    let lastFocusedElement: HTMLElement | null = null;
 
-    const closeDialog = () => {
+    if (!supportsDialog || !nav || !input || !form) return;
+
+    const closeDialog = (): void => {
         if (dialog.classList.contains('closing')) return;
         dialog.classList.add('closing');
         dialog.addEventListener(
@@ -16,6 +20,9 @@ export function setupPaginationJump() {
             () => {
                 dialog.classList.remove('closing');
                 dialog.close();
+                if (lastFocusedElement?.isConnected) {
+                    lastFocusedElement.focus();
+                }
             },
             { once: true }
         );
@@ -24,6 +31,8 @@ export function setupPaginationJump() {
     // Open dialog when triggers are clicked
     triggers.forEach((trigger) => {
         trigger.addEventListener('click', () => {
+            const activeElement = document.activeElement;
+            lastFocusedElement = activeElement instanceof HTMLElement ? activeElement : trigger;
             dialog.showModal();
             input.value = '';
             input.focus();
