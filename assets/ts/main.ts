@@ -5,15 +5,15 @@
 *   @website: https://jimmycai.com
 *   @link: https://github.com/CaiJimmy/hugo-theme-stack
 */
-import menu from 'ts/menu';
-import createElement from 'ts/createElement';
-import StackColorScheme from 'ts/colorScheme';
-import { setupScrollspy } from 'ts/scrollspy';
-import { setupSmoothAnchors } from 'ts/smoothAnchors';
-import { setupPaginationJump } from 'ts/pagination';
-import { setupCodeCopy } from 'ts/code-copy';
-import { setupFootnotePopover } from 'ts/footnotePopover';
-import { setupMobileToc } from 'ts/mobileToc';
+import menu from './menu';
+import createElement from './createElement';
+import StackColorScheme from './colorScheme';
+import { setupScrollspy } from './scrollspy';
+import { setupSmoothAnchors } from './smoothAnchors';
+import { setupPaginationJump } from './pagination';
+import { setupCodeCopy } from './code-copy';
+import { setupFootnotePopover } from './footnotePopover';
+import { setupMobileToc } from './mobileToc';
 
 let Stack = {
     init: () => {
