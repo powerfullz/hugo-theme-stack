@@ -1,7 +1,4 @@
-declare const mermaid: {
-    initialize(config: Record<string, any>): void;
-    run(options: { nodes: HTMLElement[] }): Promise<void>;
-};
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.14.0/dist/mermaid.esm.min.mjs';
 
 interface MermaidConfig {
     transparentBackground?: boolean;
