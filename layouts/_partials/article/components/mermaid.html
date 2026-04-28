@@ -4,19 +4,18 @@
 <div class="mermaid-modal" id="mermaid-modal">
     <div class="mermaid-modal-header">
         <div class="mermaid-modal-controls">
-            <button data-zoom="-1">− Zoom Out</button>
-            <button data-zoom="0">Reset (100%)</button>
-            <button data-zoom="1">+ Zoom In</button>
-            <button data-zoom="fit">Fit to Screen</button>
+            <button data-zoom="-1">− {{ i18n "article.mermaid.zoomOut" | default "Zoom Out" }}</button>
+            <button data-zoom="0">{{ i18n "article.mermaid.reset" | default "Reset (100%)" }}</button>
+            <button data-zoom="1">+ {{ i18n "article.mermaid.zoomIn" | default "Zoom In" }}</button>
+            <button data-zoom="fit">{{ i18n "article.mermaid.fitToScreen" | default "Fit to Screen" }}</button>
         </div>
-        <button class="mermaid-modal-close" id="mermaid-modal-close">✕ Close (Esc)</button>
+        <button class="mermaid-modal-close" id="mermaid-modal-close">✕ {{ i18n "article.mermaid.close" | default "Close (Esc)" }}</button>
     </div>
     <div class="mermaid-modal-body" id="mermaid-modal-body">
         <div class="mermaid-modal-content" id="mermaid-modal-content"></div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@11.14.0/dist/mermaid.min.js"></script>
 {{- $opts := dict "minify" hugo.IsProduction "format" "esm" -}}
 {{- $script := resources.Get "ts/mermaid.ts" | js.Build $opts -}}
 {{- $jsConfig := dict
