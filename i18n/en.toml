@@ -33,6 +33,13 @@ darkMode   = "Dark Mode"
         copy   = "Copy"
         copied = "Copied!"
 
+    [article.mermaid]
+        zoomOut     = "Zoom Out"
+        reset       = "Reset (100%)"
+        zoomIn      = "Zoom In"
+        fitToScreen = "Fit to Screen"
+        close       = "Close (Esc)"
+
 [notFound]
     title    = "Not Found"
     subtitle = "This page does not exist"

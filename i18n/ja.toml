@@ -24,6 +24,13 @@ darkMode   = "ダークモード"
         copy   = "コピー"
         copied = "コピーしました!"
 
+    [article.mermaid]
+        zoomOut     = "縮小"
+        reset       = "リセット (100%)"
+        zoomIn      = "拡大"
+        fitToScreen = "画面に合わせる"
+        close       = "閉じる (Esc)"
+
 [notFound]
     title    = "404 Not Found"
     subtitle = "指定されたページは存在しません。"

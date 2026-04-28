@@ -24,6 +24,13 @@ darkMode   = "深色模式"
         copy   = "複製"
         copied = "已複製！"
 
+    [article.mermaid]
+        zoomOut     = "縮小"
+        reset       = "重置 (100%)"
+        zoomIn      = "放大"
+        fitToScreen = "適應螢幕"
+        close       = "關閉 (Esc)"
+
 [notFound]
     title    = "找不到頁面"
     subtitle = "本頁面並不存在"
