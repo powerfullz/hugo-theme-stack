@@ -30,6 +30,7 @@ darkMode   = "ダークモード"
         zoomIn      = "拡大"
         fitToScreen = "画面に合わせる"
         close       = "閉じる (Esc)"
+        expand      = "展開"
 
 [notFound]
     title    = "404 Not Found"

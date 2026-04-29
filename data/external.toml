@@ -17,3 +17,7 @@ Cactus = [
 [Artalk]
     Style  = "https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css"
     Script = "https://cdn.jsdelivr.net/npm/artalk@2.9.1/+esm"
+
+[Mermaid]
+    Core    = "https://cdn.jsdelivr.net/npm/mermaid@11.14.0/dist/mermaid.esm.min.mjs"
+    Panzoom = "https://cdn.jsdelivr.net/npm/panzoom@9.4.4/+esm"

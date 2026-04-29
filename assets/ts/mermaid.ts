@@ -1,4 +1,7 @@
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.14.0/dist/mermaid.esm.min.mjs';
+interface MermaidApi {
+    initialize(config: Record<string, unknown>): void;
+    run(opts: { nodes: HTMLElement[] }): Promise<void>;
+}
 
 interface MermaidConfig {
     transparentBackground?: boolean;
@@ -15,11 +18,22 @@ interface MermaidConfig {
     fontFamily?: string;
     curve?: string;
     logLevel?: number;
+    expandLabel: string;
 }
 
-type Scheme = 'light' | 'dark';
+type PanzoomInstance = {
+    zoomAbs(x: number, y: number, scale: number): void;
+    moveTo(x: number, y: number): void;
+    smoothZoom(x: number, y: number, scale: number): void;
+    dispose(): void;
+};
 
-const PANZOOM_CDN = 'https://cdn.jsdelivr.net/npm/panzoom@9.4.4/+esm';
+type PanzoomFactory = (
+    el: HTMLElement,
+    opts?: Record<string, unknown>,
+) => PanzoomInstance;
+
+type Scheme = 'light' | 'dark';
 
 function getScheme(): Scheme {
     return document.documentElement.dataset.scheme === 'dark' ? 'dark' : 'light';
@@ -51,6 +65,7 @@ function buildBaseConfig(cfg: MermaidConfig): Record<string, any> {
 }
 
 function initWithTheme(
+    mermaid: MermaidApi,
     scheme: Scheme,
     themes: Record<Scheme, ReturnType<typeof buildThemeConfig>>,
     baseConfig: Record<string, any>,
@@ -63,7 +78,7 @@ function initWithTheme(
     });
 }
 
-async function renderOffscreen(sources: string[]): Promise<string[]> {
+async function renderOffscreen(mermaid: MermaidApi, sources: string[]): Promise<string[]> {
     const container = document.createElement('div');
     container.className = 'mermaid-offscreen';
     document.body.appendChild(container);
@@ -79,39 +94,37 @@ async function renderOffscreen(sources: string[]): Promise<string[]> {
     return results;
 }
 
-function setupWrappers(elements: NodeListOf<HTMLElement>) {
+function setupWrappers(elements: NodeListOf<HTMLElement>, expandLabel: string) {
     elements.forEach((el, idx) => {
         const wrapper = document.createElement('div');
         wrapper.className = 'mermaid-wrapper';
         el.parentNode!.insertBefore(wrapper, el);
         wrapper.appendChild(el);
-        wrapper.insertAdjacentHTML(
-            'beforeend',
-            `<div class="mermaid-toolbar"><button data-idx="${idx}" title="Open fullscreen with pan/zoom">⛶ Expand</button></div>`,
-        );
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'mermaid-toolbar';
+        const btn = document.createElement('button');
+        btn.dataset.idx = String(idx);
+        btn.title = 'Open fullscreen with pan/zoom';
+        btn.textContent = `⛶ ${expandLabel}`;
+        toolbar.appendChild(btn);
+        wrapper.appendChild(toolbar);
     });
 }
 
-function setupModal(elements: NodeListOf<HTMLElement>) {
-    const modal = document.getElementById('mermaid-modal')!;
-    const modalBody = document.getElementById('mermaid-modal-body')!;
-    const modalContent = document.getElementById('mermaid-modal-content')!;
-    let pzInstance: any = null;
-    let panzoom: any = null;
-
-    const loadPanzoom = async () => {
-        if (!panzoom) {
-            const url = PANZOOM_CDN;
-            panzoom = (await import(url)).default;
-        }
-        return panzoom;
-    };
+function setupModal(elements: NodeListOf<HTMLElement>, panzoom: PanzoomFactory) {
+    const modal = document.getElementById('mermaid-modal');
+    const modalBody = document.getElementById('mermaid-modal-body');
+    const modalContent = document.getElementById('mermaid-modal-content');
+    if (!modal || !modalBody || !modalContent) return;
+    let pzInstance: PanzoomInstance | null = null;
 
     const fitToScreen = () => {
         const wrapper = modalContent.querySelector('.mermaid-panzoom-container') as HTMLElement | null;
         if (!pzInstance || !wrapper) return;
         const w = +(wrapper.dataset.nativeWidth ?? 0);
         const h = +(wrapper.dataset.nativeHeight ?? 0);
+        if (!w || !h) return;
         const rect = modalContent.getBoundingClientRect();
         const scale = Math.min((rect.width - 60) / w, (rect.height - 60) / h);
         pzInstance.zoomAbs(0, 0, scale);
@@ -126,7 +139,8 @@ function setupModal(elements: NodeListOf<HTMLElement>) {
         modalContent.innerHTML = '';
     };
 
-    const openModal = async (idx: number) => {
+    const openModal = (idx: number) => {
+        if (idx < 0 || idx >= elements.length) return;
         const svg = elements[idx].querySelector('svg');
         if (!svg) return;
 
@@ -149,9 +163,8 @@ function setupModal(elements: NodeListOf<HTMLElement>) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        const pz = await loadPanzoom();
         setTimeout(() => {
-            pzInstance = pz(wrapper, { maxZoom: 10, minZoom: 0.05, bounds: false });
+            pzInstance = panzoom(wrapper, { maxZoom: 10, minZoom: 0.05, bounds: false });
             fitToScreen();
             wrapper.classList.add('ready');
         }, 50);
@@ -173,14 +186,14 @@ function setupModal(elements: NodeListOf<HTMLElement>) {
         }
     });
 
-    document.getElementById('mermaid-modal-close')!.addEventListener('click', closeModal);
+    document.getElementById('mermaid-modal-close')?.addEventListener('click', closeModal);
     modalBody.addEventListener('click', (e) => { if (e.target === modalBody) closeModal(); });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
 }
 
-export async function initMermaidPage(config: MermaidConfig) {
+export async function initMermaidPage(mermaid: MermaidApi, panzoom: PanzoomFactory, config: MermaidConfig) {
     const elements = document.querySelectorAll('.mermaid') as NodeListOf<HTMLElement>;
     if (!elements.length) return;
 
@@ -198,12 +211,12 @@ export async function initMermaidPage(config: MermaidConfig) {
         if (perDiagramTransparent[i]) el.querySelector('svg')?.style.setProperty('background', 'transparent');
     };
 
-    setupWrappers(elements);
-    setupModal(elements);
+    setupWrappers(elements, config.expandLabel);
+    setupModal(elements, panzoom);
 
     // Initial render
     const scheme = getScheme();
-    initWithTheme(scheme, themes, baseConfig);
+    initWithTheme(mermaid, scheme, themes, baseConfig);
     await mermaid.run({ nodes: Array.from(elements) });
     elements.forEach((el, i) => {
         el.style.visibility = '';
@@ -216,16 +229,16 @@ export async function initMermaidPage(config: MermaidConfig) {
     const idle = window.requestIdleCallback ?? ((fn: IdleRequestCallback) => setTimeout(fn, 1000));
     idle(() => {
         if (cache[alt].length) return;
-        initWithTheme(alt, themes, baseConfig);
-        renderOffscreen(sources).then(results => { cache[alt] = results; });
+        initWithTheme(mermaid, alt, themes, baseConfig);
+        renderOffscreen(mermaid, sources).then(results => { cache[alt] = results; });
     });
 
     // Swap cached diagrams on theme change
     window.addEventListener('onColorSchemeChange', async () => {
         const newScheme = getScheme();
         if (!cache[newScheme].length) {
-            initWithTheme(newScheme, themes, baseConfig);
-            cache[newScheme] = await renderOffscreen(sources);
+            initWithTheme(mermaid, newScheme, themes, baseConfig);
+            cache[newScheme] = await renderOffscreen(mermaid, sources);
         }
         elements.forEach((el, i) => { el.innerHTML = cache[newScheme][i]; applyTransparency(el, i); });
     });

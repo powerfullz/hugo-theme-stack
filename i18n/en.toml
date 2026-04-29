@@ -39,6 +39,7 @@ darkMode   = "Dark Mode"
         zoomIn      = "Zoom In"
         fitToScreen = "Fit to Screen"
         close       = "Close (Esc)"
+        expand      = "Expand"
 
 [notFound]
     title    = "Not Found"

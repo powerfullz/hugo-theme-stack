@@ -30,6 +30,7 @@ darkMode   = "深色模式"
         zoomIn      = "放大"
         fitToScreen = "適應螢幕"
         close       = "關閉 (Esc)"
+        expand      = "展開"
 
 [notFound]
     title    = "找不到頁面"

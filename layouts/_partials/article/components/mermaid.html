@@ -1,5 +1,8 @@
 {{- if .Store.Get "hasMermaid" -}}
 {{- $cfg := site.Params.article.mermaid | default dict -}}
+{{- $mermaidUrl := hugo.Data.external.Mermaid.Core -}}
+{{- $panzoomUrl := hugo.Data.external.Mermaid.Panzoom -}}
+{{- $expandLabel := i18n "article.mermaid.expand" | default "Expand" -}}
 
 <div class="mermaid-modal" id="mermaid-modal">
     <div class="mermaid-modal-header">
@@ -27,6 +30,7 @@
     "securityLevel"         ($cfg.securityLevel | default "strict")
     "look"                  ($cfg.look | default "classic")
     "htmlLabels"            (not (eq ($cfg.htmlLabels | default true) false))
+    "expandLabel"           $expandLabel
 -}}
 {{- with $cfg.maxTextSize }}{{ $jsConfig = merge $jsConfig (dict "maxTextSize" .) }}{{ end -}}
 {{- with $cfg.maxEdges }}{{ $jsConfig = merge $jsConfig (dict "maxEdges" .) }}{{ end -}}
@@ -35,7 +39,10 @@
 {{- with $cfg.curve }}{{ $jsConfig = merge $jsConfig (dict "curve" .) }}{{ end -}}
 {{- with $cfg.logLevel }}{{ $jsConfig = merge $jsConfig (dict "logLevel" .) }}{{ end -}}
 <script type="module">
+import mermaid from '{{ $mermaidUrl }}';
+import panzoom from '{{ $panzoomUrl }}';
 import { initMermaidPage } from '{{ $script.RelPermalink }}';
-initMermaidPage({{ $jsConfig | jsonify | safeJS }});
+
+initMermaidPage(mermaid, panzoom, {{ $jsConfig | jsonify | safeJS }});
 </script>
 {{- end -}}
