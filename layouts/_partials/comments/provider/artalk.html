@@ -14,7 +14,7 @@
 
     const artalkInstance = Artalk.init({
         el: '#Comments',
-        pageKey: '{{ $.RelPermalink }}',
+        pageKey: '{{ strings.TrimPrefix (printf "/%s/" $.Lang) $.RelPermalink }}',
         pageTitle: '{{ $.Title }}',
         server: '{{ .serverUrl }}',
         site: '{{ .site }}',
