@@ -14,7 +14,17 @@
 
     const artalkInstance = Artalk.init({
         el: '#Comments',
-        pageKey: '{{ strings.TrimPrefix (printf "/%s/" $.Lang) $.RelPermalink }}',
+        {{- /* Use language-agnostic page key: the file directory path (e.g. "post/hello-world/").
+               For page bundles, all language versions share the same directory,
+               so they share one comment thread while different articles stay separate. */ -}}
+        {{- $pageKey := "" -}}
+        {{- with $.File -}}
+            {{- $pageKey = .Dir -}}
+        {{- end -}}
+        {{- if not $pageKey -}}
+            {{- $pageKey = $.RelPermalink -}}
+        {{- end -}}
+        pageKey: '{{ $pageKey }}',
         pageTitle: '{{ $.Title }}',
         server: '{{ .serverUrl }}',
         site: '{{ .site }}',
