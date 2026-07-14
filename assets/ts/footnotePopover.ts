@@ -10,22 +10,12 @@ const SWIPE_CLOSE_THRESHOLD = 60;
 const SWIPE_DRAG_RESISTANCE = 5;
 const ANIMATION_DURATION_MS = 300;
 
-function parsePixelValue(value: string): number {
-    return Number.parseFloat(value);
-}
-
 function getRootTokenPixelValue(tokenName: string): number {
-    const rootStyle = window.getComputedStyle(document.documentElement);
-    const tokenValue = rootStyle.getPropertyValue(tokenName).trim();
-    return parsePixelValue(tokenValue);
-}
-
-function isFootnoteNavigation(href: string): boolean {
-    return href.startsWith('#fn:') || href.startsWith('#fnref:');
+    return parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue(tokenName));
 }
 
 function getFootnoteElement(articleContent: HTMLElement, href: string): HTMLElement | null {
-    if (!isFootnoteNavigation(href)) {
+    if (!href.startsWith('#fn:') && !href.startsWith('#fnref:')) {
         return null;
     }
 
@@ -39,16 +29,9 @@ function getFootnoteElement(articleContent: HTMLElement, href: string): HTMLElem
         return null;
     }
 
-    if (window.CSS && typeof window.CSS.escape === 'function') {
-        return footnotes.querySelector(`#${window.CSS.escape(targetId)}`) as HTMLElement | null;
-    }
-
-    const target = document.getElementById(targetId) as HTMLElement | null;
-    if (!target || !footnotes.contains(target)) {
-        return null;
-    }
-
-    return target;
+    const escapedId = window.CSS?.escape?.(targetId) ?? targetId;
+    const target = footnotes.querySelector(`#${escapedId}`) as HTMLElement | null;
+    return target && footnotes.contains(target) ? target : null;
 }
 
 function createPopoverContent(footnoteElement: HTMLElement): HTMLElement {
@@ -57,12 +40,8 @@ function createPopoverContent(footnoteElement: HTMLElement): HTMLElement {
 
     const clone = footnoteElement.cloneNode(true) as HTMLElement;
 
-    clone.querySelectorAll('.footnote-backref').forEach((backRefElement: Element) => {
-        backRefElement.remove();
-    });
-
-    clone.querySelectorAll('a[href^="#fnref"]').forEach((backRefElement: Element) => {
-        backRefElement.remove();
+    clone.querySelectorAll('.footnote-backref, a[href^="#fnref"]').forEach((el: Element) => {
+        el.remove();
     });
 
     while (clone.firstChild) {
@@ -155,24 +134,79 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
             activeReference = null;
         }
 
-        currentPopover.style.animation = 'none'; // clear entering animation
-        void currentPopover.offsetHeight; // trigger reflow
-        currentPopover.style.animation = ''; // remove inline style so CSS class animation applies
-        // Add closing class to trigger CSS exit animation
+        currentPopover.style.animation = 'none';
+        void currentPopover.offsetHeight;
+        currentPopover.style.animation = '';
         currentPopover.classList.add('footnote-popover--closing');
-        
-        currentPopover.addEventListener('animationend', () => {
-            if (currentPopover.parentNode) {
-                currentPopover.parentNode.removeChild(currentPopover);
+
+        const removePopover = () => currentPopover.parentNode?.removeChild(currentPopover);
+        currentPopover.addEventListener('animationend', removePopover, { once: true });
+        setTimeout(removePopover, ANIMATION_DURATION_MS);
+    };
+
+    const setupTouchGestures = (popoverEl: HTMLElement, onClose: () => void): void => {
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let isDragStartedFromHandle = false;
+
+        popoverEl.addEventListener('touchstart', (e: TouchEvent) => {
+            if (!popoverEl.classList.contains('footnote-popover--mobile')) return;
+
+            const target = e.target as HTMLElement;
+            isDragStartedFromHandle = !!target.closest('.footnote-popover__drag-handle');
+            
+            const content = popoverEl.querySelector('.footnote-popover__content');
+            const isAtTop = content && content.scrollTop === 0;
+
+            if (isDragStartedFromHandle || isAtTop) {
+                startY = e.touches[0].clientY;
+                currentY = startY;
+                isDragging = true;
+                popoverEl.style.transition = 'none';
+                popoverEl.style.animation = 'none';
             }
-        }, { once: true });
-        
-        // Fallback in case animationend doesn't fire
-        setTimeout(() => {
-            if (currentPopover.parentNode) {
-                currentPopover.parentNode.removeChild(currentPopover);
+        }, { passive: false });
+
+        popoverEl.addEventListener('touchmove', (e: TouchEvent) => {
+            if (!isDragging) return;
+            currentY = e.touches[0].clientY;
+            const deltaY = currentY - startY;
+
+            if (deltaY > 0) {
+                popoverEl.style.transform = `translateX(-50%) translateY(${deltaY}px)`;
+                if (e.cancelable && (isDragStartedFromHandle || deltaY > SWIPE_DRAG_RESISTANCE)) {
+                    e.preventDefault();
+                }
+            } else {
+                popoverEl.style.transform = `translateX(-50%) translateY(0)`;
             }
-        }, ANIMATION_DURATION_MS);
+        }, { passive: false });
+
+        const handleTouchEnd = () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const deltaY = currentY - startY;
+            popoverEl.style.transition = `transform ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+
+            if (deltaY > SWIPE_CLOSE_THRESHOLD) {
+                popoverEl.style.transform = `translateX(-50%) translateY(100%)`;
+                popoverEl.style.opacity = '0';
+                setTimeout(() => {
+                    popoverEl.parentNode?.removeChild(popoverEl);
+                }, ANIMATION_DURATION_MS);
+                onClose();
+            } else {
+                popoverEl.style.transform = '';
+                setTimeout(() => {
+                    popoverEl.style.transition = '';
+                }, ANIMATION_DURATION_MS);
+            }
+        };
+
+        popoverEl.addEventListener('touchend', handleTouchEnd);
+        popoverEl.addEventListener('touchcancel', handleTouchEnd);
     };
 
     const openPopover = (reference: HTMLAnchorElement, footnoteElement: HTMLElement): void => {
@@ -186,81 +220,13 @@ function setupFootnotePopover(articleContent: HTMLElement): void {
 
         positionPopover(reference, popover);
 
-        let startY = 0;
-        let currentY = 0;
-        let isDragging = false;
-        let isDragStartedFromHandle = false;
-
-        const handleTouchStart = (e: TouchEvent) => {
-            if (!popover || !popover.classList.contains('footnote-popover--mobile')) return;
-
-            const target = e.target as HTMLElement;
-            isDragStartedFromHandle = !!target.closest('.footnote-popover__drag-handle');
-            
-            const content = popover.querySelector('.footnote-popover__content');
-            const isAtTop = content && content.scrollTop === 0;
-
-            if (isDragStartedFromHandle || isAtTop) {
-                startY = e.touches[0].clientY;
-                currentY = startY;
-                isDragging = true;
-                popover.style.transition = 'none';
-                popover.style.animation = 'none';
+        setupTouchGestures(popover, () => {
+            popover = null;
+            if (activeReference) {
+                activeReference.setAttribute('aria-expanded', 'false');
+                activeReference = null;
             }
-        };
-
-        const handleTouchMove = (e: TouchEvent) => {
-            if (!isDragging || !popover) return;
-            currentY = e.touches[0].clientY;
-            const deltaY = currentY - startY;
-
-            if (deltaY > 0) {
-                popover.style.transform = `translateX(-50%) translateY(${deltaY}px)`;
-                if (e.cancelable && (isDragStartedFromHandle || deltaY > SWIPE_DRAG_RESISTANCE)) {
-                    e.preventDefault();
-                }
-            } else {
-                popover.style.transform = `translateX(-50%) translateY(0)`;
-            }
-        };
-
-        const handleTouchEnd = () => {
-            if (!isDragging || !popover) return;
-            isDragging = false;
-
-            const deltaY = currentY - startY;
-            popover.style.transition = `transform ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${ANIMATION_DURATION_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
-
-            if (deltaY > SWIPE_CLOSE_THRESHOLD) {
-                popover.style.transform = `translateX(-50%) translateY(100%)`;
-                popover.style.opacity = '0';
-                
-                const currentPopover = popover;
-                popover = null; // Clear the reference so closePopover doesn't interfere
-                if (activeReference) {
-                    activeReference.setAttribute('aria-expanded', 'false');
-                    activeReference = null;
-                }
-                
-                setTimeout(() => {
-                    if (currentPopover && currentPopover.parentNode) {
-                        currentPopover.parentNode.removeChild(currentPopover);
-                    }
-                }, ANIMATION_DURATION_MS);
-            } else {
-                popover.style.transform = '';
-                setTimeout(() => {
-                    if (popover) {
-                        popover.style.transition = '';
-                    }
-                }, ANIMATION_DURATION_MS);
-            }
-        };
-
-        popover.addEventListener('touchstart', handleTouchStart, { passive: false });
-        popover.addEventListener('touchmove', handleTouchMove, { passive: false });
-        popover.addEventListener('touchend', handleTouchEnd);
-        popover.addEventListener('touchcancel', handleTouchEnd);
+        });
     };
 
     references.forEach((reference: HTMLAnchorElement) => {
