@@ -275,11 +275,27 @@
     }
 
     blockquote.alert {
+        padding: 16px calc(var(--card-padding) - var(--blockquote-border-size));
+
         .alert-header {
             display: flex;
             align-items: center;
             gap: 0.5em;
             font-weight: bold;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(128, 128, 128, 0.4);
+        }
+
+        .alert-icon {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         .alert-body {
@@ -288,15 +304,27 @@
             }
         }
 
-        $alert-types: note, tip, important, warning, caution;
+        $alert-colors: (
+            note: #4da3ff,
+            tip: #3fb950,
+            important: #8457d9,
+            warning: #d29922,
+            caution: #f85149,
+        );
 
-        @each $type in $alert-types {
+        @each $type, $color in $alert-colors {
             &.alert-#{$type} {
-                border-color: var(--alert-#{$type}-color);
+                border-color: $color;
+                background: linear-gradient(
+                    to bottom,
+                    rgba($color, 0.10),
+                    rgba($color, 0.04)
+                );
                 background-color: var(--alert-#{$type}-background);
 
-                .alert-title {
+                .alert-header {
                     color: var(--alert-#{$type}-color);
+                    border-bottom-color: rgba($color, 0.4);
                 }
             }
         }

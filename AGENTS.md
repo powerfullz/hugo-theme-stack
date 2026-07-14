@@ -101,7 +101,20 @@ Because there are no unit tests, "running a test" means successfully starting th
 
 1. **Do not assume a Node environment.** Do not try to run `npx`, `npm run build`, or `yarn`. Everything relies on `hugo`.
 2. **Always test compilation.** Before concluding a task, you MUST run the production blog build with a temporary `go.mod` replace rule (for example: `cd ../blog && go mod edit -replace=github.com/powerfullz/hugo-theme-stack/v2=../hugo-theme-stack && hugo --gc --minify && go mod edit -dropreplace=github.com/powerfullz/hugo-theme-stack/v2`) to guarantee your changes do not break the Hugo build pipeline. If the production blog is unavailable, fall back to the demo site build (`cd demo && hugo --gc --minify --themesDir=../..`). Pay special attention to Go template syntax errors or missing SCSS variables.
-3. **UI Testing with Playwright MCP.** When verifying layout, CSS, or interactive features, you should use the Playwright MCP. First, start a local development server (`./run.sh` in the `demo` directory or the blog directory) in the background. Then, use the Playwright MCP tools to navigate to `http://localhost:1313`, interact with the page, take snapshots, and verify visual correctness. **Crucially**, when you are finished testing, make sure to find the running Hugo process (`jobs` or `ps -aux | grep hugo`) and `kill` it so it doesn't run indefinitely in the background.
+3. **UI Testing with Playwright MCP.** When verifying layout, CSS, or interactive features, you should use the Playwright MCP. First, start a local development server (`./run.sh` in the `demo` directory or the blog directory) in the background. Then, use the Playwright MCP tools to navigate to `http://localhost:1313`, interact with the page, take snapshots, and verify visual correctness. **Crucially**, when you are finished testing, make sure to kill the running Hugo process so it doesn't run indefinitely in the background.
+   - **DO NOT use** `pkill -f "hugo server"` — the `-f` flag matches the full command line and can match grep itself or shell pipeline processes, causing hangs.
+   - **DO NOT use** `pgrep -f "hugo" | xargs kill -9` — if `pgrep` returns no results, `xargs kill -9` waits on stdin and hangs.
+   - **Use one of these safe methods:**
+     ```bash
+     # Method 1: Exact process name match (recommended)
+     pkill -x hugo 2>/dev/null
+
+     # Method 2: Kill by PID (if you recorded it when starting)
+     kill <PID> 2>/dev/null
+
+     # Method 3: Subshell with null guard
+     kill $(pgrep -f "hugo server") 2>/dev/null
+     ```
 4. **Respect existing conventions.** Mimic the surrounding code's styling. Do not introduce large third-party libraries unless explicitly instructed to do so. Keep the theme lightweight.
 5. **Target the correct file.** If fixing a styling issue, look in `assets/scss/`. If fixing a layout structure, look in `layouts/`. If modifying client-side behavior, edit `assets/ts/`.
 6. **Adjacent Upstream Repository:** You may be asked to backport or submit commits to the upstream repository located at `../hugo-theme-stack-upstream`. **DO NOT** submit, push, or modify the adjacent repository unless explicitly instructed to do so by the user. If instructed, you can transfer commits using `git format-patch` and `git am`.

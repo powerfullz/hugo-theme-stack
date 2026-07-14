@@ -1,11 +1,9 @@
 {{ if eq .Type "alert" }}
     {{- $type := .AlertType -}}
-    {{- $icons := site.Params.article.alertIcon -}}
-    {{- $icon := index $icons $type -}}
     <blockquote class="alert alert-{{ $type }}">
         <div class="alert-header">
             <span class="alert-icon">
-                {{- $icon -}}
+                {{- partial "helper/icon" (printf "alert-%s" $type) -}}
             </span>
             <span class="alert-title">
                 {{- with .AlertTitle -}}
