@@ -1,6 +1,6 @@
 import { scrollToAnchorHref } from './smoothAnchors';
 
-const FOOTNOTE_REFERENCE_QUERY = 'sup.footnote-ref a, sup[id^="fnref:"] > a.footnote-ref, sup[id^="fnref:"] > a[href^="#fn:"]';
+const FOOTNOTE_REFERENCE_QUERY = 'sup.footnote-ref a, sup[id^="fnref"] > a.footnote-ref, sup[id^="fnref"] > a[href^="#fn:"]';
 const FOOTNOTE_CONTAINER_QUERY = '.footnotes';
 const FOOTNOTE_POPOVER_VIEWPORT_PADDING_TOKEN = '--footnote-popover-viewport-padding';
 const FOOTNOTE_POPOVER_OFFSET_TOKEN = '--footnote-popover-offset';
@@ -61,7 +61,7 @@ function createPopoverContent(footnoteElement: HTMLElement): HTMLElement {
         backRefElement.remove();
     });
 
-    clone.querySelectorAll('a[href^="#fnref:"]').forEach((backRefElement: Element) => {
+    clone.querySelectorAll('a[href^="#fnref"]').forEach((backRefElement: Element) => {
         backRefElement.remove();
     });
 
