@@ -14,6 +14,7 @@ import { setupPaginationJump } from './pagination';
 import { setupCodeCopy } from './code-copy';
 import { setupFootnotePopover } from './footnotePopover';
 import { setupMobileToc } from './mobileToc';
+import { setupGithubRepo } from './github-repo';
 
 let Stack = {
     init: () => {
@@ -25,6 +26,7 @@ let Stack = {
         setupCodeCopy();
         setupPaginationJump();
         setupMobileToc();
+        setupGithubRepo();
 
         const articleContent = document.querySelector('.article-content') as HTMLElement;
         if (articleContent) {

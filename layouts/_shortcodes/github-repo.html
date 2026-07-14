@@ -1,0 +1,25 @@
+{{- $repo := .Get 0 -}}
+<div class="github-repo-card" data-repo="{{ $repo }}" aria-busy="true">
+    <div class="github-repo-card__header">
+        {{ partial "helper/icon" "brand-github" }}
+        <h3 class="github-repo-card__name">
+            <a data-github-repo-name href="https://github.com/{{ $repo }}" target="_blank" rel="noopener noreferrer">{{ $repo }}</a>
+        </h3>
+    </div>
+    <p class="github-repo-card__description" data-github-repo-description hidden></p>
+    <div class="github-repo-card__meta">
+        <span class="github-repo-card__stat" data-github-repo-language hidden>
+            <span class="github-repo-card__language-dot" data-github-repo-language-dot></span>
+            <span data-github-repo-language-name></span>
+        </span>
+        <span class="github-repo-card__stat">
+            {{ partial "helper/icon" "star" }}
+            <span data-github-repo-stars></span>
+        </span>
+        <span class="github-repo-card__stat">
+            {{ partial "helper/icon" "git-fork" }}
+            <span data-github-repo-forks></span>
+        </span>
+    </div>
+    <p class="github-repo-card__error-msg" data-github-repo-error hidden></p>
+</div>
