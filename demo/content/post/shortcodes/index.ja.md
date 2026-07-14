@@ -95,6 +95,19 @@ GitLab からスニペットを埋め込みます。
 ```
 
 
+## GitHub リポジトリ
+
+`github-repo` ショートコードは、リポジトリの説明、主要な言語、スター数、フォーク数を表示します。
+
+{{< github-repo "CaiJimmy/hugo-theme-stack" >}}
+
+### 使い方
+
+```markdown
+{{</* github-repo "owner/repository" */>}}
+```
+
+
 ## 図表 (Diagrams)
 
 Stack は [Mermaid](https://mermaid.js.org/) 図表を標準でサポートしています。

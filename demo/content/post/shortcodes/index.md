@@ -90,6 +90,18 @@ Embed snippets from GitLab.
 {{</* gitlab 2349278 */>}}
 ```
 
+## GitHub Repository
+
+The `github-repo` shortcode displays a repository's description, primary language, star count, and fork count.
+
+{{< github-repo "CaiJimmy/hugo-theme-stack" >}}
+
+### Usage
+
+```markdown
+{{</* github-repo "owner/repository" */>}}
+```
+
 ## Diagrams
 
 Stack supports [Mermaid](https://mermaid.js.org/) diagrams out of the box.
@@ -113,5 +125,4 @@ graph TD;
     B-->D;
     C-->D;
 ```</code></pre>
-
 

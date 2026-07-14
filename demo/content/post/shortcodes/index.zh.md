@@ -89,6 +89,18 @@ Hugo 内置的 YouTube 短代码。
 {{</* gitlab 2349278 */>}}
 ```
 
+## GitHub 仓库
+
+`github-repo` 短代码会显示仓库描述、主要语言、星标数和 Fork 数。
+
+{{< github-repo "CaiJimmy/hugo-theme-stack" >}}
+
+### 用法
+
+```markdown
+{{</* github-repo "owner/repository" */>}}
+```
+
 ## 图表 (Diagrams)
 
 Stack 出箱即用地支持 [Mermaid](https://mermaid.js.org/) 图表。
