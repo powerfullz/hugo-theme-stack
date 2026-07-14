@@ -20,7 +20,7 @@
         {{- end -}}
     {{- end -}}
     {{- /* Use default language RelPermalink with language prefix stripped */ -}}
-    {{- $pageKey := strings.TrimPrefix (printf "/%s" $defaultPage.Site.LanguagePrefix) $defaultPage.RelPermalink -}}
+    {{- $pageKey := strings.TrimPrefix $defaultPage.Site.LanguagePrefix $defaultPage.RelPermalink -}}
 
     const artalkInstance = Artalk.init({
         el: '#Comments',
