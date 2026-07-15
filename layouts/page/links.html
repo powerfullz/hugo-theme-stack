@@ -17,6 +17,8 @@
 
     {{ partialCached "article/components/photoswipe" . }}
     {{ partial "article/components/mermaid" . }}
+    {{ partial "article/components/details-script" . }}
+    {{ partial "article/components/github-repo-script" . }}
 
     {{- $opts := dict "minify" hugo.IsProduction -}}
     {{- $linksScript := resources.Get "ts/links.ts" | js.Build $opts | fingerprint -}}

@@ -1,3 +1,4 @@
+{{- .Page.Store.Set "hasGithubRepo" true -}}
 {{- $repo := .Get 0 -}}
 <div class="github-repo-card" data-repo="{{ $repo }}" aria-busy="true">
     <div class="github-repo-card__header">

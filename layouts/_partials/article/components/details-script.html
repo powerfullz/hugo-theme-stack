@@ -1,0 +1,5 @@
+{{- if .Store.Get "hasDetails" -}}
+{{- $opts := dict "minify" hugo.IsProduction "format" "esm" -}}
+{{- $script := resources.Get "ts/detailsAnimation.ts" | js.Build $opts | fingerprint -}}
+<script type="module" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+{{- end -}}

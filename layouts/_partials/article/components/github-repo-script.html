@@ -1,0 +1,8 @@
+{{- if .Store.Get "hasGithubRepo" -}}
+{{- $opts := dict "minify" hugo.IsProduction "format" "esm" -}}
+{{- $script := resources.Get "ts/github-repo.tsx" | js.Build $opts | fingerprint -}}
+<script type="module">
+import { setupGithubRepo } from '{{ $script.RelPermalink }}';
+setupGithubRepo();
+</script>
+{{- end -}}

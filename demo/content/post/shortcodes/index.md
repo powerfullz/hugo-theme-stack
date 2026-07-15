@@ -102,6 +102,39 @@ The `github-repo` shortcode displays a repository's description, primary languag
 {{</* github-repo "owner/repository" */>}}
 ```
 
+## Details
+
+The `details` shortcode creates a collapsible content block. Content inside supports markdown.
+
+{{< details title="Click to expand" >}}
+This content is hidden by default. You can put **markdown** content here, including:
+
+- Lists
+- [Links](https://example.com)
+- `Code snippets`
+- Images
+
+> Even blockquotes work inside!
+{{< /details >}}
+
+You can also make it start in the expanded state with `open=true`:
+
+{{< details title="Already expanded" open=true >}}
+This content is visible from the start, but can still be collapsed by clicking the header.
+{{< /details >}}
+
+### Usage
+
+```markdown
+{{</* details title="Click to expand" */>}}
+Hidden content with **markdown** support.
+{{</* /details */>}}
+
+{{</* details title="Already expanded" open=true */>}}
+This starts visible.
+{{</* /details */>}}
+```
+
 ## Diagrams
 
 Stack supports [Mermaid](https://mermaid.js.org/) diagrams out of the box.
