@@ -1,7 +1,7 @@
 KaTeX = [
-    { src = "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css", integrity = "sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB", type = "style" },
-    { src = "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js", integrity = "sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs", type = "script", defer = true },
-    { src = "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js", integrity = "sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz", type = "script", defer = true },
+    { src = "https://cdn.jsdelivr.net/npm/katex@0.18.3/dist/katex.min.css", integrity = "sha384-RoLRvUYVd65C0csQyzIQe9vxSGIc1JNXuJCUqUtuBQ1cMoH/+Fzt8LptMNlxg+HJ", type = "style" },
+    { src = "https://cdn.jsdelivr.net/npm/katex@0.18.3/dist/katex.min.js", integrity = "sha384-Ao5geg2cviSdXKBbEHUKrtw7GPZLJSuVtw/I5Yzsa6vgc3PaxqS5OqSbdufSsnoo", type = "script", defer = true },
+    { src = "https://cdn.jsdelivr.net/npm/katex@0.18.3/dist/contrib/auto-render.min.js", integrity = "sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz", type = "script", defer = true },
 ]
 
 Cactus = [
@@ -19,5 +19,5 @@ Cactus = [
     Script = "https://esm.sh/artalk@2.10.0"
 
 [Mermaid]
-    Core    = "https://cdn.jsdelivr.net/npm/mermaid@11.16.0/dist/mermaid.esm.min.mjs"
+    Core    = "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.esm.min.mjs"
     Panzoom = "https://cdn.jsdelivr.net/npm/panzoom@9.4.4/+esm"
