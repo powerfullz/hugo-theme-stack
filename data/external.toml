@@ -15,8 +15,8 @@ Cactus = [
     Lightbox = "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js"
 
 [Artalk]
-    Style  = "https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css"
-    Script = "https://cdn.jsdelivr.net/npm/artalk@2.9.1/+esm"
+    Style  = "https://cdnjs.cloudflare.com/ajax/libs/artalk/2.10.0/Artalk.css"
+    Script = "https://esm.sh/artalk@2.10.0"
 
 [Mermaid]
     Core    = "https://cdn.jsdelivr.net/npm/mermaid@11.16.0/dist/mermaid.esm.min.mjs"
